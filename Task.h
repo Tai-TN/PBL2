@@ -1,20 +1,26 @@
 #pragma once
 #include <string>
-
+#include <ctime>
 class Task{
 private:
+    std::string id;
     std::string title;
     int priority;
     std::string deadline;
     bool completed;
 public:
+    Task();
     Task(std::string t, int p,std::string d, bool completed = false);
+    void nhap();
     virtual void display();
-    virtual ~Task();
+    virtual ~Task(){}
+
+
     std::string getTitle(){return title;}
     int getPriority(){return priority;}
     bool isCompleted(){return completed;}
     void setCompleted(bool c){completed = c;}
+
 };
 
 // class UrgentTask : public Task{ // Task uu tien cao
