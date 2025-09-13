@@ -3,7 +3,8 @@
 #include <ctime>
 class Task{
 private:
-    std::string id;
+    static size_t Next_id;
+    size_t id;
     std::string title;
     int priority;
     std::string deadline;
@@ -15,11 +16,13 @@ public:
     virtual void display();
     virtual ~Task(){}
 
-
+    size_t getID(){return id;}
     std::string getTitle(){return title;}
     int getPriority(){return priority;}
+    std::string getDeadline(){return deadline;}
     bool isCompleted(){return completed;}
     void setCompleted(bool c){completed = c;}
+    void TransformDealine(std::string &s);
 
 };
 
