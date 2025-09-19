@@ -1,5 +1,8 @@
 #include <iostream>
 #include "heap_manager.h"
+#include <QString>
+#include <QWidgetList>
+
 
 void HeapManager::HeapifyUpMax(size_t index){
     while(index > 0){
@@ -51,10 +54,10 @@ void HeapManager::HeapifyDownMin(size_t index){
         size_t right = 2*index + 2;
         size_t largest = index;
 
-        if (left < size && minHeap[left]->getDeadline() > minHeap[largest]->getDeadline()){
+        if (left < size && minHeap[left]->getDeadline() < minHeap[largest]->getDeadline()){
             largest = left;
         }
-        if (right < size && minHeap[right]->getDeadline() > minHeap[largest]->getDeadline()){
+        if (right < size && minHeap[right]->getDeadline() < minHeap[largest]->getDeadline()){
             largest = right;
         }
 
@@ -71,7 +74,7 @@ void HeapManager::addTask(Task* task){
     HeapifyUpMax(maxHeap.size()-1);
     // them vao max heap
     minHeap.push_back(task);
-    HeapifyUpMax(minHeap.size()-1);
+    HeapifyUpMin(minHeap.size()-1);
 }
 
 
@@ -155,10 +158,10 @@ void HeapManager::HeapifyTempDownMin(std::vector<Task*> &temp, size_t index){
         size_t right = 2*index + 2;
         size_t largest = index;
 
-        if (left < size && temp[left]->getDeadline() > temp[largest]->getDeadline()){
+        if (left < size && temp[left]->getDeadline() < temp[largest]->getDeadline()){
             largest = left;
         }
-        if (right < size && temp[right]->getDeadline() > temp[largest]->getDeadline()){
+        if (right < size && temp[right]->getDeadline() < temp[largest]->getDeadline()){
             largest = right;
         }
 
@@ -169,31 +172,36 @@ void HeapManager::HeapifyTempDownMin(std::vector<Task*> &temp, size_t index){
         else break;
     }
 }
-void HeapManager::ShowTaskByPriority(){
+std::vector<Task*> HeapManager::ShowTaskByPriority(){
     std::vector<Task*> temp = maxHeap;
-    std::cout << "============= Danh sách công việc theo độ ưu tiên=================" << std::endl;
+    std::vector<Task*> result;
+    // std::cout << "============= Danh sách công việc theo độ ưu tiên=================" << std::endl;
     while(!temp.empty()){
         Task* top = temp.front();
-        std::cout <<"ID: " << top->getID() << std::endl << "Title : " << top->getTitle() << std::endl << "Priority: " << top->getPriority()
-        << std::endl << "Deadline: " << top->getDeadline() << std::endl << "Trạng thái : " <<  top->isCompleted() << std::endl;
+        // std::cout <<"ID: " << top->getID() << std::endl << "Title : " << top->getTitle() << std::endl << "Priority: " << top->getPriority()
+        // << std::endl << "Deadline: " << top->getDeadline() << std::endl << "Trạng thái : " <<  top->isCompleted() << std::endl;
+        result.push_back(top);
         std::swap(temp[0],temp[temp.size()-1]);
         temp.pop_back();
         HeapifyTempDownMax(temp, 0);
     }
-
+    return result;
 }
 
 
-void HeapManager::ShowTaskByDeadline(){
+std::vector<Task*> HeapManager::ShowTaskByDeadline(){
     std::vector<Task*> temp = minHeap;
-    std::cout << "============= Danh sách công việc theo độ Deadline=================" << std::endl;
+    std::vector<Task*> result;
+    // std::cout << "============= Danh sách công việc theo độ Deadline=================" << std::endl;
     while(!temp.empty()){
         Task* top = temp.front();
-        std::cout << "ID: " << top->getID() << std::endl << "Title : " << top->getTitle() << std::endl << "Priority: " << top->getPriority()
-        << std::endl << "Deadline: " << top->getDeadline() << std::endl << "Trạng thái : " <<  top->isCompleted() << std::endl;
+        result.push_back(top);
+        // std::cout << "ID: " << top->getID() << std::endl << "Title : " << top->getTitle() << std::endl << "Priority: " << top->getPriority()
+        // << std::endl << "Deadline: " << top->getDeadline() << std::endl << "Trạng thái : " <<  top->isCompleted() << std::endl;
+
         std::swap(temp[0],temp[temp.size()-1]);
         temp.pop_back();
         HeapifyTempDownMin(temp, 0);
     }
-
+    return result;
 }

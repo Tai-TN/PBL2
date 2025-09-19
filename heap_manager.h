@@ -21,8 +21,8 @@ public:
     Task* getEarliestDeadline();
     void removeTask(size_t id);
     bool isEmpty();
-    void ShowTaskByPriority();
-    void ShowTaskByDeadline();
+    std::vector<Task*> ShowTaskByPriority();
+    std::vector<Task*> ShowTaskByDeadline();
     void HeapifyTempDownMax(std::vector<Task*>&, size_t index);
     void HeapifyTempDownMin(std::vector<Task*>&, size_t index);
 };  

@@ -1,0 +1,11 @@
+# ninja log v6
+42	364	7799527780932472	PBL2_autogen/timestamp	b0a642f62b95d2c3
+42	364	7799527780932472	PBL2_autogen/mocs_compilation.cpp	b0a642f62b95d2c3
+42	364	7799527780932472	D:/PBL/PBL2/PBL2/build/PBL2_autogen/timestamp	b0a642f62b95d2c3
+42	364	7799527780932472	D:/PBL/PBL2/PBL2/build/PBL2_autogen/mocs_compilation.cpp	b0a642f62b95d2c3
+1451	2816	7799503069958529	CMakeFiles/PBL2.dir/Task.cpp.obj	fbd0b4eaa1f8c9fc
+1497	5086	7799515338004123	CMakeFiles/PBL2.dir/heap_manager.cpp.obj	a48961aeb048294
+1411	7859	7799526132754190	CMakeFiles/PBL2.dir/main.cpp.obj	3e1d3ea8c00ed879
+1402	7820	7799526132674210	CMakeFiles/PBL2.dir/PBL2_autogen/mocs_compilation.cpp.obj	a929ae5bd67c4d3d
+366	7256	7799527784158150	CMakeFiles/PBL2.dir/mainwindow.cpp.obj	ac44b6dec8222829
+7257	7898	7799527853068470	PBL2.exe	e3e494f567e51f47
