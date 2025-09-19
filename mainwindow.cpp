@@ -15,16 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowTitle("To Do List");
-    // QWidget *central = new QWidget(this);
-    // QVBoxLayout *layout = new QVBoxLayout(central);
 
-    // taskList = new QListWidget(this);
-    // addButton = new QPushButton("➕ Add Task", this);
-
-    // layout->addWidget(taskList);
-    // layout->addWidget(addButton);
-
-    // setCentralWidget(central);
 
     LoadFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt", manager);
 

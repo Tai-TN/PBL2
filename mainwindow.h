@@ -25,11 +25,9 @@ public:
 
 private slots:
     void addTask();
-    //void showTask(){};
     void updateTaskList();
 private:
-    // QListWidget *taskList;
-    // QPushButton *addButton;
+
     void LoadFile(const std::string&, HeapManager&);
 private:
     Ui::MainWindow *ui;
