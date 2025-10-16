@@ -94,6 +94,15 @@ build CMakeFiles/PBL2.dir/heap_manager.cpp.obj: CXX_COMPILER__PBL2_unscanned_Deb
   OBJECT_DIR = CMakeFiles\PBL2.dir
   OBJECT_FILE_DIR = CMakeFiles\PBL2.dir
 
+build CMakeFiles/PBL2.dir/Trie.cpp.obj: CXX_COMPILER__PBL2_unscanned_Debug D$:/PBL/PBL2/PBL2/Trie.cpp || cmake_object_order_depends_target_PBL2
+  CONFIG = Debug
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\PBL2.dir\Trie.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -DQT_DECLARATIVE_DEBUG -g
+  INCLUDES = -ID:/PBL/PBL2/PBL2/build/PBL2_autogen/include -isystem C:/Qt/6.9.2/mingw_64/include/QtCore -isystem C:/Qt/6.9.2/mingw_64/include -isystem C:/Qt/6.9.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.9.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.9.2/mingw_64/include/QtGui
+  OBJECT_DIR = CMakeFiles\PBL2.dir
+  OBJECT_FILE_DIR = CMakeFiles\PBL2.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target PBL2
@@ -102,7 +111,7 @@ build CMakeFiles/PBL2.dir/heap_manager.cpp.obj: CXX_COMPILER__PBL2_unscanned_Deb
 #############################################
 # Link the executable PBL2.exe
 
-build PBL2.exe: CXX_EXECUTABLE_LINKER__PBL2_Debug CMakeFiles/PBL2.dir/PBL2_autogen/mocs_compilation.cpp.obj CMakeFiles/PBL2.dir/main.cpp.obj CMakeFiles/PBL2.dir/mainwindow.cpp.obj CMakeFiles/PBL2.dir/Task.cpp.obj CMakeFiles/PBL2.dir/heap_manager.cpp.obj | C$:/Qt/6.9.2/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.9.2/mingw_64/lib/libQt6Gui.a C$:/Qt/6.9.2/mingw_64/lib/libQt6Core.a C$:/Qt/6.9.2/mingw_64/lib/libQt6EntryPoint.a || PBL2_autogen PBL2_autogen_timestamp_deps
+build PBL2.exe: CXX_EXECUTABLE_LINKER__PBL2_Debug CMakeFiles/PBL2.dir/PBL2_autogen/mocs_compilation.cpp.obj CMakeFiles/PBL2.dir/main.cpp.obj CMakeFiles/PBL2.dir/mainwindow.cpp.obj CMakeFiles/PBL2.dir/Task.cpp.obj CMakeFiles/PBL2.dir/heap_manager.cpp.obj CMakeFiles/PBL2.dir/Trie.cpp.obj | C$:/Qt/6.9.2/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.9.2/mingw_64/lib/libQt6Gui.a C$:/Qt/6.9.2/mingw_64/lib/libQt6Core.a C$:/Qt/6.9.2/mingw_64/lib/libQt6EntryPoint.a || PBL2_autogen PBL2_autogen_timestamp_deps
   CONFIG = Debug
   FLAGS = -DQT_QML_DEBUG -DQT_DECLARATIVE_DEBUG -g
   LINK_FLAGS = -mwindows

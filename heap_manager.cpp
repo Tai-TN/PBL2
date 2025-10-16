@@ -123,8 +123,12 @@ for (size_t i = 0 ;i<minHeap.size();i++){
 
 
 void HeapManager::removeTask(size_t id){
+
     RemoveTaskFromMaxHeap(id);
     RemoveTaskFromMinHeap(id);
+    if (maxHeap.size() != minHeap.size()){
+        std::cerr << "Error: maxHeap and minHeap are out of sync!" << std::endl;
+    }
 }
 
 
@@ -198,4 +202,13 @@ std::vector<Task*> HeapManager::ShowTaskByDeadline(){
         HeapifyTempDownMin(temp, 0);
     }
     return result;
+}
+
+Task* HeapManager::getTaskByID(size_t id){
+    for (Task* t : maxHeap){
+        if (t->getID() == id){
+            return t;
+        }
+    }
+    return nullptr;
 }

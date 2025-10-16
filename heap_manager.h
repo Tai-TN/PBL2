@@ -25,4 +25,5 @@ public:
     std::vector<Task*> ShowTaskByDeadline();
     void HeapifyTempDownMax(std::vector<Task*>&, size_t index);
     void HeapifyTempDownMin(std::vector<Task*>&, size_t index);
+    Task* getTaskByID(size_t id);
 };  

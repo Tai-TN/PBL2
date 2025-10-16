@@ -7,6 +7,10 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
 
 qt_standard_project_setup()
 
+set(RESOURCES
+    resources.qrc
+)
+
 qt_add_executable(PBL2
     WIN32 MACOSX_BUNDLE
     main.cpp
@@ -18,6 +22,9 @@ qt_add_executable(PBL2
     heap_manager.cpp
     heap_manager.h
     custom_hashmap.h
+    Trie.h
+    Trie.cpp
+    ${RESOURCES}
 )
 
 target_link_libraries(PBL2

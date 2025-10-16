@@ -4,7 +4,8 @@
 size_t Task::Next_id = 0;
 
 Task::Task(std::string t, int p,std::string d, bool completed ){
-    this->id = ++(Task::Next_id);
+    static size_t Next_id = 0;
+    this->id = ++Next_id;
     this->title = t;
     this->priority = p;
     this->deadline = d;

@@ -1,0 +1,107 @@
+/* vscode-disable css.unknownProperties */
+
+/* ===== MAIN WINDOW ===== */
+QMainWindow {
+    background-color: #f8f9fa;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* ===== BUTTON ===== */
+QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-weight: bold;
+    border: none;
+}
+QPushButton:hover {
+    background-color: #43a047;
+}
+QPushButton:pressed {
+    background-color: #388e3c;
+}
+
+/* ===== TREE WIDGET ===== */
+QTreeWidget {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+QTreeWidget::item:alternate {
+    background-color: #f6f8fa;
+}
+QTreeWidget::item {
+    padding: 2px; /* Đảm bảo không ảnh hưởng đến checkbox */
+}
+QHeaderView::section {
+    background-color: #e9ecef;
+    font-weight: bold;
+    border: none;
+    padding: 4px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* ===== COMBO BOX ===== */
+QComboBox {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 3px 6px;
+}
+QComboBox:hover {
+    border-color: #4CAF50;
+}
+
+/* ===== QLineEdit ===== */
+QLineEdit {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 3px 6px;
+    background: white;
+}
+QLineEdit:focus {
+    border: 1px solid #4CAF50;
+}
+
+/* ===== CHECKBOX ===== */
+QCheckBox {
+    spacing: 4px; /* Khoảng cách giữa text và checkbox */
+}
+
+/* Định nghĩa indicator cho checkbox trong QTreeWidget */
+QTreeWidget QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #888;
+    background-color: white;
+}
+
+/* Trạng thái unchecked */
+QTreeWidget QCheckBox::indicator:unchecked {
+    border: 1px solid #888;
+    background-color: white;
+    /* Để Qt vẽ dấu tích mặc định, không ghi đè image */
+}
+
+/* Trạng thái checked */
+QTreeWidget QCheckBox::indicator:checked {
+    border: 1px solid #388e3c;
+    background-color: #4CAF50;
+    /* Để Qt vẽ dấu tích mặc định, không ghi đè image */
+}
+
+/* Trạng thái indeterminate (nếu cần) */
+QTreeWidget QCheckBox::indicator:indeterminate {
+    border: 1px solid #888;
+    background-color: #ccc;
+    /* Để Qt vẽ trạng thái trung gian mặc định */
+}
+
+/* ===== TOOLTIP ===== */
+QToolTip {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+}
