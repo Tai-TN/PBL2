@@ -24,6 +24,8 @@ qt_add_executable(PBL2
     custom_hashmap.h
     Trie.h
     Trie.cpp
+    AdvancedTaskDialog.h
+    AdvancedTaskDialog.cpp
     ${RESOURCES}
 )
 

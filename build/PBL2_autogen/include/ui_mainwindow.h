@@ -43,8 +43,8 @@ public:
     QVBoxLayout *verticalLayout;
     QComboBox *comboBox;
     QLineEdit *searchBar;
-    QPushButton *editTaskButton;
     QPushButton *addTaskButton;
+    QPushButton *editTaskButton;
     QPushButton *taskCompleted;
     QPushButton *viewSwitchButton;
     QMenuBar *menubar;
@@ -55,12 +55,12 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1116, 667);
+        MainWindow->resize(979, 662);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName("stackedWidget");
-        stackedWidget->setGeometry(QRect(0, 40, 1011, 571));
+        stackedWidget->setGeometry(QRect(20, 30, 961, 571));
         calendarPage = new QWidget();
         calendarPage->setObjectName("calendarPage");
         calendarWidget = new QCalendarWidget(calendarPage);
@@ -80,11 +80,11 @@ public:
         __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
         taskTree->setHeaderItem(__qtreewidgetitem);
         taskTree->setObjectName("taskTree");
-        taskTree->setGeometry(QRect(150, 10, 781, 531));
+        taskTree->setGeometry(QRect(150, 20, 801, 531));
         taskTree->header()->setStretchLastSection(false);
         verticalLayoutWidget = new QWidget(listPage);
         verticalLayoutWidget->setObjectName("verticalLayoutWidget");
-        verticalLayoutWidget->setGeometry(QRect(0, 30, 141, 143));
+        verticalLayoutWidget->setGeometry(QRect(0, 20, 141, 159));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -99,15 +99,15 @@ public:
 
         verticalLayout->addWidget(searchBar);
 
-        editTaskButton = new QPushButton(verticalLayoutWidget);
-        editTaskButton->setObjectName("editTaskButton");
-
-        verticalLayout->addWidget(editTaskButton);
-
         addTaskButton = new QPushButton(verticalLayoutWidget);
         addTaskButton->setObjectName("addTaskButton");
 
         verticalLayout->addWidget(addTaskButton);
+
+        editTaskButton = new QPushButton(verticalLayoutWidget);
+        editTaskButton->setObjectName("editTaskButton");
+
+        verticalLayout->addWidget(editTaskButton);
 
         taskCompleted = new QPushButton(verticalLayoutWidget);
         taskCompleted->setObjectName("taskCompleted");
@@ -122,7 +122,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1116, 33));
+        menubar->setGeometry(QRect(0, 0, 979, 33));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -143,8 +143,8 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         searchBar->setPlaceholderText(QCoreApplication::translate("MainWindow", "\360\237\224\215 Nh\341\272\255p t\341\273\253 kh\303\263a t\303\254m ki\341\272\277m...", nullptr));
-        editTaskButton->setText(QCoreApplication::translate("MainWindow", "\342\234\217\357\270\217Edit Task", nullptr));
         addTaskButton->setText(QCoreApplication::translate("MainWindow", "\342\236\225 Add Task", nullptr));
+        editTaskButton->setText(QCoreApplication::translate("MainWindow", "\342\234\217\357\270\217Edit Task", nullptr));
         taskCompleted->setText(QCoreApplication::translate("MainWindow", "Completed Tasks", nullptr));
         viewSwitchButton->setText(QCoreApplication::translate("MainWindow", "\360\237\223\205 Xem L\341\273\213ch", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));

@@ -1,6 +1,7 @@
 D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/PBL2/mainwindow.h \
   D:/PBL/PBL2/PBL2/build/PBL2_autogen/moc_predefs.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QCoreApplication \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/QDateTime \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QDir \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QFile \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QString \
@@ -147,6 +148,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCore/qtversionchecks.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qtypeinfo.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qtypes.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/qurl.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qutf8stringview.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qvariant.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qvarlengtharray.h \
@@ -167,12 +169,18 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtGui/qkeysequence.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qpaintdevice.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qpalette.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qpen.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qpicture.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qpixelformat.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qpixmap.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qpolygon.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qregion.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qrgb.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qrgba64.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qtextcursor.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qtextdocument.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qtextformat.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qtextoption.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qtgui-config.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qtguiexports.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qtguiglobal.h \
@@ -180,10 +188,19 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtGui/qvalidator.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QCheckBox \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QComboBox \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QDateTimeEdit \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QDialog \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QDialogButtonBox \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QHeaderView \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QLabel \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QLineEdit \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QListWidget \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QMainWindow \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QPushButton \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QSpinBox \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QTextEdit \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QTreeWidget \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QVBoxLayout \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qabstractbutton.h \
@@ -193,11 +210,18 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qabstractslider.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qabstractspinbox.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qboxlayout.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qcheckbox.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qcombobox.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qdatetimeedit.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qdialog.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qframe.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qgridlayout.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qheaderview.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qlabel.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qlayout.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qlayoutitem.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qlineedit.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qlistview.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qlistwidget.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qmainwindow.h \
@@ -205,10 +229,12 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qrubberband.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qslider.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qspinbox.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qstyle.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qstyleoption.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qtabbar.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qtabwidget.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qtextedit.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qtreeview.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qtreewidget.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qtreewidgetitemiterator.h \
@@ -460,6 +486,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wctype.h \
+  D:/PBL/PBL2/PBL2/AdvancedTaskDialog.h \
   D:/PBL/PBL2/PBL2/Task.h \
   D:/PBL/PBL2/PBL2/Trie.h \
   D:/PBL/PBL2/PBL2/custom_hashmap.h \

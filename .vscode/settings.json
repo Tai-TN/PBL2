@@ -84,6 +84,11 @@
         "thread": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "complex": "cpp",
+        "regex": "cpp",
+        "shared_mutex": "cpp",
+        "spanstream": "cpp",
+        "typeindex": "cpp"
     }
 }

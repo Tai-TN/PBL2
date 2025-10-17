@@ -34,5 +34,11 @@
   "command": "c:\\Qt\\Tools\\mingw1310_64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 -ID:/PBL/PBL2/PBL2/build/PBL2_autogen/include -isystem C:/Qt/6.9.2/mingw_64/include/QtCore -isystem C:/Qt/6.9.2/mingw_64/include -isystem C:/Qt/6.9.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.9.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.9.2/mingw_64/include/QtGui -DQT_QML_DEBUG -DQT_DECLARATIVE_DEBUG -g -o CMakeFiles\\PBL2.dir\\Trie.cpp.obj -c D:\\PBL\\PBL2\\PBL2\\Trie.cpp",
   "file": "D:/PBL/PBL2/PBL2/Trie.cpp",
   "output": "D:/PBL/PBL2/PBL2/build/CMakeFiles/PBL2.dir/Trie.cpp.obj"
+},
+{
+  "directory": "D:/PBL/PBL2/PBL2/build",
+  "command": "c:\\Qt\\Tools\\mingw1310_64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 -ID:/PBL/PBL2/PBL2/build/PBL2_autogen/include -isystem C:/Qt/6.9.2/mingw_64/include/QtCore -isystem C:/Qt/6.9.2/mingw_64/include -isystem C:/Qt/6.9.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.9.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.9.2/mingw_64/include/QtGui -DQT_QML_DEBUG -DQT_DECLARATIVE_DEBUG -g -o CMakeFiles\\PBL2.dir\\AdvancedTaskDialog.cpp.obj -c D:\\PBL\\PBL2\\PBL2\\AdvancedTaskDialog.cpp",
+  "file": "D:/PBL/PBL2/PBL2/AdvancedTaskDialog.cpp",
+  "output": "D:/PBL/PBL2/PBL2/build/CMakeFiles/PBL2.dir/AdvancedTaskDialog.cpp.obj"
 }
 ]

@@ -15,7 +15,7 @@
 #include <QDir>
 #include <QTimer>
 #include "Trie.h"
-
+#include "AdvancedTaskDialog.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;

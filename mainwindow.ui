@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1116</width>
-    <height>667</height>
+    <width>979</width>
+    <height>662</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,9 +17,9 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>40</y>
-      <width>1011</width>
+      <x>20</x>
+      <y>30</y>
+      <width>961</width>
       <height>571</height>
      </rect>
     </property>
@@ -54,8 +54,8 @@
       <property name="geometry">
        <rect>
         <x>150</x>
-        <y>10</y>
-        <width>781</width>
+        <y>20</y>
+        <width>801</width>
         <height>531</height>
        </rect>
       </property>
@@ -72,9 +72,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>30</y>
+        <y>20</y>
         <width>141</width>
-        <height>143</height>
+        <height>159</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -92,16 +92,16 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="editTaskButton">
+        <widget class="QPushButton" name="addTaskButton">
          <property name="text">
-          <string>✏️Edit Task</string>
+          <string>➕ Add Task</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="addTaskButton">
+        <widget class="QPushButton" name="editTaskButton">
          <property name="text">
-          <string>➕ Add Task</string>
+          <string>✏️Edit Task</string>
          </property>
         </widget>
        </item>
@@ -138,7 +138,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1116</width>
+     <width>979</width>
      <height>33</height>
     </rect>
    </property>

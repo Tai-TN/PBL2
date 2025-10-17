@@ -15,7 +15,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QString iconPath = QDir(QCoreApplication::applicationDirPath()).filePath("../resources/icons/calendar.png");
+    QIcon windowIcon(iconPath);
+    this->setWindowIcon(windowIcon);
     this->setWindowTitle("To Do List");
+    
     LoadFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt", manager);
 
 
@@ -78,24 +82,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::addTask()
 {
-    bool ok;
-    QString title = QInputDialog::getText(this, "Title", "Enter task name:",QLineEdit::Normal, "", &ok);
-
-    if (!ok || title.isEmpty() ) return;
-
-    int priority = QInputDialog::getInt(this, "Priority", "Enter priority",QLineEdit::Normal,1,10,1,&ok);
-
-    if (!ok) return;
-
-    QString deadline = QInputDialog::getText(this,"Deadline","Enter Deadline (yyyy-mm-dd)", QLineEdit::Normal,"",&ok);
-
-    if (!ok || deadline.isEmpty()) return;
-
-    Task* task = new Task(title.toStdString(), priority, deadline.toStdString(), false);
-    manager.addTask(task);
-    taskTrie.Insert(title);
-    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
-    updateTaskList();   
+    AdvancedTaskDialog dialog(manager, this);
+    if (dialog.exec() == QDialog::Accepted) {
+        Task* newTask = dialog.getCreatedTask();
+        if (newTask) {
+            manager.addTask(newTask);
+            SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
+            updateTaskList();
+            buildTrie(); // 🆕 cap nhật Trie
+        }
+    }  
 }
 
 
@@ -109,20 +105,34 @@ void MainWindow::LoadFile(const std::string& filename, HeapManager& manager){
     std::string line;
     while(getline(f,line)){
         std::stringstream ss(line);
-        std::string idStr, title , priorityStr, deadline, completedStr;
+        std::vector<std::string> fields;
+        std::string field;
+
+        while(getline(ss, field, '|')){
+            fields.push_back(field);
+        }
+
         
-        getline(ss,idStr,'|');
-        getline(ss,title,'|');
-        getline(ss,priorityStr,'|');
-        getline(ss,deadline,'|');
-        getline(ss,completedStr,'|');
+        
+        if (fields.size() >= 12){
+            size_t id = std::stoul(fields[0]);
+            std::string title = fields[1];
+            std::string description = fields[2];
+            int priority = std::stoi(fields[3]);
+            std::string deadline = fields[4];
+            bool completed = (fields[5] == "1");
+            std::string createdAt = fields[6];
+            std::string updatedAt = fields[7];
+            std::string category = fields[8];
+            int estimatedHours = std::stoi(fields[9]);
+            int actualHours = std::stoi(fields[10]);
+            std::string recurrence = fields[11];
+            Task* t = new Task(title,description, priority, deadline, {}, category, estimatedHours, recurrence, completed);
+            manager.addTask(t);
 
-        size_t id = size_t(stoll(idStr));
-        int priority = stoi(priorityStr);
-        bool completed = (completedStr == "1");
+        }
 
-        Task* t = new Task(title, priority, deadline, completed);
-        manager.addTask(t);
+        
     }
     f.close();
 
@@ -138,12 +148,36 @@ void MainWindow::SaveToFile(const std::string& pos){
     std::vector<Task*> tasks = manager.ShowTaskByPriority();
 
     for (Task* t : tasks){
-        f << t->getID() << "|" << t->getTitle() << "|" << t->getPriority() << "|" << t->getDeadline() << "|" << (t->isCompleted() ? 1 : 0) << "\n";
+        f << t->getID() << "|" 
+          << t->getTitle() << "|" 
+          << t->getDescription() << "|"
+          << t->getPriority() << "|" 
+          << t->getDeadline() << "|" 
+          << (t->isCompleted() ? 1 : 0) << "|"
+          << t->getCreatedAt() << "|"
+          << t->getUpdatedAt() << "|"
+          << t->getCategory() << "|"
+          << t->getEstimatedHours() << "|"
+          << t->getActualHours() << "|"
+          << t->getRecurrence();
+        
+        // Lưu tags nếu có
+        std::vector<std::string> tags = t->getTags();
+        if (!tags.empty()) {
+            f << "|";
+            for (size_t i = 0; i < tags.size(); ++i) {
+                f << tags[i];
+                if (i < tags.size() - 1) {
+                    f << ","; // Phân cách tags bằng dấu phẩy
+                }
+            }
+        }
+        
+        f << "\n";
     }
     f.close();
-    //QMessageBox::information(this, "Succes", "Data saved successfully!");
+    //QMessageBox::information(this, "Success", "Data saved successfully!");
 }
-
 void MainWindow::updateTaskList() {
     if (!ui->taskTree) {
         QMessageBox::critical(this, "Lỗi", "QTreeWidget không được khởi tạo!");
@@ -231,40 +265,28 @@ void MainWindow::updateTaskList() {
 
 }
 
-void MainWindow::editTask(){
-    QTreeWidgetItem *currentItem = ui->taskTree->currentItem();
-    if (!currentItem){
-        QMessageBox::warning(this, "No selection", "Please select a task to edit!");
+void MainWindow::editTask()
+{
+    QTreeWidgetItem* currentItem = ui->taskTree->currentItem();
+    if (!currentItem) {
+        QMessageBox::warning(this, "No selection", "Vui lòng chọn task để sửa!");
         return;
     }
-
-    QString oldTitle = currentItem->text(0);
+    
     size_t taskID = currentItem->data(0, Qt::UserRole).toULongLong();
-     bool ok;
-    QString newTitle = QInputDialog::getText(this, "Edit Task", "Enter new title:",QLineEdit::Normal, "", &ok);
-
-    if (!ok || newTitle.isEmpty() ) return;
-
-    int newPriority = QInputDialog::getInt(this, "Priority", "Enter priority",QLineEdit::Normal,1,3,1,&ok);
-
-    if (!ok) return;
-
-    QString newDeadline = QInputDialog::getText(this,"Deadline","Enter Deadline (yyyy-mm-dd)", QLineEdit::Normal,"",&ok);
-
-    if (!ok || newDeadline.isEmpty()) return;
-
-    if (oldTitle!=newTitle){
-        taskTrie.DeleteWord(oldTitle);
-        taskTrie.Insert(newTitle);
+    Task* task = manager.getTaskByID(taskID);
+    if (!task) {
+        QMessageBox::warning(this, "Lỗi", "Không tìm thấy task!");
+        return;
     }
-    manager.removeTask(taskID);
-    Task* newTask = new Task(newTitle.toStdString(),newPriority, newDeadline.toStdString(), currentItem->checkState(0) == Qt::Checked);
-    manager.addTask(newTask);
-    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
-    updateTaskList();
-
+    
+    AdvancedTaskDialog dialog(task, manager, this);
+    if (dialog.exec() == QDialog::Accepted) {
+        SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
+        updateTaskList();
+        buildTrie(); // 🆕 Cập nhật Trie
+    }
 }
-
 
 void MainWindow::onItemChanged(QTreeWidgetItem *item, int column)
 {
