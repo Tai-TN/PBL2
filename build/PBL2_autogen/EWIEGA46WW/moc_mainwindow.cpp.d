@@ -4,6 +4,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCore/QDateTime \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QDir \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QFile \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/QPropertyAnimation \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QString \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QTimer \
   C:/Qt/6.9.2/mingw_64/include/QtCore/q17memory.h \
@@ -13,6 +14,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCore/q20type_traits.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/q20utility.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/q23utility.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/qabstractanimation.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qabstracteventdispatcher.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qabstractitemmodel.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qalgorithms.h \
@@ -52,6 +54,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCore/qdebug.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qdir.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qdirlisting.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/qeasingcurve.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qelapsedtimer.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qendian.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qeventloop.h \
@@ -97,6 +100,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCore/qpair.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qpoint.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qprocessordetection.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/qpropertyanimation.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qrect.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qrefcount.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qregularexpression.h \
@@ -151,6 +155,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCore/qurl.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qutf8stringview.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qvariant.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/qvariantanimation.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qvarlengtharray.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qxptype_traits.h \

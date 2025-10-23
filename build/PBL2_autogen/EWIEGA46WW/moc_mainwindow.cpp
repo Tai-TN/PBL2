@@ -50,9 +50,12 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "column",
         "onItemClicked",
         "onCompletedClicked",
-        "switchView",
         "onCalendarDateClicked",
-        "date"
+        "date",
+        "onMenuButtonClicked",
+        "toggleLeftMenu",
+        "highlightActiveButton",
+        "QPushButton*"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -72,11 +75,17 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         }}),
         // Slot 'onCompletedClicked'
         QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'switchView'
-        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onCalendarDateClicked'
-        QtMocHelpers::SlotData<void(const QDate &)>(12, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QDate, 13 },
+        QtMocHelpers::SlotData<void(const QDate &)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QDate, 12 },
+        }}),
+        // Slot 'onMenuButtonClicked'
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'toggleLeftMenu'
+        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'highlightActiveButton'
+        QtMocHelpers::SlotData<void(QPushButton *)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 16, 2 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -107,9 +116,23 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->onItemChanged((*reinterpret_cast< std::add_pointer_t<QTreeWidgetItem*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 4: _t->onItemClicked((*reinterpret_cast< std::add_pointer_t<QTreeWidgetItem*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 5: _t->onCompletedClicked(); break;
-        case 6: _t->switchView(); break;
-        case 7: _t->onCalendarDateClicked((*reinterpret_cast< std::add_pointer_t<QDate>>(_a[1]))); break;
+        case 6: _t->onCalendarDateClicked((*reinterpret_cast< std::add_pointer_t<QDate>>(_a[1]))); break;
+        case 7: _t->onMenuButtonClicked(); break;
+        case 8: _t->toggleLeftMenu(); break;
+        case 9: _t->highlightActiveButton((*reinterpret_cast< std::add_pointer_t<QPushButton*>>(_a[1]))); break;
         default: ;
+        }
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 9:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QPushButton* >(); break;
+            }
+            break;
         }
     }
 }
@@ -133,14 +156,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 10;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        if (_id < 10)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 10;
     }
     return _id;
 }

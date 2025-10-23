@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Qt App",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${command:cmake.launchTargetPath}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "PATH",
+                    "value": "${env:PATH};C:/Qt/6.9.2/mingw_64/bin"
+                },
+                {
+                    "name": "QT_QPA_PLATFORM_PLUGIN_PATH",
+                    "value": "C:/Qt/6.9.2/mingw_64/plugins/platforms"
+                }
+            ],
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/Qt/Tools/mingw1310_64/bin/gdb.exe",
+            "externalConsole": true,
+            "visualizerFile": "c:\\Users\\admin\\AppData\\Roaming\\Code\\User\\workspaceStorage\\6d0abfb445afb18f73d4ad73d10bd2e2\\tonka3000.qtvsctools\\qt.natvis.xml"
+        }
+    ]
+}

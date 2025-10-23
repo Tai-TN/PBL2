@@ -15,24 +15,29 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QString iconPath = QDir(QCoreApplication::applicationDirPath()).filePath("../resources/icons/calendar.png");
+    QString iconPath = QDir(QCoreApplication::applicationDirPath()).filePath("../resources/icons/iconWindow.png");
     QIcon windowIcon(iconPath);
     this->setWindowIcon(windowIcon);
     this->setWindowTitle("To Do List");
     
     LoadFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt", manager);
 
+    leftMenuVisible = true;
+    originalMenuWidth = ui->leftMenu->width(); // luu width goc
 
-    // Khi nhấn nút "Add Task"
+
+    connect(ui->menuBtn, &QPushButton::clicked, this, &MainWindow::toggleLeftMenu);
+    connect(ui->taskList, &QPushButton::clicked, this, &MainWindow::onMenuButtonClicked);
+    connect(ui->calendarList, &QPushButton::clicked, this, &MainWindow::onMenuButtonClicked);
+
     connect(ui->addTaskButton, &QPushButton::clicked, this, &MainWindow::addTask);
-    // Khi đổi trạng thái hiển thị
     connect(ui->comboBox, &QComboBox::currentIndexChanged, this, &MainWindow::updateTaskList);
     connect(ui->editTaskButton, &QPushButton::clicked, this, &MainWindow::editTask);
     connect(ui->taskTree, &QTreeWidget::itemChanged,this, &MainWindow::onItemChanged);
     connect(ui->taskCompleted, &QPushButton::clicked, this, &MainWindow::onCompletedClicked);
     connect(ui->searchBar, &QLineEdit::textChanged, this, &MainWindow::updateTaskList);
 
-    connect(ui->viewSwitchButton, &QPushButton::clicked, this, &MainWindow::switchView);
+    //connect(ui->viewSwitchButton, &QPushButton::clicked, this, &MainWindow::switchView);
     connect(ui->calendarWidget, &QCalendarWidget::clicked, this, &MainWindow::onCalendarDateClicked);
 
 
@@ -58,11 +63,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->taskTree->header()->setSectionResizeMode(QHeaderView::Interactive);
     
     isListView = true;
-    //showCompleteTasks = true;
 
     buildTrie();
     
-    ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentIndex(3);
     updateTaskList();
     
     ui->calendarWidget->setSelectedDate(QDate::currentDate()); // set mac dinh
@@ -176,7 +180,6 @@ void MainWindow::SaveToFile(const std::string& pos){
         f << "\n";
     }
     f.close();
-    //QMessageBox::information(this, "Success", "Data saved successfully!");
 }
 void MainWindow::updateTaskList() {
     if (!ui->taskTree) {
@@ -329,13 +332,8 @@ void MainWindow::onItemChanged(QTreeWidgetItem *item, int column)
         // Cập nhật trạng thái checkbox
         item->setCheckState(0, newState ? Qt::Checked : Qt::Unchecked);
     } else {
-        // qDebug() << "Task not found: ID=" << taskID;
-        // // Chỉ hiển thị thông báo một lần và thoát
-        // static bool errorShown = false;
-        // if (!errorShown) {
-        //     errorShown = true;
+        
             QMessageBox::warning(this, "Lỗi", "Không tìm thấy task với ID: " + QString::number(taskID));
-           // QTimer::singleShot(1000, this, [&]() { errorShown = false; }); // Reset sau 1 giây
         }
 
 
@@ -364,26 +362,18 @@ void MainWindow::onItemClicked(QTreeWidgetItem *item, int column){
 }
 
 
-
-// void MainWindow::onCompletedClicked(){
-//     QString currentText = ui->taskCompleted->text();
-//     if (currentText == "Incomplete Tasks"){
-//         showCompleteTasks = false;
-//     }
-//     else{
-//         showCompleteTasks = true;
-//     }
-//     ui->taskCompleted->setText(showCompleteTasks  ? "Incomplete Tasks" : "Complete Tasks" );
-//     updateTaskList();
-// }
-
 void MainWindow::onCompletedClicked(){
     showCompleteTasks = !showCompleteTasks;
-    
+    QIcon completedIcon(":/blueIcons/resources/icons/check-circle.svg");
+    QIcon incompleteIcon(":/blueIcons/resources/icons/x-circle.svg");
     if (showCompleteTasks) {
-        ui->taskCompleted->setText("📋Incompleted Tasks");
+        ui->taskCompleted->setIcon(incompleteIcon);
+        ui->taskCompleted->setText("Incompleted Tasks");
+        
     } else {
-        ui->taskCompleted->setText("✅Completed Tasks");
+        ui->taskCompleted->setIcon(completedIcon);
+        ui->taskCompleted->setText("Completed Tasks");
+        
     }
     
     updateTaskList();
@@ -463,21 +453,63 @@ void MainWindow::onCalendarDateClicked(const QDate& date){
 }
 
 
-void MainWindow::switchView(){
-    isListView = !isListView;
-
-    if (isListView){
-        ui->stackedWidget->setCurrentIndex(2);
-        ui->viewSwitchButton->setText("📅 Xem Lịch");
-        updateTaskList();
-    }
-    else{
-        ui->stackedWidget->setCurrentIndex(0);
-        ui->viewSwitchButton->setText("📋 Xem Danh Sách");
-        onCalendarDateClicked(ui->calendarWidget->selectedDate());
-    }
-
+void MainWindow::toggleLeftMenu(){
+    leftMenuVisible = !leftMenuVisible;
+    QIcon align_sign(":/blueIcons/resources/icons/align-justify2.svg");
+    QIcon back_sign(":/blueIcons/resources/icons/arrow-left1.svg");
     
+    
+    if (leftMenuVisible){
+        ui->menuBtn->setIcon(back_sign);
+        
+        for (int w = 0; w <= originalMenuWidth; w += 10) {
+            QTimer::singleShot(w * 2, this, [this, w]() {
+                ui->leftMenu->setMinimumWidth(w);
+                ui->leftMenu->setMaximumWidth(w);
+            });
+        }
+    }
+    else{ 
+        ui->menuBtn->setIcon(align_sign);
+        
+        int currentWidth = ui->leftMenu->width();
+        for (int w = currentWidth; w >= 0; w -= 10) {
+            QTimer::singleShot((currentWidth - w) * 2, this, [this, w]() {
+                ui->leftMenu->setMinimumWidth(w);
+                ui->leftMenu->setMaximumWidth(w);
+            });
+        }
+    }
 }
 
 
+void MainWindow::onMenuButtonClicked(){
+    QPushButton* clickedButton = qobject_cast<QPushButton*>(sender()); // xac dinh nut duoc bam
+    if (!clickedButton) return;
+
+    if (clickedButton->objectName() == "calendarList"){
+        ui->stackedWidget->setCurrentIndex(0);
+    }
+    else if (clickedButton->objectName() == "taskList"){
+        ui->stackedWidget->setCurrentIndex(3);
+    }
+    else if (clickedButton->objectName() == "categorybtn"){
+        ui->stackedWidget->setCurrentIndex(3);
+    }
+    highlightActiveButton(clickedButton); // doi nen nut dang chon
+}
+
+void MainWindow::highlightActiveButton(QPushButton* clickedButton){
+    QList<QPushButton*> menuButtons = {  // danh sach cac nut menu
+        ui->taskList, ui->calendarList
+    };
+    foreach(QPushButton* btn, menuButtons){  // foreach : duyet qua va so sanh  
+        if (btn == clickedButton){
+            btn->setStyleSheet("background-color : #fefeff; padding : 10px 5px; text-align: left; border-top-radius : 20px;");
+        }
+        else{
+            btn->setStyleSheet("background-color: transparent;padding : 10px 5px; text-align: left;"); // nen trong suot
+        }
+    }
+
+}

@@ -289,6 +289,7 @@
 		"C:/Qt/6.9.2/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginAdditionalTargetInfo.cmake",
 		"C:/Qt/6.9.2/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsVersionlessAliasTargets.cmake",
 		"C:/Program Files/CMake/share/cmake-4.1/Modules/GNUInstallDirs.cmake",
+		"D:/PBL/PBL2/PBL2/resources.qrc",
 		"C:/Program Files/CMake/share/cmake-4.1/Modules/GNUInstallDirs.cmake"
 	],
 	"CMAKE_SOURCE_DIR" : "D:/PBL/PBL2/PBL2",
@@ -304,6 +305,12 @@
 			null
 		],
 		[ "D:/PBL/PBL2/PBL2/Task.h", "MU", "EWIEGA46WW/moc_Task.cpp", null ],
+		[
+			"D:/PBL/PBL2/PBL2/TaskItemQwidget.h",
+			"MU",
+			"EWIEGA46WW/moc_TaskItemQwidget.cpp",
+			null
+		],
 		[ "D:/PBL/PBL2/PBL2/Trie.h", "MU", "EWIEGA46WW/moc_Trie.cpp", null ],
 		[
 			"D:/PBL/PBL2/PBL2/custom_hashmap.h",
@@ -383,7 +390,7 @@
 	],
 	"MOC_PREDEFS_FILE" : "D:/PBL/PBL2/PBL2/build/PBL2_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
-	"MOC_SKIP" : [],
+	"MOC_SKIP" : [ "D:/PBL/PBL2/PBL2/build/qrc_resources.cpp" ],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 6,
 	"PARSE_CACHE_FILE" : "D:/PBL/PBL2/PBL2/build/CMakeFiles/PBL2_autogen.dir/ParseCache.txt",
@@ -396,6 +403,7 @@
 	[
 		[ "D:/PBL/PBL2/PBL2/AdvancedTaskDialog.cpp", "MU", null ],
 		[ "D:/PBL/PBL2/PBL2/Task.cpp", "MU", null ],
+		[ "D:/PBL/PBL2/PBL2/TaskItemQwidget.cpp", "MU", null ],
 		[ "D:/PBL/PBL2/PBL2/Trie.cpp", "MU", null ],
 		[ "D:/PBL/PBL2/PBL2/heap_manager.cpp", "MU", null ],
 		[ "D:/PBL/PBL2/PBL2/main.cpp", "MU", null ],
@@ -403,7 +411,7 @@
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
-	"UIC_SKIP" : [],
+	"UIC_SKIP" : [ "D:/PBL/PBL2/PBL2/build/qrc_resources.cpp" ],
 	"UIC_UI_FILES" : [],
 	"USE_BETTER_GRAPH" : true,
 	"VERBOSITY" : 0

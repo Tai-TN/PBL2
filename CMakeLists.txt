@@ -6,10 +6,7 @@ project(PBL2 LANGUAGES CXX)
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
 
 qt_standard_project_setup()
-
-set(RESOURCES
-    resources.qrc
-)
+qt_add_resources(APP_RESOURCES resources.qrc)
 
 qt_add_executable(PBL2
     WIN32 MACOSX_BUNDLE
@@ -26,9 +23,10 @@ qt_add_executable(PBL2
     Trie.cpp
     AdvancedTaskDialog.h
     AdvancedTaskDialog.cpp
-    ${RESOURCES}
+    TaskItemQwidget.h
+    TaskItemQwidget.cpp
+    ${APP_RESOURCES}  
 )
-
 target_link_libraries(PBL2
     PRIVATE
         Qt::Core

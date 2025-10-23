@@ -16,6 +16,7 @@
 #include <QTimer>
 #include "Trie.h"
 #include "AdvancedTaskDialog.h"
+#include <QPropertyAnimation>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -37,12 +38,21 @@ private slots:
     void onItemChanged(QTreeWidgetItem *item, int column);
     void onItemClicked(QTreeWidgetItem *item, int column);
     void onCompletedClicked();
-    void switchView();
     void onCalendarDateClicked(const QDate& date);
-private:
+    void onMenuButtonClicked();
+    void toggleLeftMenu();
+    void highlightActiveButton(QPushButton*);
+    private:
 
     void LoadFile(const std::string&, HeapManager&);
     void SaveToFile(const std::string&);
+    bool leftMenuVisible;
+    int originalMenuWidth;
+
+    void onCategoryClicked(QListWidgetItem *item);
+    void onAddCategoryClicked();
+    void onDeleteCategoryClicked();
+
 private:
     Ui::MainWindow *ui;
     HeapManager manager;
@@ -50,5 +60,8 @@ private:
     Trie taskTrie;
     void buildTrie(); // tạo trie từ danh sách task (đọc từ tiêu đề vào)
     bool isListView = true;
+
+    void setUpCategories();
+    void setupUI();
 };
 #endif // MAINWINDOW_H
