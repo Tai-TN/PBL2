@@ -19,8 +19,8 @@ class AdvancedTaskDialog : public QDialog{
 
 public:
 
-    explicit AdvancedTaskDialog(HeapManager& manager, QWidget* parent = nullptr);
-    AdvancedTaskDialog(Task* task, HeapManager& manager, QWidget* parent = nullptr);
+    explicit AdvancedTaskDialog(HeapManager& manager, QWidget* parent = nullptr); // khi thêm task
+    AdvancedTaskDialog(Task* task, HeapManager& manager, QWidget* parent = nullptr); // khi sửa task
     Task* getCreatedTask(){return createdTask;}
 
 private slots:

@@ -1,28 +1,42 @@
 <RCC>
   <qresource prefix="blueIcons">
-    <file>resources/icons/bellă.svg</file>
-    <file>resources/icons/hash.svg</file>
-    <file>resources/icons/command (1).svg</file>
-    <file>resources/icons/arrow-left.svg</file>
-    <file>resources/icons/arrow-left1.svg</file>
-    <file>resources/icons/check-circle.svg</file>
+    <file>resources/icons/plus.svg</file>
+    <file>resources/icons/bin.png</file>
+    <file>resources/icons/clipboard.svg</file>
+    <file>resources/icons/circle.svg</file>
+    <file>resources/icons/circle_tick.svg</file>
     <file>resources/icons/x-circle.svg</file>
     <file>resources/icons/filter.svg</file>
-    <file>resources/icons/bell1.svg</file>
-    <file>resources/icons/edit1.svg</file>
-    <file>resources/icons/plus-square1.svg</file>
-    <file>resources/icons/edit.svg</file>
-    <file>resources/icons/plus-square.svg</file>
-    <file>resources/icons/check-square1.svg</file>
+    <file>resources/icons/tag1.svg</file>
+    <file>resources/icons/folder-minus.svg</file>
+    <file>resources/icons/folder-minus1.svg</file>
     <file>resources/icons/bar-chart.svg</file>
     <file>resources/icons/calendar.svg</file>
+    <file>resources/icons/check-circle.svg</file>
+    <file>resources/icons/check-square.svg</file>
+    <file>resources/icons/check-square1.svg</file>
+    <file>resources/icons/edit.svg</file>
+    <file>resources/icons/edit1.svg</file>
+    <file>resources/icons/folder-minus.svg</file>
+    <file>resources/icons/plus-circle.svg</file>
+    <file>resources/icons/align-justify.svg</file>
+    <file>resources/icons/align-justify1.svg</file>
+    <file>resources/icons/align-justify2.svg</file>
+    <file>resources/icons/arrow-left.svg</file>
+    <file>resources/icons/bell.svg</file>
+    <file>resources/icons/check-square.svg</file>
+    <file>resources/icons/check-square1.svg</file>
+    <file>resources/icons/folder-minus.svg</file>
+    <file>resources/icons/search.svg</file>
+    <file>resources/icons/tag.svg</file>
+    <file>resources/icons/user.svg</file>
+    <file>resources/icons/arrow-left.svg</file>
+    <file>resources/icons/check-square1.svg</file>
     <file>resources/icons/check-square.svg</file>
     <file>resources/icons/user.svg</file>
     <file>resources/icons/search.svg</file>
     <file>resources/icons/align-justify2.svg</file>
     <file>resources/icons/align-justify1.svg</file>
     <file>resources/icons/align-justify.svg</file>
-    <file>resources/icons/bar-chart.svg</file>
-    <file>resources/icons/star.svg</file>
   </qresource>
 </RCC>

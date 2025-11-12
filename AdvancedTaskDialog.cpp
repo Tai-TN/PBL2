@@ -27,7 +27,7 @@ void AdvancedTaskDialog::setupUI()
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     
     
-    QFormLayout* formLayout = new QFormLayout();
+    QFormLayout* formLayout = new QFormLayout();// 1 dòng có thể có label + widget hoặc 1 trong 2 đều đc
     
     // Title 
     titleEdit = new QLineEdit(this);
@@ -43,10 +43,10 @@ void AdvancedTaskDialog::setupUI()
     // Priority với màu sắc
     prioritySpin = new QSpinBox(this);
     prioritySpin->setRange(1, 3);
-    prioritySpin->setValue(2);
+    prioritySpin->setValue(2);// giá trị mặc định khi mở addTask
     priorityLabel = new QLabel("🟡 Trung bình", this);
     formLayout->addRow("Độ ưu tiên (1-3):", prioritySpin);
-    formLayout->addRow("", priorityLabel);
+    formLayout->addRow("", priorityLabel);  
     
     // Deadline với datetime
     deadlineEdit = new QDateTimeEdit(this);
@@ -80,7 +80,7 @@ void AdvancedTaskDialog::setupUI()
     actualHoursSpin->setSpecialValueText("Chưa thực hiện");
     formLayout->addRow("⏱️ Thời gian thực tế:", actualHoursSpin);
     
-    // Recurrence
+    //Lặp lại
     recurrenceCombo = new QComboBox(this);
     setupRecurrenceCombo();
     formLayout->addRow("🔄 Lặp lại:", recurrenceCombo);
@@ -94,7 +94,7 @@ void AdvancedTaskDialog::setupUI()
     mainLayout->addLayout(formLayout);
     
     
-    buttonBox = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Cancel, this);
+    buttonBox = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Cancel, this);// tạo 2 nút save và cancel
     mainLayout->addWidget(buttonBox);
     
     // style
@@ -136,7 +136,7 @@ void AdvancedTaskDialog::setupConnections()
 {
     connect(buttonBox, &QDialogButtonBox::accepted, this, &AdvancedTaskDialog::onSaveClicked);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &AdvancedTaskDialog::onCancelClicked);
-    connect(prioritySpin, QOverload<int>::of(&QSpinBox::valueChanged), this, &AdvancedTaskDialog::onPriorityChanged);
+    connect(prioritySpin, QOverload<int>::of(&QSpinBox::valueChanged), this, &AdvancedTaskDialog::onPriorityChanged);// Chọn phiên bản int thay vì QString
     connect(deadlineEdit, &QDateTimeEdit::dateTimeChanged, this, &AdvancedTaskDialog::updateDateTimeValidation);
 }
 
@@ -221,13 +221,13 @@ void AdvancedTaskDialog::onSaveClicked()
     
     if (titleEdit->text().trimmed().isEmpty()) {
         QMessageBox::warning(this, "Lỗi", "📝 Vui lòng nhập tiêu đề task!");
-        titleEdit->setFocus();
+        titleEdit->setFocus();// đưa con trỏ chuột trở lại tiêu đề
         return;
     }
     
     if (deadlineEdit->dateTime() < QDateTime::currentDateTime()) {
         int result = QMessageBox::warning(this, "Cảnh báo", 
-            "⏰ Deadline đã qua thời gian hiện tại!\nBạn có chắc muốn tiếp tục?",
+            "Deadline đã qua thời gian hiện tại!\nBạn có chắc muốn tiếp tục?",
             QMessageBox::Yes | QMessageBox::No);
         if (result == QMessageBox::No) return;
     }

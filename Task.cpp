@@ -105,7 +105,7 @@ bool Task::isValidDeadline() const{
 
     QDateTime deadlineDt = QDateTime::fromString(
         QString::fromStdString(deadline),
-        "yyyy-MM-dd HH-mm"
+        "yyyy-MM-dd HH:mm"
     );
     return deadlineDt.isValid(); // neu 30-2 => trả về false
 }
@@ -115,7 +115,7 @@ bool Task::isOverdue() const{ //kiểm tra xem công việc đã quá hạn (ove
 
     QDateTime deadlineDT = QDateTime::fromString(
         QString::fromStdString(deadline),
-        "yyyy-MM-dd HH-mm"
+        "yyyy-MM-dd HH:mm"
     );
 
     QDateTime now = QDateTime::currentDateTime();
@@ -127,7 +127,7 @@ bool Task::isOverdue() const{ //kiểm tra xem công việc đã quá hạn (ove
 int Task::daysUntilDeadline() const{
     QDateTime deadlineDT = QDateTime::fromString(
         QString::fromStdString(deadline),
-        "yyyy-MM-dd HH-mm"
+        "yyyy-MM-dd HH:mm"
     );
     QDateTime now = QDateTime::currentDateTime();
     return now.daysTo(deadlineDT);

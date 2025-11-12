@@ -45,9 +45,12 @@ template <> constexpr inline auto TaskItemWidget::qt_create_metaobjectdata<qt_me
         "Task*",
         "task",
         "completed",
-        "taskClicked",
+        "editTaskRequest",
+        "deleteTaskRequest",
         "onCheckboxStateChanged",
-        "state"
+        "state",
+        "onEditClicked",
+        "onDeleteClicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -55,14 +58,22 @@ template <> constexpr inline auto TaskItemWidget::qt_create_metaobjectdata<qt_me
         QtMocHelpers::SignalData<void(Task *, bool)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 3, 4 }, { QMetaType::Bool, 5 },
         }}),
-        // Signal 'taskClicked'
+        // Signal 'editTaskRequest'
         QtMocHelpers::SignalData<void(Task *)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 3, 4 },
         }}),
-        // Slot 'onCheckboxStateChanged'
-        QtMocHelpers::SlotData<void(int)>(7, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 8 },
+        // Signal 'deleteTaskRequest'
+        QtMocHelpers::SignalData<void(Task *)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 3, 4 },
         }}),
+        // Slot 'onCheckboxStateChanged'
+        QtMocHelpers::SlotData<void(int)>(8, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 9 },
+        }}),
+        // Slot 'onEditClicked'
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onDeleteClicked'
+        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -87,15 +98,20 @@ void TaskItemWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->taskStatusChanged((*reinterpret_cast< std::add_pointer_t<Task*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<bool>>(_a[2]))); break;
-        case 1: _t->taskClicked((*reinterpret_cast< std::add_pointer_t<Task*>>(_a[1]))); break;
-        case 2: _t->onCheckboxStateChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 1: _t->editTaskRequest((*reinterpret_cast< std::add_pointer_t<Task*>>(_a[1]))); break;
+        case 2: _t->deleteTaskRequest((*reinterpret_cast< std::add_pointer_t<Task*>>(_a[1]))); break;
+        case 3: _t->onCheckboxStateChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 4: _t->onEditClicked(); break;
+        case 5: _t->onDeleteClicked(); break;
         default: ;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
         if (QtMocHelpers::indexOfMethod<void (TaskItemWidget::*)(Task * , bool )>(_a, &TaskItemWidget::taskStatusChanged, 0))
             return;
-        if (QtMocHelpers::indexOfMethod<void (TaskItemWidget::*)(Task * )>(_a, &TaskItemWidget::taskClicked, 1))
+        if (QtMocHelpers::indexOfMethod<void (TaskItemWidget::*)(Task * )>(_a, &TaskItemWidget::editTaskRequest, 1))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (TaskItemWidget::*)(Task * )>(_a, &TaskItemWidget::deleteTaskRequest, 2))
             return;
     }
 }
@@ -119,14 +135,14 @@ int TaskItemWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 6;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 6)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 6;
     }
     return _id;
 }
@@ -138,8 +154,14 @@ void TaskItemWidget::taskStatusChanged(Task * _t1, bool _t2)
 }
 
 // SIGNAL 1
-void TaskItemWidget::taskClicked(Task * _t1)
+void TaskItemWidget::editTaskRequest(Task * _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
+}
+
+// SIGNAL 2
+void TaskItemWidget::deleteTaskRequest(Task * _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
 }
 QT_WARNING_POP

@@ -16,17 +16,16 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
-#include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -52,8 +51,8 @@ public:
     QPushButton *addTaskButton;
     QPushButton *calendarList;
     QPushButton *categorybtn;
-    QPushButton *statistics;
-    QPushButton *pushButton;
+    QPushButton *statisticsbtn;
+    QPushButton *todayTask;
     QWidget *mainBody;
     QVBoxLayout *verticalLayout;
     QWidget *headerFrame;
@@ -85,16 +84,62 @@ public:
     QHBoxLayout *horizontalLayout_9;
     QLabel *label_7;
     QLabel *label_8;
-    QWidget *categoryPag3_3;
+    QWidget *categoryListPage;
+    QVBoxLayout *verticalLayout_14;
+    QVBoxLayout *verticalLayout_13;
+    QPushButton *backCatetorybtn;
+    QWidget *categoryListcontainer;
+    QWidget *categoryPage;
+    QVBoxLayout *verticalLayout_12;
+    QVBoxLayout *verticalLayout_11;
+    QFrame *headerCategory;
+    QHBoxLayout *horizontalLayout_17;
+    QHBoxLayout *horizontalLayout_14;
+    QPushButton *addCategorybtn;
+    QListWidget *categoryListWidget;
+    QWidget *statisticsPage;
+    QVBoxLayout *verticalLayout_2;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QVBoxLayout *verticalLayout_18;
+    QWidget *widget_5;
+    QHBoxLayout *horizontalLayout_15;
+    QWidget *widget_6;
+    QVBoxLayout *verticalLayout_8;
     QLabel *label_10;
-    QWidget *page_3;
+    QLabel *numberAllTask;
+    QWidget *widget_7;
+    QVBoxLayout *verticalLayout_9;
+    QLabel *label_12;
+    QLabel *numberCompletedTask;
+    QWidget *widget_8;
+    QVBoxLayout *verticalLayout_16;
+    QLabel *label_14;
+    QLabel *numberPendingTask;
+    QWidget *widget_9;
+    QVBoxLayout *verticalLayout_17;
+    QLabel *label_16;
+    QLabel *numberProgress;
+    QWidget *widget_2;
+    QVBoxLayout *verticalLayout_20;
+    QWidget *statisticsLayout_1;
+    QVBoxLayout *verticalLayout_19;
+    QWidget *statisticsLayout_2;
+    QHBoxLayout *horizontalLayout_20;
+    QWidget *statisticsLayout_3;
+    QHBoxLayout *horizontalLayout_22;
+    QWidget *todayPage;
+    QHBoxLayout *horizontalLayout_16;
+    QWidget *todayListcontainer;
+    QVBoxLayout *verticalLayout_15;
+    QLabel *noTaskLabel;
     QWidget *listPage;
     QVBoxLayout *verticalLayout_5;
     QFrame *frame_7;
     QHBoxLayout *horizontalLayout_10;
     QFrame *frame_10;
     QHBoxLayout *horizontalLayout_11;
-    QPushButton *editTaskButton;
+    QPushButton *allTask;
     QPushButton *taskCompleted;
     QFrame *frame_9;
     QHBoxLayout *horizontalLayout_13;
@@ -102,7 +147,7 @@ public:
     QComboBox *comboBox;
     QFrame *frame_8;
     QHBoxLayout *horizontalLayout_12;
-    QTreeWidget *taskTree;
+    QWidget *taskListcontainer;
     QMenuBar *menubar;
     QStatusBar *statusbar;
     QToolBar *toolBar;
@@ -111,7 +156,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(874, 681);
+        MainWindow->resize(1053, 680);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         centralwidget->setStyleSheet(QString::fromUtf8("*{\n"
@@ -121,6 +166,7 @@ public:
 "#leftMenu{\n"
 "background-color : #2596be;\n"
 "}\n"
+"\n"
 "#headerFrame{\n"
 "	background-color: #fefeff;\n"
 "}\n"
@@ -134,8 +180,11 @@ public:
 "	border-radius : 10px;\n"
 "	border: 2px solid #2596be;	\n"
 "}\n"
-"#appHeader{\n"
+"#appHeader {\n"
 "	color : #2596be;\n"
+"}\n"
+"#todayList{\n"
+"backgroud-color : #2596be;\n"
 "}\n"
 "#taskList{\n"
 "	background-color : #fefeff;\n"
@@ -149,7 +198,7 @@ public:
 "	text-align: left;\n"
 "	\n"
 "}\n"
-"#editTaskButton , #taskCompleted{\n"
+"#editTaskButton , #taskCompleted , #allTask , #addCategorybtn{\n"
 "	background-color :#dff6ff;\n"
 "	padding : 5px 10px;\n"
 "	 border-radius : 15px;\n"
@@ -158,6 +207,24 @@ public:
 "#listPage{\n"
 "	background-color : #fefeff;\n"
 "}\n"
+"\n"
+"#label_10,#label_11,#label_12, #label_13,#label_14,#label_15, #label_16, #label_17{\n"
+"/*font-size: 10px; color: #555555; font-wei"
+                        "ght: bold;*/\n"
+"color: #555555; font-size: 24px; font-weight: 800;\n"
+"}\n"
+"/*#label_12{\n"
+"color: #8E44AD; font-size: 24px; font-weight: 800;}*/\n"
+"\n"
+"#widget_5{\n"
+"    /*  n\341\273\201n tr\341\272\257ng */\n"
+"    background-color: white; \n"
+"    /* Vi\341\273\201n m\341\273\217ng m\303\240u x\303\241m nh\341\272\241t */\n"
+"    border: 1px solid #E0E0E0; \n"
+"    /* Bo g\303\263c */\n"
+"    border-radius: 12px; \n"
+"}\n"
+"\n"
 ""));
         horizontalLayout = new QHBoxLayout(centralwidget);
         horizontalLayout->setSpacing(0);
@@ -236,7 +303,7 @@ public:
         taskList->setFont(font1);
         taskList->setFocusPolicy(Qt::FocusPolicy::NoFocus);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/blueIcons/resources/icons/check-square1.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon.addFile(QString::fromUtf8(":/blueIcons/resources/icons/check-square.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         taskList->setIcon(icon);
         taskList->setIconSize(QSize(24, 24));
 
@@ -247,7 +314,7 @@ public:
         addTaskButton->setFont(font1);
         addTaskButton->setFocusPolicy(Qt::FocusPolicy::NoFocus);
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/blueIcons/resources/icons/plus-square1.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon1.addFile(QString::fromUtf8(":/blueIcons/resources/icons/plus-circle.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         addTaskButton->setIcon(icon1);
         addTaskButton->setIconSize(QSize(24, 24));
 
@@ -272,32 +339,32 @@ public:
         categorybtn->setObjectName("categorybtn");
         categorybtn->setFocusPolicy(Qt::FocusPolicy::NoFocus);
         QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/blueIcons/resources/icons/command (1).svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon3.addFile(QString::fromUtf8(":/blueIcons/resources/icons/folder-minus1.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         categorybtn->setIcon(icon3);
         categorybtn->setIconSize(QSize(24, 24));
 
         verticalLayout_6->addWidget(categorybtn);
 
-        statistics = new QPushButton(frame_4);
-        statistics->setObjectName("statistics");
-        statistics->setMaximumSize(QSize(250, 16777215));
-        statistics->setFocusPolicy(Qt::FocusPolicy::NoFocus);
+        statisticsbtn = new QPushButton(frame_4);
+        statisticsbtn->setObjectName("statisticsbtn");
+        statisticsbtn->setMaximumSize(QSize(250, 16777215));
+        statisticsbtn->setFocusPolicy(Qt::FocusPolicy::NoFocus);
         QIcon icon4;
         icon4.addFile(QString::fromUtf8(":/blueIcons/resources/icons/bar-chart.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        statistics->setIcon(icon4);
-        statistics->setIconSize(QSize(24, 24));
+        statisticsbtn->setIcon(icon4);
+        statisticsbtn->setIconSize(QSize(24, 24));
 
-        verticalLayout_6->addWidget(statistics);
+        verticalLayout_6->addWidget(statisticsbtn);
 
-        pushButton = new QPushButton(frame_4);
-        pushButton->setObjectName("pushButton");
-        pushButton->setFocusPolicy(Qt::FocusPolicy::NoFocus);
+        todayTask = new QPushButton(frame_4);
+        todayTask->setObjectName("todayTask");
+        todayTask->setFocusPolicy(Qt::FocusPolicy::NoFocus);
         QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/blueIcons/resources/icons/hash.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        pushButton->setIcon(icon5);
-        pushButton->setIconSize(QSize(24, 24));
+        icon5.addFile(QString::fromUtf8(":/blueIcons/resources/icons/tag1.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        todayTask->setIcon(icon5);
+        todayTask->setIconSize(QSize(24, 24));
 
-        verticalLayout_6->addWidget(pushButton);
+        verticalLayout_6->addWidget(todayTask);
 
 
         verticalLayout_7->addWidget(frame_4, 0, Qt::AlignmentFlag::AlignTop);
@@ -331,7 +398,7 @@ public:
         menuBtn->setObjectName("menuBtn");
         menuBtn->setFocusPolicy(Qt::FocusPolicy::NoFocus);
         QIcon icon6;
-        icon6.addFile(QString::fromUtf8(":/blueIcons/resources/icons/arrow-left1.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon6.addFile(QString::fromUtf8(":/blueIcons/resources/icons/arrow-left.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         menuBtn->setIcon(icon6);
         menuBtn->setIconSize(QSize(24, 24));
 
@@ -399,7 +466,7 @@ public:
         accountBtn->setObjectName("accountBtn");
         accountBtn->setFocusPolicy(Qt::FocusPolicy::NoFocus);
         QIcon icon7;
-        icon7.addFile(QString::fromUtf8(":/blueIcons/resources/icons/bell\304\203.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon7.addFile(QString::fromUtf8(":/blueIcons/resources/icons/bell.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         accountBtn->setIcon(icon7);
         accountBtn->setIconSize(QSize(25, 25));
 
@@ -468,20 +535,250 @@ public:
         horizontalLayout_9->addWidget(label_8);
 
         stackedWidget->addWidget(calendarPage);
-        categoryPag3_3 = new QWidget();
-        categoryPag3_3->setObjectName("categoryPag3_3");
-        QSizePolicy sizePolicy2(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+        categoryListPage = new QWidget();
+        categoryListPage->setObjectName("categoryListPage");
+        QSizePolicy sizePolicy2(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(categoryPag3_3->sizePolicy().hasHeightForWidth());
-        categoryPag3_3->setSizePolicy(sizePolicy2);
-        label_10 = new QLabel(categoryPag3_3);
+        sizePolicy2.setHeightForWidth(categoryListPage->sizePolicy().hasHeightForWidth());
+        categoryListPage->setSizePolicy(sizePolicy2);
+        verticalLayout_14 = new QVBoxLayout(categoryListPage);
+        verticalLayout_14->setSpacing(0);
+        verticalLayout_14->setObjectName("verticalLayout_14");
+        verticalLayout_14->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_13 = new QVBoxLayout();
+        verticalLayout_13->setObjectName("verticalLayout_13");
+        backCatetorybtn = new QPushButton(categoryListPage);
+        backCatetorybtn->setObjectName("backCatetorybtn");
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/blueIcons/resources/icons/align-justify.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        backCatetorybtn->setIcon(icon8);
+        backCatetorybtn->setIconSize(QSize(24, 24));
+
+        verticalLayout_13->addWidget(backCatetorybtn);
+
+        categoryListcontainer = new QWidget(categoryListPage);
+        categoryListcontainer->setObjectName("categoryListcontainer");
+
+        verticalLayout_13->addWidget(categoryListcontainer);
+
+
+        verticalLayout_14->addLayout(verticalLayout_13);
+
+        stackedWidget->addWidget(categoryListPage);
+        categoryPage = new QWidget();
+        categoryPage->setObjectName("categoryPage");
+        QSizePolicy sizePolicy3(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(categoryPage->sizePolicy().hasHeightForWidth());
+        categoryPage->setSizePolicy(sizePolicy3);
+        verticalLayout_12 = new QVBoxLayout(categoryPage);
+        verticalLayout_12->setObjectName("verticalLayout_12");
+        verticalLayout_11 = new QVBoxLayout();
+        verticalLayout_11->setObjectName("verticalLayout_11");
+        headerCategory = new QFrame(categoryPage);
+        headerCategory->setObjectName("headerCategory");
+        sizePolicy2.setHeightForWidth(headerCategory->sizePolicy().hasHeightForWidth());
+        headerCategory->setSizePolicy(sizePolicy2);
+        headerCategory->setFrameShape(QFrame::Shape::StyledPanel);
+        headerCategory->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout_17 = new QHBoxLayout(headerCategory);
+        horizontalLayout_17->setObjectName("horizontalLayout_17");
+        horizontalLayout_14 = new QHBoxLayout();
+        horizontalLayout_14->setObjectName("horizontalLayout_14");
+        addCategorybtn = new QPushButton(headerCategory);
+        addCategorybtn->setObjectName("addCategorybtn");
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/blueIcons/resources/icons/plus.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        addCategorybtn->setIcon(icon9);
+        addCategorybtn->setIconSize(QSize(24, 24));
+
+        horizontalLayout_14->addWidget(addCategorybtn, 0, Qt::AlignmentFlag::AlignLeft);
+
+
+        horizontalLayout_17->addLayout(horizontalLayout_14);
+
+
+        verticalLayout_11->addWidget(headerCategory, 0, Qt::AlignmentFlag::AlignBottom);
+
+        categoryListWidget = new QListWidget(categoryPage);
+        categoryListWidget->setObjectName("categoryListWidget");
+        categoryListWidget->setStyleSheet(QString::fromUtf8("QListWidget { background: #fefeff; border: none; }\n"
+"      QListWidget::item { padding: 6px; margin: 4px 8px; border-radius: 10px; }\n"
+"      QListWidget::item:hover { background: #f1f3f5; }\n"
+"      QListWidget::item:selected { background: #e3f2fd; }"));
+        categoryListWidget->setResizeMode(QListView::ResizeMode::Adjust);
+        categoryListWidget->setSpacing(8);
+
+        verticalLayout_11->addWidget(categoryListWidget);
+
+
+        verticalLayout_12->addLayout(verticalLayout_11);
+
+        stackedWidget->addWidget(categoryPage);
+        statisticsPage = new QWidget();
+        statisticsPage->setObjectName("statisticsPage");
+        verticalLayout_2 = new QVBoxLayout(statisticsPage);
+        verticalLayout_2->setObjectName("verticalLayout_2");
+        scrollArea = new QScrollArea(statisticsPage);
+        scrollArea->setObjectName("scrollArea");
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 835, 524));
+        verticalLayout_18 = new QVBoxLayout(scrollAreaWidgetContents);
+        verticalLayout_18->setObjectName("verticalLayout_18");
+        widget_5 = new QWidget(scrollAreaWidgetContents);
+        widget_5->setObjectName("widget_5");
+        QSizePolicy sizePolicy4(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(widget_5->sizePolicy().hasHeightForWidth());
+        widget_5->setSizePolicy(sizePolicy4);
+        horizontalLayout_15 = new QHBoxLayout(widget_5);
+        horizontalLayout_15->setObjectName("horizontalLayout_15");
+        widget_6 = new QWidget(widget_5);
+        widget_6->setObjectName("widget_6");
+        sizePolicy4.setHeightForWidth(widget_6->sizePolicy().hasHeightForWidth());
+        widget_6->setSizePolicy(sizePolicy4);
+        verticalLayout_8 = new QVBoxLayout(widget_6);
+        verticalLayout_8->setObjectName("verticalLayout_8");
+        label_10 = new QLabel(widget_6);
         label_10->setObjectName("label_10");
-        label_10->setGeometry(QRect(20, 10, 49, 16));
-        stackedWidget->addWidget(categoryPag3_3);
-        page_3 = new QWidget();
-        page_3->setObjectName("page_3");
-        stackedWidget->addWidget(page_3);
+
+        verticalLayout_8->addWidget(label_10, 0, Qt::AlignmentFlag::AlignTop);
+
+        numberAllTask = new QLabel(widget_6);
+        numberAllTask->setObjectName("numberAllTask");
+
+        verticalLayout_8->addWidget(numberAllTask, 0, Qt::AlignmentFlag::AlignTop);
+
+
+        horizontalLayout_15->addWidget(widget_6, 0, Qt::AlignmentFlag::AlignTop);
+
+        widget_7 = new QWidget(widget_5);
+        widget_7->setObjectName("widget_7");
+        sizePolicy4.setHeightForWidth(widget_7->sizePolicy().hasHeightForWidth());
+        widget_7->setSizePolicy(sizePolicy4);
+        verticalLayout_9 = new QVBoxLayout(widget_7);
+        verticalLayout_9->setObjectName("verticalLayout_9");
+        label_12 = new QLabel(widget_7);
+        label_12->setObjectName("label_12");
+
+        verticalLayout_9->addWidget(label_12, 0, Qt::AlignmentFlag::AlignTop);
+
+        numberCompletedTask = new QLabel(widget_7);
+        numberCompletedTask->setObjectName("numberCompletedTask");
+
+        verticalLayout_9->addWidget(numberCompletedTask, 0, Qt::AlignmentFlag::AlignTop);
+
+
+        horizontalLayout_15->addWidget(widget_7, 0, Qt::AlignmentFlag::AlignTop);
+
+        widget_8 = new QWidget(widget_5);
+        widget_8->setObjectName("widget_8");
+        sizePolicy4.setHeightForWidth(widget_8->sizePolicy().hasHeightForWidth());
+        widget_8->setSizePolicy(sizePolicy4);
+        verticalLayout_16 = new QVBoxLayout(widget_8);
+        verticalLayout_16->setObjectName("verticalLayout_16");
+        label_14 = new QLabel(widget_8);
+        label_14->setObjectName("label_14");
+
+        verticalLayout_16->addWidget(label_14, 0, Qt::AlignmentFlag::AlignTop);
+
+        numberPendingTask = new QLabel(widget_8);
+        numberPendingTask->setObjectName("numberPendingTask");
+
+        verticalLayout_16->addWidget(numberPendingTask, 0, Qt::AlignmentFlag::AlignTop);
+
+
+        horizontalLayout_15->addWidget(widget_8, 0, Qt::AlignmentFlag::AlignTop);
+
+        widget_9 = new QWidget(widget_5);
+        widget_9->setObjectName("widget_9");
+        sizePolicy4.setHeightForWidth(widget_9->sizePolicy().hasHeightForWidth());
+        widget_9->setSizePolicy(sizePolicy4);
+        verticalLayout_17 = new QVBoxLayout(widget_9);
+        verticalLayout_17->setObjectName("verticalLayout_17");
+        label_16 = new QLabel(widget_9);
+        label_16->setObjectName("label_16");
+
+        verticalLayout_17->addWidget(label_16, 0, Qt::AlignmentFlag::AlignTop);
+
+        numberProgress = new QLabel(widget_9);
+        numberProgress->setObjectName("numberProgress");
+
+        verticalLayout_17->addWidget(numberProgress, 0, Qt::AlignmentFlag::AlignTop);
+
+
+        horizontalLayout_15->addWidget(widget_9, 0, Qt::AlignmentFlag::AlignTop);
+
+
+        verticalLayout_18->addWidget(widget_5);
+
+        widget_2 = new QWidget(scrollAreaWidgetContents);
+        widget_2->setObjectName("widget_2");
+        verticalLayout_20 = new QVBoxLayout(widget_2);
+        verticalLayout_20->setObjectName("verticalLayout_20");
+        statisticsLayout_1 = new QWidget(widget_2);
+        statisticsLayout_1->setObjectName("statisticsLayout_1");
+        verticalLayout_19 = new QVBoxLayout(statisticsLayout_1);
+        verticalLayout_19->setObjectName("verticalLayout_19");
+
+        verticalLayout_20->addWidget(statisticsLayout_1);
+
+        statisticsLayout_2 = new QWidget(widget_2);
+        statisticsLayout_2->setObjectName("statisticsLayout_2");
+        horizontalLayout_20 = new QHBoxLayout(statisticsLayout_2);
+        horizontalLayout_20->setObjectName("horizontalLayout_20");
+
+        verticalLayout_20->addWidget(statisticsLayout_2);
+
+        statisticsLayout_3 = new QWidget(widget_2);
+        statisticsLayout_3->setObjectName("statisticsLayout_3");
+        horizontalLayout_22 = new QHBoxLayout(statisticsLayout_3);
+        horizontalLayout_22->setObjectName("horizontalLayout_22");
+
+        verticalLayout_20->addWidget(statisticsLayout_3);
+
+
+        verticalLayout_18->addWidget(widget_2);
+
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        verticalLayout_2->addWidget(scrollArea);
+
+        stackedWidget->addWidget(statisticsPage);
+        todayPage = new QWidget();
+        todayPage->setObjectName("todayPage");
+        horizontalLayout_16 = new QHBoxLayout(todayPage);
+        horizontalLayout_16->setObjectName("horizontalLayout_16");
+        todayListcontainer = new QWidget(todayPage);
+        todayListcontainer->setObjectName("todayListcontainer");
+        QFont font4;
+        font4.setBold(true);
+        todayListcontainer->setFont(font4);
+        todayListcontainer->setStyleSheet(QString::fromUtf8("backgroud-color : #2596be;"));
+        verticalLayout_15 = new QVBoxLayout(todayListcontainer);
+        verticalLayout_15->setObjectName("verticalLayout_15");
+        noTaskLabel = new QLabel(todayListcontainer);
+        noTaskLabel->setObjectName("noTaskLabel");
+        sizePolicy3.setHeightForWidth(noTaskLabel->sizePolicy().hasHeightForWidth());
+        noTaskLabel->setSizePolicy(sizePolicy3);
+        noTaskLabel->setMinimumSize(QSize(100, 30));
+        QFont font5;
+        font5.setFamilies({QString::fromUtf8("Arial")});
+        font5.setPointSize(15);
+        noTaskLabel->setFont(font5);
+        noTaskLabel->setTextFormat(Qt::TextFormat::MarkdownText);
+
+        verticalLayout_15->addWidget(noTaskLabel, 0, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
+
+
+        horizontalLayout_16->addWidget(todayListcontainer);
+
+        stackedWidget->addWidget(todayPage);
         listPage = new QWidget();
         listPage->setObjectName("listPage");
         verticalLayout_5 = new QVBoxLayout(listPage);
@@ -490,6 +787,8 @@ public:
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
         frame_7 = new QFrame(listPage);
         frame_7->setObjectName("frame_7");
+        sizePolicy4.setHeightForWidth(frame_7->sizePolicy().hasHeightForWidth());
+        frame_7->setSizePolicy(sizePolicy4);
         frame_7->setFrameShape(QFrame::Shape::StyledPanel);
         frame_7->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout_10 = new QHBoxLayout(frame_7);
@@ -501,27 +800,26 @@ public:
         frame_10->setFrameShape(QFrame::Shape::StyledPanel);
         frame_10->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout_11 = new QHBoxLayout(frame_10);
+        horizontalLayout_11->setSpacing(10);
         horizontalLayout_11->setObjectName("horizontalLayout_11");
-        editTaskButton = new QPushButton(frame_10);
-        editTaskButton->setObjectName("editTaskButton");
-        editTaskButton->setFont(font1);
-        editTaskButton->setFocusPolicy(Qt::FocusPolicy::NoFocus);
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/blueIcons/resources/icons/edit1.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        editTaskButton->setIcon(icon8);
-        editTaskButton->setIconSize(QSize(24, 24));
+        allTask = new QPushButton(frame_10);
+        allTask->setObjectName("allTask");
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/blueIcons/resources/icons/clipboard.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        allTask->setIcon(icon10);
+        allTask->setIconSize(QSize(24, 24));
 
-        horizontalLayout_11->addWidget(editTaskButton);
+        horizontalLayout_11->addWidget(allTask, 0, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter);
 
         taskCompleted = new QPushButton(frame_10);
         taskCompleted->setObjectName("taskCompleted");
         taskCompleted->setFocusPolicy(Qt::FocusPolicy::NoFocus);
-        QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/blueIcons/resources/icons/check-circle.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        taskCompleted->setIcon(icon9);
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/blueIcons/resources/icons/check-circle.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        taskCompleted->setIcon(icon11);
         taskCompleted->setIconSize(QSize(24, 24));
 
-        horizontalLayout_11->addWidget(taskCompleted);
+        horizontalLayout_11->addWidget(taskCompleted, 0, Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignVCenter);
 
 
         horizontalLayout_10->addWidget(frame_10, 0, Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop);
@@ -538,12 +836,12 @@ public:
         label_9->setMaximumSize(QSize(30, 16777215));
         label_9->setPixmap(QPixmap(QString::fromUtf8(":/blueIcons/resources/icons/filter.svg")));
 
-        horizontalLayout_13->addWidget(label_9);
+        horizontalLayout_13->addWidget(label_9, 0, Qt::AlignmentFlag::AlignTop);
 
         comboBox = new QComboBox(frame_9);
         comboBox->setObjectName("comboBox");
 
-        horizontalLayout_13->addWidget(comboBox);
+        horizontalLayout_13->addWidget(comboBox, 0, Qt::AlignmentFlag::AlignTop);
 
 
         horizontalLayout_10->addWidget(frame_9);
@@ -559,16 +857,10 @@ public:
         horizontalLayout_12->setSpacing(0);
         horizontalLayout_12->setObjectName("horizontalLayout_12");
         horizontalLayout_12->setContentsMargins(0, 0, 0, 0);
-        taskTree = new QTreeWidget(frame_8);
-        QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
-        __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
-        taskTree->setHeaderItem(__qtreewidgetitem);
-        taskTree->setObjectName("taskTree");
-        sizePolicy.setHeightForWidth(taskTree->sizePolicy().hasHeightForWidth());
-        taskTree->setSizePolicy(sizePolicy);
-        taskTree->setFocusPolicy(Qt::FocusPolicy::NoFocus);
+        taskListcontainer = new QWidget(frame_8);
+        taskListcontainer->setObjectName("taskListcontainer");
 
-        horizontalLayout_12->addWidget(taskTree);
+        horizontalLayout_12->addWidget(taskListcontainer);
 
 
         verticalLayout_5->addWidget(frame_8);
@@ -583,7 +875,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 874, 33));
+        menubar->setGeometry(QRect(0, 0, 1053, 33));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -594,7 +886,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -608,8 +900,8 @@ public:
         addTaskButton->setText(QCoreApplication::translate("MainWindow", " Add Task", nullptr));
         calendarList->setText(QCoreApplication::translate("MainWindow", "Calendar", nullptr));
         categorybtn->setText(QCoreApplication::translate("MainWindow", "Category", nullptr));
-        statistics->setText(QCoreApplication::translate("MainWindow", "Statistics", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Tags", nullptr));
+        statisticsbtn->setText(QCoreApplication::translate("MainWindow", "Statistics", nullptr));
+        todayTask->setText(QCoreApplication::translate("MainWindow", "Today", nullptr));
         menuBtn->setText(QString());
         appHeader->setText(QCoreApplication::translate("MainWindow", "Dashboard", nullptr));
         label_2->setText(QString());
@@ -621,8 +913,21 @@ public:
         label_6->setText(QCoreApplication::translate("MainWindow", "\360\237\224\264 Cao", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "\342\217\263: Ch\306\260a ho\303\240n th\303\240nh", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "\342\234\205 : Ho\303\240n th\303\240nh", nullptr));
-        label_10->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        editTaskButton->setText(QCoreApplication::translate("MainWindow", "Edit Task", nullptr));
+        backCatetorybtn->setText(QString());
+#if QT_CONFIG(tooltip)
+        categoryPage->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><br/></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        addCategorybtn->setText(QCoreApplication::translate("MainWindow", "Th\303\252m Danh M\341\273\245c", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "ALL TASKS", nullptr));
+        numberAllTask->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_12->setText(QCoreApplication::translate("MainWindow", "COMPLETED", nullptr));
+        numberCompletedTask->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_14->setText(QCoreApplication::translate("MainWindow", "PENDING", nullptr));
+        numberPendingTask->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_16->setText(QCoreApplication::translate("MainWindow", "PROGRESS", nullptr));
+        numberProgress->setText(QCoreApplication::translate("MainWindow", "0%", nullptr));
+        noTaskLabel->setText(QCoreApplication::translate("MainWindow", " Kh\303\264ng c\303\263 task cho ng\303\240y h\303\264m nay!", nullptr));
+        allTask->setText(QCoreApplication::translate("MainWindow", "All Task", nullptr));
         taskCompleted->setText(QCoreApplication::translate("MainWindow", "Completed Tasks", nullptr));
         label_9->setText(QString());
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));

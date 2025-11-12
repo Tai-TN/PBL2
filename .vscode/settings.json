@@ -89,6 +89,11 @@
         "regex": "cpp",
         "shared_mutex": "cpp",
         "spanstream": "cpp",
-        "typeindex": "cpp"
+        "typeindex": "cpp",
+        "qmessagebox": "cpp",
+        "qinputdialog": "cpp",
+        "qpieseries": "cpp",
+        "qhorizontalbarseries": "cpp",
+        "qbarcategoryaxis": "cpp"
     }
 }

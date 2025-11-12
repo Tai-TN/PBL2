@@ -1,12 +1,50 @@
 D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/PBL2/mainwindow.h \
   D:/PBL/PBL2/PBL2/build/PBL2_autogen/moc_predefs.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QAbstractAxis \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QAbstractBarSeries \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QAbstractSeries \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QBarCategoryAxis \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QBarSeries \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QBarSet \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QChart \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QChartGlobal \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QChartView \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QHorizontalBarSeries \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QLegend \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QPieSeries \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QPieSlice \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QValueAxis \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qabstractaxis.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qabstractbarseries.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qabstractseries.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qbarcategoryaxis.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qbarseries.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qbarset.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qchart.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qchartglobal.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qchartview.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qhorizontalbarseries.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qlegend.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qpieseries.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qpieslice.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qtcharts-config.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qtchartsexports.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qvalueaxis.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QCoreApplication \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QDateTime \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QDir \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QFile \
-  C:/Qt/6.9.2/mingw_64/include/QtCore/QPropertyAnimation \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/QList \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/QMap \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/QMargins \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/QObject \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/QRect \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/QSize \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/QSizeF \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QString \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/QStringList \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QTimer \
+  C:/Qt/6.9.2/mingw_64/include/QtCore/QVariant \
   C:/Qt/6.9.2/mingw_64/include/QtCore/q17memory.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/q20iterator.h \
@@ -14,7 +52,6 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCore/q20type_traits.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/q20utility.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/q23utility.h \
-  C:/Qt/6.9.2/mingw_64/include/QtCore/qabstractanimation.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qabstracteventdispatcher.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qabstractitemmodel.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qalgorithms.h \
@@ -54,7 +91,6 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCore/qdebug.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qdir.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qdirlisting.h \
-  C:/Qt/6.9.2/mingw_64/include/QtCore/qeasingcurve.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qelapsedtimer.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qendian.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qeventloop.h \
@@ -100,7 +136,6 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCore/qpair.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qpoint.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qprocessordetection.h \
-  C:/Qt/6.9.2/mingw_64/include/QtCore/qpropertyanimation.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qrect.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qrefcount.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qregularexpression.h \
@@ -155,33 +190,48 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCore/qurl.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qutf8stringview.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qvariant.h \
-  C:/Qt/6.9.2/mingw_64/include/QtCore/qvariantanimation.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qvarlengtharray.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/qyieldcpu.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/QBrush \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/QFont \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/QMouseEvent \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/QPen \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qaction.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qbitmap.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qbrush.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qcolor.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qcursor.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qevent.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qeventpoint.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qfont.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qfontinfo.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qfontmetrics.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qfontvariableaxis.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qguiapplication.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qguiapplication_platform.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qicon.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qimage.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qinputdevice.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qinputmethod.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qkeysequence.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qpaintdevice.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qpainter.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qpainterpath.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qpalette.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qpen.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qpicture.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qpixelformat.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qpixmap.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qpointingdevice.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qpolygon.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qregion.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qrgb.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qrgba64.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qscreen.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qscreen_platform.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qtextcursor.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qtextdocument.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qtextformat.h \
@@ -191,6 +241,8 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtGui/qtguiglobal.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qtransform.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qvalidator.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qvector2d.h \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/qvectornd.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qwindowdefs_win.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QCheckBox \
@@ -198,16 +250,21 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QDateTimeEdit \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QDialog \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QDialogButtonBox \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QGraphicsView \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QGraphicsWidget \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QHBoxLayout \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QHeaderView \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QLabel \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QLineEdit \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QListWidget \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QMainWindow \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QPushButton \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QScrollArea \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QSpinBox \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QTextEdit \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QTreeWidget \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QVBoxLayout \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QWidget \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qabstractbutton.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qabstractitemview.h \
@@ -221,6 +278,11 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qdialog.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qframe.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qgraphicsitem.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qgraphicslayoutitem.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qgraphicsscene.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qgraphicsview.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qgraphicswidget.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qgridlayout.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qheaderview.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qlabel.h \
@@ -232,6 +294,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qmainwindow.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qpushbutton.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qrubberband.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qscrollarea.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qslider.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qspinbox.h \
@@ -492,7 +555,9 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wctype.h \
   D:/PBL/PBL2/PBL2/AdvancedTaskDialog.h \
+  D:/PBL/PBL2/PBL2/CategoryItemWidget.h \
   D:/PBL/PBL2/PBL2/Task.h \
+  D:/PBL/PBL2/PBL2/TaskItemQwidget.h \
+  D:/PBL/PBL2/PBL2/TaskListWidget.h \
   D:/PBL/PBL2/PBL2/Trie.h \
-  D:/PBL/PBL2/PBL2/custom_hashmap.h \
   D:/PBL/PBL2/PBL2/heap_manager.h

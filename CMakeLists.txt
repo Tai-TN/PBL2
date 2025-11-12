@@ -1,9 +1,14 @@
 set(CMAKE_PREFIX_PATH "C:/Qt/6.9.2/mingw_64/lib/cmake")
 
 cmake_minimum_required(VERSION 3.19)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
 project(PBL2 LANGUAGES CXX)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Charts)
 
 qt_standard_project_setup()
 qt_add_resources(APP_RESOURCES resources.qrc)
@@ -18,19 +23,23 @@ qt_add_executable(PBL2
     Task.h
     heap_manager.cpp
     heap_manager.h
-    custom_hashmap.h
     Trie.h
     Trie.cpp
     AdvancedTaskDialog.h
     AdvancedTaskDialog.cpp
     TaskItemQwidget.h
     TaskItemQwidget.cpp
+    TaskListWidget.h
+    TaskListWidget.cpp
+    CategoryItemWidget.h
+    CategoryItemWidget.cpp
     ${APP_RESOURCES}  
 )
 target_link_libraries(PBL2
     PRIVATE
         Qt::Core
         Qt::Widgets
+        Qt::Charts
 )
 
 include(GNUInstallDirs)
