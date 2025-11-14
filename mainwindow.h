@@ -10,8 +10,7 @@
 #include <QTreeWidget>
 #include <QHeaderView>
 #include <QFile>
-#include <QCoreApplication>
-#include <QDir>
+#include <set>
 #include <QTimer>
 #include "Trie.h"
 #include "AdvancedTaskDialog.h"
@@ -24,7 +23,12 @@
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QHorizontalBarSeries>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QDateTimeAxis>
 #include "CategoryItemWidget.h"
+#include <QDir>
+#include <QTextCharFormat>
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -49,30 +53,31 @@ private slots:
     void toggleLeftMenu();
     void highlightActiveButton(QPushButton*);
     void backCategory();
+    void onTimeFilterChanged(int index);
+
+    void onFilterListPageClicked();
 private:
 
     void LoadFile(const std::string&, HeapManager&);
     void SaveToFile(const std::string&);
     bool leftMenuVisible;
     int originalMenuWidth;
+    bool isFilterTaskPage = false;
     void setupStatistics();
     void updateStatistics();
 
-    void onCategoryClicked();
-    void onAddCategoryClicked();
-    // void onDeleteCategoryClicked();
+    void loadCategories(const std::string&);
+    void saveCategories(const std::string&);
 
     void onTaskStatusChanged(Task* task, bool completed);
     void onTaskEditClicked(Task* task);
     void onTaskDeleteClicked(Task* task);
-    //void onTaskClicked(Task* task);
-    //QTreeWidgetItem* createTaskItem(Task* t);
+    void updateCalendarDots();
 
 
 private:
     Ui::MainWindow *ui;
     HeapManager manager;
-    //QLabel* noTaskLabel;
     bool showCompleteTasks = false;
     bool showAllTask = false;
     Trie taskTrie;
@@ -85,8 +90,9 @@ private:
     void loadTaskListWidget(const QString& ,const QString& sortMode = "Ưu tiên", const QString & filterMode = "Incomplete");
     void loadTodayTaskListWidget();
     void loadCategoryListWidget(const QString& category);
-    void setUpCategories();
     
+    std::set<std::string> m_categories;
+    const QString CATEGORY_FILE_PATH = "D:\\PBL\\PBL2\\PBL2\\Data\\category.txt";
 
     QChart *m_pieChart;
     QPieSeries* m_pieSeries;
@@ -96,12 +102,22 @@ private:
     QHorizontalBarSeries* m_barSeries;
     QChartView *m_barView;
 
+    QChart* m_lineChart;
+    QLineSeries* m_lineSeries;
+    QChartView *m_lineChartView;
+
+    QDateTimeAxis *axisXLine;
+    QValueAxis *axisYLine;
+
 
     QMap<QString, QListWidgetItem*> m_categoryWidgets;
     void updateCategoryView();
     void addNewCategory();
     void editCategory(const QString& oldName);
     void deleteCategory(const QString& name);
+
+    QDate getFilterStartDate() const;
+    QDate getFilterEndDate() const;
 protected:
     bool eventFilter(QObject* obj, QEvent* event) override;
 };

@@ -6,7 +6,7 @@ size_t Task::Next_id = 0;
 
 std::string getCurrentDateTime(){
     QDateTime now = QDateTime::currentDateTime();
-    return now.toString("yyyy-MM--dd HH:mm").toStdString();
+    return now.toString("yyyy-MM-dd HH:mm").toStdString();
 }
 
 

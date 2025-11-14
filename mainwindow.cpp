@@ -8,7 +8,8 @@
 #include <fstream>
 #include <sstream>
 #include <QMessageBox>
-
+#include <string>
+#include <algorithm>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -19,11 +20,14 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowIcon(windowIcon);
     this->setWindowTitle("To Do List");
     LoadFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt", manager);
-
+    loadCategories("D:\\PBL\\PBL2\\PBL2\\Data\\testcategories.txt");
+    ui->comboFilterTime->addItems({"Hôm nay", "Tuần này", "Tháng này", "Tùy chọn"});
+    ui->dateFrom->setVisible(false);
+    ui->dateTo->setVisible(false);
     leftMenuVisible = true;
     originalMenuWidth = ui->leftMenu->width(); // luu width goc
     setupStatistics();
-    updateStatistics();
+    
 
 
     connect(ui->menuBtn, &QPushButton::clicked, this, &MainWindow::toggleLeftMenu);
@@ -35,7 +39,6 @@ MainWindow::MainWindow(QWidget *parent)
     
     connect(ui->addTaskButton, &QPushButton::clicked, this, &MainWindow::addTask);
     connect(ui->comboBox, &QComboBox::currentIndexChanged, this, &MainWindow::updateTaskList);
-    //connect(ui->editTaskButton, &QPushButton::clicked, this, &MainWindow::editTask);
     connect(ui->taskCompleted, &QPushButton::clicked, this, &MainWindow::onCompletedClicked);
     connect(ui->allTask, &QPushButton::clicked, this,&MainWindow::onAllTaskClicked);
 
@@ -45,10 +48,11 @@ MainWindow::MainWindow(QWidget *parent)
     //category 
     connect(ui->addCategorybtn, &QPushButton::clicked, this, &MainWindow::addNewCategory);
     connect(ui->backCatetorybtn, &QPushButton::clicked, this, &MainWindow::backCategory);  
-    
+    connect(ui->filterListPagebtn, &QPushButton::clicked, this, &MainWindow::onFilterListPageClicked);
+
     //TaskListWidget
     m_taskListWidget = new TaskListWidget(ui->taskListcontainer);
-    m_todayListWidget = new TaskListWidget(ui->todayListcontainer);
+    m_todayListWidget = new TaskListWidget(ui->todayTaskList);
 
     m_categoryListWidget = new TaskListWidget(ui->categoryListcontainer);
     QVBoxLayout* catLayout = new QVBoxLayout(ui->categoryListcontainer);
@@ -61,25 +65,11 @@ MainWindow::MainWindow(QWidget *parent)
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 
-    QVBoxLayout* todayLayout = new QVBoxLayout(ui->todayListcontainer);
+    QVBoxLayout* todayLayout = new QVBoxLayout(ui->todayTaskList);
     todayLayout->addWidget(m_todayListWidget);
     todayLayout->setContentsMargins(0, 0, 0, 0);
     todayLayout->setSpacing(0);
-    //noTaskLabel = new QLabel(ui->todayListcontainer);
-    // noTaskLabel->setText("Không có task nào cho ngày hôm nay! ");
-    // noTaskLabel->setAlignment(Qt::AlignCenter); 
-    ui->noTaskLabel->hide();
-    // noTaskLabel->setStyleSheet(
-//     "QLabel {"
-//         "color: #808080;"                 // Màu chữ xám nhạt (ví dụ)
-//         "font-size: 16px;"                // Kích thước chữ lớn hơn
-//         "font-weight: bold;"              // In đậm
-//         "padding: 20px;"                  // Thêm khoảng đệm xung quanh chữ
-//         "border: 2px dashed #D3D3D3;"     // Thêm đường viền nét đứt nhẹ nhàng
-//         "border-radius: 8px;"             // Bo tròn góc viền
-//         "background-color: #F0F0F0;"      // Màu nền hơi xám/trắng nhạt
-//     "}"
-// );
+    
 
 
     updateTaskList();
@@ -93,20 +83,26 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_categoryListWidget, &TaskListWidget::taskStatusChanged, this, &MainWindow::onTaskStatusChanged);
     connect(m_categoryListWidget, &TaskListWidget::editTaskRequest, this, &MainWindow::onTaskEditClicked);
     connect(m_categoryListWidget, &TaskListWidget::deleteTaskRequest, this, &MainWindow::onTaskDeleteClicked);
-//  connect(m_taskListWidget, &TaskListWidget::taskClicked, this, &MainWindow::onTaskClicked);
+
+    connect(ui->comboFilterTime, &QComboBox::currentIndexChanged, this, &MainWindow::onTimeFilterChanged);
+    ui->comboFilterTime->setCurrentIndex(1);
+    connect(ui->btnApplyFilter, &QPushButton::clicked, this, &MainWindow::updateStatistics);
+    connect(ui->dateFrom, &QDateEdit::dateChanged, this, &MainWindow::updateStatistics);
+    connect(ui->dateTo, &QDateEdit::dateChanged, this, &MainWindow::updateStatistics);
 
     ui->comboBox->addItem("Ưu tiên");
     ui->comboBox->addItem("Deadline");
-
     isListView = true;
-
     buildTrie();
+
     
     ui->stackedWidget->setCurrentWidget(ui->listPage);
     ui->calendarWidget->setSelectedDate(QDate::currentDate()); // set mac dinh
     onCalendarDateClicked(QDate::currentDate());
     updateCategoryView();
-    
+    updateStatistics();
+
+
 }
 
 
@@ -121,13 +117,14 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::addTask()
-{
-    AdvancedTaskDialog dialog(manager, this);
+{   
+    AdvancedTaskDialog dialog(manager,m_categories, this);
     if (dialog.exec() == QDialog::Accepted) {
         Task* newTask = dialog.getCreatedTask();
         if (newTask) {
             manager.addTask(newTask);
             SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
+            saveCategories("D:\\PBL\\PBL2\\PBL2\\Data\\testcategories.txt");
             updateTaskList();
             updateCategoryView();
             updateStatistics();
@@ -176,6 +173,7 @@ void MainWindow::LoadFile(const std::string& filename, HeapManager& manager){
 
         
     }
+
     f.close();
 
 }
@@ -240,7 +238,7 @@ void MainWindow::updateTaskList() {
     if (showAllTask == true) filterMode = "All";
     loadTaskListWidget(prefix, sortMode, filterMode);
     loadTodayTaskListWidget();
-
+    updateCalendarDots();
 
 }
 
@@ -312,12 +310,11 @@ void MainWindow::loadTodayTaskListWidget(){
     }
     if (taskCount == 0){
         //noTaskLabel->setText("Không có task cho ngày hôm nay!");
-        m_todayListWidget->hide();
-        ui->noTaskLabel->show();
+        ui->noTaskLabel->setText("📅 Không có task cho ngày hôm nay!");
+        ui->stackedWidget_2->setCurrentWidget(ui->noLabelPage);
     }
     else{
-        m_todayListWidget->show();
-        ui->noTaskLabel->hide();
+        ui->stackedWidget_2->setCurrentWidget(ui->todayTaskList);
     }
 }
 
@@ -420,7 +417,7 @@ void MainWindow::onCalendarDateClicked(const QDate& date){
 void MainWindow::toggleLeftMenu(){
     leftMenuVisible = !leftMenuVisible;
     QIcon align_sign(":/blueIcons/resources/icons/align-justify2.svg");
-    QIcon back_sign(":/blueIcons/resources/icons/arrow-left1.svg");
+    QIcon back_sign(":/blueIcons/resources/icons/arrow-left.svg");
     
     
     if (leftMenuVisible){
@@ -519,9 +516,9 @@ void MainWindow::updateCategoryView() {
     addWidget->setObjectName("addCategoryWidget");
     QHBoxLayout* addLayout = new QHBoxLayout(addWidget);
     addLayout->setContentsMargins(12, 16, 12, 16);
-    QLabel* plus = new QLabel("+ Thêm danh mục mới");
-    plus->setStyleSheet("color: #3498db; font-weight: bold; font-size: 14px;");
-    addLayout->addWidget(plus);
+    // QLabel* plus = new QLabel("+ Thêm danh mục mới");
+    // plus->setStyleSheet("color: #3498db; font-weight: bold; font-size: 14px;");
+    // addLayout->addWidget(plus);
     QListWidgetItem* addItem = new QListWidgetItem();
     addItem->setSizeHint(QSize(0, 50));
     ui->categoryListWidget->addItem(addItem);
@@ -564,6 +561,7 @@ void MainWindow::setupStatistics(){
         QMessageBox::warning(this, "Error", "Không có Layout~");
         ui->statisticsLayout_1->setLayout(new QHBoxLayout());
     }
+    m_barView->setMinimumHeight(300);
     ui->statisticsLayout_1->layout()->addWidget(m_barView);
 
 
@@ -582,8 +580,33 @@ void MainWindow::setupStatistics(){
     m_pieView->setRenderHint(QPainter::Antialiasing);
     m_pieView->setVisible(true);
     m_pieChart->legend()->setVisible(false);
+    m_pieView->setMinimumHeight(300);
     ui->statisticsLayout_2->layout()->addWidget(m_pieView);
 
+    //line chart
+    m_lineSeries = new QLineSeries();
+    m_lineChart = new QChart();
+    m_lineChart->addSeries(m_lineSeries);
+    m_lineChart->setTitle("NĂNG SUẤT TRONG TUẦN");
+    m_lineChart->legend()->hide();
+
+    axisXLine = new QDateTimeAxis();
+    axisXLine->setFormat("dd/MM");
+    axisXLine->setTitleText("Ngày");
+    m_lineChart->addAxis(axisXLine, Qt::AlignBottom);
+    m_lineSeries->attachAxis(axisXLine);
+
+    axisYLine = new QValueAxis();
+    axisYLine->setTitleText("Số task");
+    axisYLine->setLabelFormat("%i");// số nguyên 
+    m_lineChart->addAxis(axisYLine, Qt::AlignLeft);
+    m_lineSeries->attachAxis(axisYLine);
+
+    m_lineChartView = new QChartView(m_lineChart, this);
+    m_lineChartView->setRenderHint(QPainter::Antialiasing);
+    m_lineChartView->setMinimumHeight(200);
+
+    ui->statisticsLayout_3->layout()->addWidget(m_lineChartView);
 
 
 }
@@ -591,16 +614,43 @@ void MainWindow::setupStatistics(){
 
 void MainWindow::updateStatistics(){
     std::vector<Task*> allTasks = manager.ShowTaskByPriority();
-    int total = allTasks.size();
+    std::vector<Task*> filteredTasks;
 
-    if (total == 0){
-        QMessageBox::warning(this, "Error", "Không tìm tháy task để thống kê");
-        return;
+    QDate start = getFilterStartDate();
+    QDate end = getFilterEndDate();
+
+    for (Task* t : allTasks){
+        QDate taskDate = QDateTime::fromString(QString::fromStdString(t->getDeadline()), "yyyy-MM-dd HH:mm").date();
+    
+        if (taskDate >= start && taskDate <= end){
+            filteredTasks.push_back(t);
+        }
+}
+
+    int total = filteredTasks.size();
+    if (total == 0) {
+        ui->numberAllTask->setText("0");
+        ui->numberCompletedTask->setText("0");
+        ui->numberPendingTask->setText("0");
+        ui->numberProgress->setText("0%");
+
+        m_barSeries->barSets().at(0)->replace(0, 0);
+        m_barSeries->barSets().at(0)->replace(1, 0);
+        m_barSeries->barSets().at(0)->replace(2, 0);
+        
+        m_pieSeries->clear();
+        m_pieSeries->append("Không có dữ liệu", 1); 
+        
+        m_barChart->update();
+        m_barView->repaint();
+        m_pieChart->update();
+        m_pieView->repaint();
+        return; 
     }
     ui->numberAllTask->setText(QString::number(total));
     int p_low = 0, p_medium = 0, p_high = 0;
     int completed = 0, overdue = 0, incomplete = 0;
-    for (Task* t : allTasks){
+    for (Task* t : filteredTasks){
         if (t->isCompleted()) completed++;
         else if (t->isOverdue()) overdue++;
         else{
@@ -620,12 +670,12 @@ void MainWindow::updateStatistics(){
     ui->numberCompletedTask->setText(QString::number(completed));
     ui->numberPendingTask->setText(QString::number(total-completed));
     ui->numberProgress->setText(QString::number(100.0*completed / total) + "%");
-
+    
     m_barSeries->barSets().at(0)->replace(0, p_low);
     m_barSeries->barSets().at(0)->replace(1, p_medium);
     m_barSeries->barSets().at(0)->replace(2, p_high);
     
-
+    m_barChart->axisX()->setRange(0,5 + std::max(p_low ,std::max(p_medium, p_high)));
     m_barChart->update();
     m_barView->repaint();
 
@@ -657,6 +707,68 @@ void MainWindow::updateStatistics(){
     m_pieView->repaint();
     
 
+
+// Line chart , 7 ngày gần nhất
+QMap<QDate, int> dailyCompleted;
+QDate today = QDate::currentDate();
+QDate start7 = today.addDays(-6);
+
+// Khởi tạo giá trị mặc định là 0 cho 7 ngày
+for (QDate d = start7; d <= today; d = d.addDays(1)) {
+    dailyCompleted[d] = 0;
+}
+
+for (Task* t : allTasks) {
+    if (!t->isCompleted()) continue;
+
+    QString deadlineStr = QString::fromStdString(t->getDeadline());
+    if (deadlineStr.isEmpty()) continue;
+
+    QDateTime dt = QDateTime::fromString(deadlineStr, "yyyy-MM-dd HH:mm");
+    if (!dt.isValid()) continue;
+
+    QDate completedDate = dt.date();
+    if (completedDate >= start7 && completedDate <= today) {
+        dailyCompleted[completedDate]++;
+    }
+}
+
+    // xóa series cũ
+    if (m_lineSeries) {
+        m_lineChart->removeSeries(m_lineSeries);
+        delete m_lineSeries;  
+        m_lineSeries = nullptr;
+    }
+
+    // Tạo series mới
+    m_lineSeries = new QLineSeries();
+    m_lineChart->addSeries(m_lineSeries);
+
+    m_lineSeries->attachAxis(axisXLine);
+    m_lineSeries->attachAxis(axisYLine);
+
+    // Thêm data points
+    for (auto it = dailyCompleted.constBegin(); it != dailyCompleted.constEnd(); ++it) {
+        QDate date = it.key();
+        QDateTime dt(date, QTime(0, 0));  
+        m_lineSeries->append(dt.toMSecsSinceEpoch(), it.value());
+    }
+
+    // Cập nhật range
+    QDateTime startDt(start7, QTime(0, 0));
+    QDateTime endDt(today.addDays(1), QTime(0, 0));
+    axisXLine->setRange(startDt, endDt);
+
+    int maxY = 0;
+    for (int val : dailyCompleted.values()) {
+        if (val > maxY) maxY = val;
+    }
+    axisYLine->setRange(0, qMax(5, maxY + 1));
+
+    m_lineChart->update();
+    m_lineChartView->repaint();
+
+
 }
 
 
@@ -671,38 +783,33 @@ void MainWindow::onTaskStatusChanged(Task* task, bool completed)
     
     // Cập nhật task trong manager
     task->setCompleted(completed);
-    
-    // Lưu file
     SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
     m_taskListWidget->updateTask(task);
-    //updateTaskList();
+    m_todayListWidget->updateTask(task);
+    m_categoryListWidget->updateTask(task);
+    if (!showAllTask && !showCompleteTasks && completed){
+        QTimer::singleShot(2000, this, [this, task](){
+            m_taskListWidget->removeTask(task);
+            m_todayListWidget->removeTask(task);
+            m_categoryListWidget->removeTask(task);
+            
+        });
 }
+    updateStatistics();
 
+}
 void MainWindow::onTaskEditClicked(Task* task){
-    AdvancedTaskDialog dialog(task, manager, this);
+    AdvancedTaskDialog dialog(task, manager, m_categories,this);
     if (dialog.exec() == QDialog::Accepted) {
         SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
+        saveCategories("D:\\PBL\\PBL2\\PBL2\\Data\\testcategories.txt");
+
         updateTaskList();
         //m_taskListWidget->updateTask(task);
         buildTrie(); 
     }
 }
 
-// void MainWindow::onTaskClicked(Task* task)
-// {
-//     if (!task) {
-//         qDebug() << "Error: Task is null in onTaskClicked";
-//         return;
-//     }
-    
-//     qDebug() << "TaskListWidget: Task clicked -" 
-//              << QString::fromStdString(task->getTitle());
-    
-//     //Mở dialog edit task
-//     //editTaskForTaskListWidget(task);
-// }
-
-//---------------------------------------------------------------
 
 void MainWindow::backCategory(){
     ui->stackedWidget->setCurrentWidget(ui->categoryPage);
@@ -723,8 +830,12 @@ void MainWindow::addNewCategory() {
     bool ok;
     QString name = QInputDialog::getText(this, "Tạo danh mục", "Tên danh mục:", QLineEdit::Normal, "", &ok);
     if (!ok || name.isEmpty()) return;
+    
+    m_categories.insert(name.toStdString());
 
     SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");  // Đồng bộ task
+    saveCategories("D:\\PBL\\PBL2\\PBL2\\Data\\testcategories.txt");
+
     updateCategoryView();
     updateTaskList(); 
 }
@@ -783,4 +894,133 @@ void MainWindow::onTaskDeleteClicked(Task* task){
     updateTaskList();
     updateCategoryView();
     updateStatistics();
+}
+
+void MainWindow::loadCategories(const std::string& filename){
+    std::ifstream f(filename);
+    if (!f){
+        std::ofstream newFile(filename);
+        newFile.close();        
+        m_categories.insert("Học tập");
+        m_categories.insert("Công việc");
+        m_categories.insert("Cá nhân");
+        m_categories.insert("Sức khỏe");
+        m_categories.insert("Giải Trí");
+        m_categories.insert("Tài Chính");
+        m_categories.insert("Gia Đình");
+        m_categories.insert("Khác");
+        m_categories.insert("Không phân loại");
+        saveCategories(filename);
+        return;
+    }
+    std::string line;
+    while(getline(f,line)){
+        if (!line.empty()){
+            m_categories.insert(line);
+        }
+    }
+    f.close();;
+
+    
+}
+
+void MainWindow::saveCategories(const std::string& filename){
+    std::ofstream file(filename);
+
+    if (!file){
+        QMessageBox::critical(this, "Error", "Cannot open file for saving : " + QString::fromStdString(filename));
+        return;
+    }
+    for (const std::string& cat : m_categories){
+        file << cat << "\n";
+    }
+    file.close();
+}
+
+QDate MainWindow::getFilterStartDate() const{
+    QDate today = QDate::currentDate();
+    switch(ui->comboFilterTime->currentIndex()){
+        case 0: return today;
+        case 1: {
+            return today.addDays(-6);
+        }
+        case 2: return today.addDays(-30);
+        case 3: return ui->dateFrom->date();
+        default : return today;
+
+    }
+}
+
+QDate MainWindow::getFilterEndDate() const{
+    QDate today = QDate::currentDate();
+    switch(ui->comboFilterTime->currentIndex()){
+        case 0: return today;
+        case 1: return today;
+        case 2: return today; 
+        case 3: return ui->dateTo->date();
+        default : return today;
+}
+}
+
+void MainWindow::onTimeFilterChanged(int index){
+    bool custom = (index == 3);
+    if (custom == true){
+        ui->dateFrom->setVisible(custom);
+        ui->dateTo->setVisible(custom);
+    }
+    else{
+        ui->dateFrom->setVisible(false);
+        ui->dateTo->setVisible(false);
+    }
+    updateStatistics();
+}
+
+
+void MainWindow::onFilterListPageClicked(){
+    isFilterTaskPage = !isFilterTaskPage;
+    if (isFilterTaskPage){
+        QDate start = ui->dateFrom1->date();
+        QDate end = ui->dateTo1->date();
+        std::vector<Task*> allTasks = manager.ShowTaskByPriority();
+        m_taskListWidget->clearAllTasks();       
+        for (Task* t : allTasks){
+            QDate taskDate = QDateTime::fromString(QString::fromStdString(t->getDeadline()), "yyyy-MM-dd HH:mm").date();
+        
+            if (taskDate >= start && taskDate <= end){
+                m_taskListWidget->addTask(t);
+            }
+    }
+    ui->filterListPagebtn->setIcon(QIcon(":/blueIcons/resources/icons/unfilter.jpg"));
+    ui->filterListPagebtn->setIconSize(QSize(24,24));
+    }
+    else{
+        ui->filterListPagebtn->setIcon(QIcon(":/blueIcons/resources/icons/filter.svg"));
+        updateTaskList();
+    }
+}
+
+void MainWindow::updateCalendarDots(){
+    if (!ui->calendarWidget) return;
+    QTextCharFormat defaultFormat;
+    //QDate() se ap dung cho tat ca cac ngay
+    ui->calendarWidget->setDateTextFormat(QDate(), defaultFormat); //reset lai format thanh mac dinh
+
+    std::vector<Task*> tasks = manager.ShowTaskByDeadline();
+
+    QTextCharFormat taskFormat;
+    taskFormat.setFontWeight(QFont::Bold);
+
+    //tranh format nhieu lan
+    QSet<QDate> processedDates;
+    for (Task* task : tasks){
+        QString deadlineStr = QString::fromStdString(task->getDeadline());
+        QDate taskDate = QDate::fromString(deadlineStr.left(10), "yyyy-MM-dd");
+        if (taskDate.isValid() && !processedDates.contains(taskDate)){
+            ui->calendarWidget->setDateTextFormat(taskDate, taskFormat);
+            processedDates.insert(taskDate);
+        }
+    }
+
+
+
 }

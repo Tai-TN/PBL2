@@ -10,7 +10,7 @@
 #include <QDialogButtonBox>
 #include "heap_manager.h"
 #include "Task.h"
-
+#include <set>
 
 
 class AdvancedTaskDialog : public QDialog{
@@ -19,8 +19,8 @@ class AdvancedTaskDialog : public QDialog{
 
 public:
 
-    explicit AdvancedTaskDialog(HeapManager& manager, QWidget* parent = nullptr); // khi thêm task
-    AdvancedTaskDialog(Task* task, HeapManager& manager, QWidget* parent = nullptr); // khi sửa task
+    AdvancedTaskDialog(HeapManager& manager, std::set<std::string>& m_categories, QWidget* parent = nullptr); // khi thêm task
+    AdvancedTaskDialog(Task* task, HeapManager& manager,std::set<std::string>& m_categories, QWidget* parent = nullptr); // khi sửa task
     Task* getCreatedTask(){return createdTask;}
 
 private slots:
@@ -36,6 +36,7 @@ private:
     void setupCategoryCombo();
     void setupRecurrenceCombo();
 
+    std::set<std::string>& m_customCategories;
 
     QLineEdit* titleEdit;
     QTextEdit* descriptionEdit;
@@ -57,6 +58,9 @@ private:
     Task* existingTask; //edit mode
     Task* createdTask;// create mode
     
+
     bool isEditMode;
+public:
+    friend void addCategoryCombo(const QString& name);
 };
 

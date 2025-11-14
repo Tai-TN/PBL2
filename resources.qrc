@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="blueIcons">
+    <file>resources/icons/unfilter.jpg</file>
     <file>resources/icons/plus.svg</file>
     <file>resources/icons/bin.png</file>
     <file>resources/icons/clipboard.svg</file>

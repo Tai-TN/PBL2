@@ -9,12 +9,15 @@
 #ifndef UI_MAINWINDOW_H
 #define UI_MAINWINDOW_H
 
+#include <QtCore/QDate>
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCalendarWidget>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -102,6 +105,12 @@ public:
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QVBoxLayout *verticalLayout_18;
+    QGroupBox *filterGroup;
+    QHBoxLayout *horizontalLayout_18;
+    QComboBox *comboFilterTime;
+    QDateEdit *dateFrom;
+    QDateEdit *dateTo;
+    QPushButton *btnApplyFilter;
     QWidget *widget_5;
     QHBoxLayout *horizontalLayout_15;
     QWidget *widget_6;
@@ -132,6 +141,9 @@ public:
     QHBoxLayout *horizontalLayout_16;
     QWidget *todayListcontainer;
     QVBoxLayout *verticalLayout_15;
+    QStackedWidget *stackedWidget_2;
+    QWidget *todayTaskList;
+    QWidget *noLabelPage;
     QLabel *noTaskLabel;
     QWidget *listPage;
     QVBoxLayout *verticalLayout_5;
@@ -141,9 +153,11 @@ public:
     QHBoxLayout *horizontalLayout_11;
     QPushButton *allTask;
     QPushButton *taskCompleted;
+    QDateEdit *dateFrom1;
+    QDateEdit *dateTo1;
+    QPushButton *filterListPagebtn;
     QFrame *frame_9;
     QHBoxLayout *horizontalLayout_13;
-    QLabel *label_9;
     QComboBox *comboBox;
     QFrame *frame_8;
     QHBoxLayout *horizontalLayout_12;
@@ -208,9 +222,9 @@ public:
 "	background-color : #fefeff;\n"
 "}\n"
 "\n"
-"#label_10,#label_11,#label_12, #label_13,#label_14,#label_15, #label_16, #label_17{\n"
-"/*font-size: 10px; color: #555555; font-wei"
-                        "ght: bold;*/\n"
+"#label_10,#label_11,#label_12, #label_13,#label_14,#label_15, #label_16, #label_17 {\n"
+"/*font-size: 10px; color: #555555; font-we"
+                        "ight: bold;*/\n"
 "color: #555555; font-size: 24px; font-weight: 800;\n"
 "}\n"
 "/*#label_12{\n"
@@ -223,6 +237,15 @@ public:
 "    border: 1px solid #E0E0E0; \n"
 "    /* Bo g\303\263c */\n"
 "    border-radius: 12px; \n"
+"}\n"
+"#noTaskLabel{\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"    font-weight: bold;\n"
+"    padding: 20px;\n"
+"    border: 2px dashed #D3D3D3;\n"
+"    border-radius: 8px;\n"
+"    background-color: #F0F0F0;\n"
 "}\n"
 "\n"
 ""));
@@ -589,6 +612,7 @@ public:
         horizontalLayout_14->setObjectName("horizontalLayout_14");
         addCategorybtn = new QPushButton(headerCategory);
         addCategorybtn->setObjectName("addCategorybtn");
+        addCategorybtn->setFocusPolicy(Qt::FocusPolicy::NoFocus);
         QIcon icon9;
         icon9.addFile(QString::fromUtf8(":/blueIcons/resources/icons/plus.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         addCategorybtn->setIcon(icon9);
@@ -629,6 +653,33 @@ public:
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 835, 524));
         verticalLayout_18 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_18->setObjectName("verticalLayout_18");
+        filterGroup = new QGroupBox(scrollAreaWidgetContents);
+        filterGroup->setObjectName("filterGroup");
+        horizontalLayout_18 = new QHBoxLayout(filterGroup);
+        horizontalLayout_18->setObjectName("horizontalLayout_18");
+        comboFilterTime = new QComboBox(filterGroup);
+        comboFilterTime->setObjectName("comboFilterTime");
+
+        horizontalLayout_18->addWidget(comboFilterTime);
+
+        dateFrom = new QDateEdit(filterGroup);
+        dateFrom->setObjectName("dateFrom");
+
+        horizontalLayout_18->addWidget(dateFrom);
+
+        dateTo = new QDateEdit(filterGroup);
+        dateTo->setObjectName("dateTo");
+
+        horizontalLayout_18->addWidget(dateTo);
+
+        btnApplyFilter = new QPushButton(filterGroup);
+        btnApplyFilter->setObjectName("btnApplyFilter");
+
+        horizontalLayout_18->addWidget(btnApplyFilter);
+
+
+        verticalLayout_18->addWidget(filterGroup);
+
         widget_5 = new QWidget(scrollAreaWidgetContents);
         widget_5->setObjectName("widget_5");
         QSizePolicy sizePolicy4(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
@@ -638,6 +689,7 @@ public:
         widget_5->setSizePolicy(sizePolicy4);
         horizontalLayout_15 = new QHBoxLayout(widget_5);
         horizontalLayout_15->setObjectName("horizontalLayout_15");
+        horizontalLayout_15->setContentsMargins(0, 0, 0, 0);
         widget_6 = new QWidget(widget_5);
         widget_6->setObjectName("widget_6");
         sizePolicy4.setHeightForWidth(widget_6->sizePolicy().hasHeightForWidth());
@@ -651,6 +703,7 @@ public:
 
         numberAllTask = new QLabel(widget_6);
         numberAllTask->setObjectName("numberAllTask");
+        numberAllTask->setFont(font);
 
         verticalLayout_8->addWidget(numberAllTask, 0, Qt::AlignmentFlag::AlignTop);
 
@@ -670,6 +723,7 @@ public:
 
         numberCompletedTask = new QLabel(widget_7);
         numberCompletedTask->setObjectName("numberCompletedTask");
+        numberCompletedTask->setFont(font);
 
         verticalLayout_9->addWidget(numberCompletedTask, 0, Qt::AlignmentFlag::AlignTop);
 
@@ -689,6 +743,7 @@ public:
 
         numberPendingTask = new QLabel(widget_8);
         numberPendingTask->setObjectName("numberPendingTask");
+        numberPendingTask->setFont(font);
 
         verticalLayout_16->addWidget(numberPendingTask, 0, Qt::AlignmentFlag::AlignTop);
 
@@ -708,6 +763,7 @@ public:
 
         numberProgress = new QLabel(widget_9);
         numberProgress->setObjectName("numberProgress");
+        numberProgress->setFont(font);
 
         verticalLayout_17->addWidget(numberProgress, 0, Qt::AlignmentFlag::AlignTop);
 
@@ -723,6 +779,8 @@ public:
         verticalLayout_20->setObjectName("verticalLayout_20");
         statisticsLayout_1 = new QWidget(widget_2);
         statisticsLayout_1->setObjectName("statisticsLayout_1");
+        sizePolicy.setHeightForWidth(statisticsLayout_1->sizePolicy().hasHeightForWidth());
+        statisticsLayout_1->setSizePolicy(sizePolicy);
         verticalLayout_19 = new QVBoxLayout(statisticsLayout_1);
         verticalLayout_19->setObjectName("verticalLayout_19");
 
@@ -730,6 +788,8 @@ public:
 
         statisticsLayout_2 = new QWidget(widget_2);
         statisticsLayout_2->setObjectName("statisticsLayout_2");
+        sizePolicy2.setHeightForWidth(statisticsLayout_2->sizePolicy().hasHeightForWidth());
+        statisticsLayout_2->setSizePolicy(sizePolicy2);
         horizontalLayout_20 = new QHBoxLayout(statisticsLayout_2);
         horizontalLayout_20->setObjectName("horizontalLayout_20");
 
@@ -737,6 +797,8 @@ public:
 
         statisticsLayout_3 = new QWidget(widget_2);
         statisticsLayout_3->setObjectName("statisticsLayout_3");
+        sizePolicy1.setHeightForWidth(statisticsLayout_3->sizePolicy().hasHeightForWidth());
+        statisticsLayout_3->setSizePolicy(sizePolicy1);
         horizontalLayout_22 = new QHBoxLayout(statisticsLayout_3);
         horizontalLayout_22->setObjectName("horizontalLayout_22");
 
@@ -762,18 +824,21 @@ public:
         todayListcontainer->setStyleSheet(QString::fromUtf8("backgroud-color : #2596be;"));
         verticalLayout_15 = new QVBoxLayout(todayListcontainer);
         verticalLayout_15->setObjectName("verticalLayout_15");
-        noTaskLabel = new QLabel(todayListcontainer);
+        stackedWidget_2 = new QStackedWidget(todayListcontainer);
+        stackedWidget_2->setObjectName("stackedWidget_2");
+        todayTaskList = new QWidget();
+        todayTaskList->setObjectName("todayTaskList");
+        stackedWidget_2->addWidget(todayTaskList);
+        noLabelPage = new QWidget();
+        noLabelPage->setObjectName("noLabelPage");
+        noLabelPage->setStyleSheet(QString::fromUtf8(""));
+        noTaskLabel = new QLabel(noLabelPage);
         noTaskLabel->setObjectName("noTaskLabel");
-        sizePolicy3.setHeightForWidth(noTaskLabel->sizePolicy().hasHeightForWidth());
-        noTaskLabel->setSizePolicy(sizePolicy3);
-        noTaskLabel->setMinimumSize(QSize(100, 30));
-        QFont font5;
-        font5.setFamilies({QString::fromUtf8("Arial")});
-        font5.setPointSize(15);
-        noTaskLabel->setFont(font5);
-        noTaskLabel->setTextFormat(Qt::TextFormat::MarkdownText);
+        noTaskLabel->setGeometry(QRect(120, 20, 441, 91));
+        noTaskLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        stackedWidget_2->addWidget(noLabelPage);
 
-        verticalLayout_15->addWidget(noTaskLabel, 0, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
+        verticalLayout_15->addWidget(stackedWidget_2);
 
 
         horizontalLayout_16->addWidget(todayListcontainer);
@@ -824,20 +889,41 @@ public:
 
         horizontalLayout_10->addWidget(frame_10, 0, Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop);
 
+        dateFrom1 = new QDateEdit(frame_7);
+        dateFrom1->setObjectName("dateFrom1");
+        dateFrom1->setCalendarPopup(true);
+        dateFrom1->setDate(QDate(2025, 11, 1));
+
+        horizontalLayout_10->addWidget(dateFrom1);
+
+        dateTo1 = new QDateEdit(frame_7);
+        dateTo1->setObjectName("dateTo1");
+        dateTo1->setCalendarPopup(true);
+        dateTo1->setDate(QDate(2025, 11, 1));
+
+        horizontalLayout_10->addWidget(dateTo1);
+
+        filterListPagebtn = new QPushButton(frame_7);
+        filterListPagebtn->setObjectName("filterListPagebtn");
+        QSizePolicy sizePolicy5(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(filterListPagebtn->sizePolicy().hasHeightForWidth());
+        filterListPagebtn->setSizePolicy(sizePolicy5);
+        filterListPagebtn->setMinimumSize(QSize(24, 24));
+        QIcon icon12;
+        icon12.addFile(QString::fromUtf8(":/blueIcons/resources/icons/filter.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        filterListPagebtn->setIcon(icon12);
+        filterListPagebtn->setIconSize(QSize(24, 24));
+
+        horizontalLayout_10->addWidget(filterListPagebtn);
+
         frame_9 = new QFrame(frame_7);
         frame_9->setObjectName("frame_9");
         frame_9->setFrameShape(QFrame::Shape::StyledPanel);
         frame_9->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout_13 = new QHBoxLayout(frame_9);
         horizontalLayout_13->setObjectName("horizontalLayout_13");
-        label_9 = new QLabel(frame_9);
-        label_9->setObjectName("label_9");
-        label_9->setMinimumSize(QSize(30, 30));
-        label_9->setMaximumSize(QSize(30, 16777215));
-        label_9->setPixmap(QPixmap(QString::fromUtf8(":/blueIcons/resources/icons/filter.svg")));
-
-        horizontalLayout_13->addWidget(label_9, 0, Qt::AlignmentFlag::AlignTop);
-
         comboBox = new QComboBox(frame_9);
         comboBox->setObjectName("comboBox");
 
@@ -886,7 +972,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -918,6 +1004,8 @@ public:
         categoryPage->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><br/></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         addCategorybtn->setText(QCoreApplication::translate("MainWindow", "Th\303\252m Danh M\341\273\245c", nullptr));
+        filterGroup->setTitle(QString());
+        btnApplyFilter->setText(QCoreApplication::translate("MainWindow", "\303\201p d\341\273\245ng", nullptr));
         label_10->setText(QCoreApplication::translate("MainWindow", "ALL TASKS", nullptr));
         numberAllTask->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "COMPLETED", nullptr));
@@ -926,10 +1014,10 @@ public:
         numberPendingTask->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         label_16->setText(QCoreApplication::translate("MainWindow", "PROGRESS", nullptr));
         numberProgress->setText(QCoreApplication::translate("MainWindow", "0%", nullptr));
-        noTaskLabel->setText(QCoreApplication::translate("MainWindow", " Kh\303\264ng c\303\263 task cho ng\303\240y h\303\264m nay!", nullptr));
+        noTaskLabel->setText(QCoreApplication::translate("MainWindow", "Kh\303\264ng c\303\263 Task cho ng\303\240y h\303\264m nay!", nullptr));
         allTask->setText(QCoreApplication::translate("MainWindow", "All Task", nullptr));
         taskCompleted->setText(QCoreApplication::translate("MainWindow", "Completed Tasks", nullptr));
-        label_9->setText(QString());
+        filterListPagebtn->setText(QString());
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi
 

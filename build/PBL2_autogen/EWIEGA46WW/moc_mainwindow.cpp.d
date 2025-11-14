@@ -9,11 +9,14 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QChart \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QChartGlobal \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QChartView \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QDateTimeAxis \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QHorizontalBarSeries \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QLegend \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QLineSeries \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QPieSeries \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QPieSlice \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QValueAxis \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QXYSeries \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qabstractaxis.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qabstractbarseries.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qabstractseries.h \
@@ -23,14 +26,16 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qchart.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qchartglobal.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qchartview.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qdatetimeaxis.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qhorizontalbarseries.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qlegend.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qlineseries.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qpieseries.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qpieslice.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qtcharts-config.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qtchartsexports.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qvalueaxis.h \
-  C:/Qt/6.9.2/mingw_64/include/QtCore/QCoreApplication \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qxyseries.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QDateTime \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QDir \
   C:/Qt/6.9.2/mingw_64/include/QtCore/QFile \
@@ -196,8 +201,10 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCore/qyieldcpu.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/QBrush \
   C:/Qt/6.9.2/mingw_64/include/QtGui/QFont \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/QImage \
   C:/Qt/6.9.2/mingw_64/include/QtGui/QMouseEvent \
   C:/Qt/6.9.2/mingw_64/include/QtGui/QPen \
+  C:/Qt/6.9.2/mingw_64/include/QtGui/QTextCharFormat \
   C:/Qt/6.9.2/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qaction.h \
   C:/Qt/6.9.2/mingw_64/include/QtGui/qbitmap.h \

@@ -4,16 +4,16 @@
 #include <QVBoxLayout>
 #include <QFormLayout>
 
-AdvancedTaskDialog::AdvancedTaskDialog(HeapManager& manager, QWidget* parent)
-    :QDialog(parent), manager(manager), existingTask(nullptr), createdTask(nullptr), isEditMode(false){
+AdvancedTaskDialog::AdvancedTaskDialog(HeapManager& manager,std::set<std::string>& customCategories, QWidget* parent)
+    :QDialog(parent), manager(manager), m_customCategories(customCategories), existingTask(nullptr), createdTask(nullptr), isEditMode(false){
 
         setupUI();
         setupConnections();
         setWindowTitle("➕Add Task");
     }
 
-AdvancedTaskDialog::AdvancedTaskDialog(Task* task, HeapManager& manager, QWidget* parent)
-    : QDialog(parent), manager(manager), existingTask(task), createdTask(nullptr), isEditMode(true)
+AdvancedTaskDialog::AdvancedTaskDialog(Task* task, HeapManager& manager,std::set<std::string>& customCategories, QWidget* parent)
+    : QDialog(parent), manager(manager),m_customCategories(customCategories), existingTask(task), createdTask(nullptr), isEditMode(true)
 {
     setupUI();
     setupConnections();
@@ -113,16 +113,17 @@ void AdvancedTaskDialog::setupUI()
 
 
 void AdvancedTaskDialog::setupCategoryCombo()
-{
-    categoryCombo->addItem("📚 Học Tập");
-    categoryCombo->addItem("💼 Công Việc");
-    categoryCombo->addItem("❤️ Cá Nhân");
-    categoryCombo->addItem("🏥 Sức Khỏe");
-    categoryCombo->addItem("🎉 Giải Trí");
-    categoryCombo->addItem("💰 Tài Chính");
-    categoryCombo->addItem("🏠 Gia Đình");
-    categoryCombo->addItem("🔧 Khác");
+{   
+    categoryCombo->clear();
+    for (const std::string& cat : m_customCategories){
+        categoryCombo->addItem(QString::fromStdString(cat));
+    }
+    if (categoryCombo->count() > 0 && categoryCombo->findText("Không phân loại") != -1){
+        categoryCombo->setCurrentText(QString("Không phân loại"));
+    }
 }
+
+
 
 void AdvancedTaskDialog::setupRecurrenceCombo()
 {
