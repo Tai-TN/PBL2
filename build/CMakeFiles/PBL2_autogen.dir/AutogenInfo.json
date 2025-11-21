@@ -367,6 +367,12 @@
 			"EWIEGA46WW/moc_CategoryItemWidget.cpp",
 			null
 		],
+		[
+			"D:/PBL/PBL2/PBL2/Notification.h",
+			"MU",
+			"EWIEGA46WW/moc_Notification.cpp",
+			null
+		],
 		[ "D:/PBL/PBL2/PBL2/Task.h", "MU", "EWIEGA46WW/moc_Task.cpp", null ],
 		[
 			"D:/PBL/PBL2/PBL2/TaskItemQwidget.h",
@@ -472,6 +478,7 @@
 	[
 		[ "D:/PBL/PBL2/PBL2/AdvancedTaskDialog.cpp", "MU", null ],
 		[ "D:/PBL/PBL2/PBL2/CategoryItemWidget.cpp", "MU", null ],
+		[ "D:/PBL/PBL2/PBL2/Notification.cpp", "MU", null ],
 		[ "D:/PBL/PBL2/PBL2/Task.cpp", "MU", null ],
 		[ "D:/PBL/PBL2/PBL2/TaskItemQwidget.cpp", "MU", null ],
 		[ "D:/PBL/PBL2/PBL2/TaskListWidget.cpp", "MU", null ],

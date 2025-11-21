@@ -72,7 +72,7 @@ public:
     QLineEdit *searchBar;
     QWidget *widget_4;
     QHBoxLayout *horizontalLayout_6;
-    QPushButton *accountBtn;
+    QPushButton *notifi_btn;
     QStackedWidget *stackedWidget;
     QWidget *calendarPage;
     QCalendarWidget *calendarWidget;
@@ -110,7 +110,6 @@ public:
     QComboBox *comboFilterTime;
     QDateEdit *dateFrom;
     QDateEdit *dateTo;
-    QPushButton *btnApplyFilter;
     QWidget *widget_5;
     QHBoxLayout *horizontalLayout_15;
     QWidget *widget_6;
@@ -247,6 +246,9 @@ public:
 "    border-radius: 8px;\n"
 "    background-color: #F0F0F0;\n"
 "}\n"
+"\n"
+"\n"
+"\n"
 "\n"
 ""));
         horizontalLayout = new QHBoxLayout(centralwidget);
@@ -415,6 +417,10 @@ public:
         horizontalLayout_2->setContentsMargins(0, 0, 0, 10);
         widget = new QWidget(headerFrame);
         widget->setObjectName("widget");
+        widget->setStyleSheet(QString::fromUtf8("#menuBtn:hover {\n"
+"    background-color: #f5f9fc;\n"
+"    border-color: #2596be;\n"
+"}"));
         horizontalLayout_3 = new QHBoxLayout(widget);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         menuBtn = new QPushButton(widget);
@@ -485,15 +491,18 @@ public:
         horizontalLayout_6->setSpacing(0);
         horizontalLayout_6->setObjectName("horizontalLayout_6");
         horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
-        accountBtn = new QPushButton(widget_4);
-        accountBtn->setObjectName("accountBtn");
-        accountBtn->setFocusPolicy(Qt::FocusPolicy::NoFocus);
+        notifi_btn = new QPushButton(widget_4);
+        notifi_btn->setObjectName("notifi_btn");
+        notifi_btn->setFocusPolicy(Qt::FocusPolicy::NoFocus);
+        notifi_btn->setStyleSheet(QString::fromUtf8("QPushButton { border: none; background: transparent; }\n"
+"QPushButton:hover { background: #ffebee; border-radius: 8px; }\n"
+" "));
         QIcon icon7;
         icon7.addFile(QString::fromUtf8(":/blueIcons/resources/icons/bell.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        accountBtn->setIcon(icon7);
-        accountBtn->setIconSize(QSize(25, 25));
+        notifi_btn->setIcon(icon7);
+        notifi_btn->setIconSize(QSize(25, 25));
 
-        horizontalLayout_6->addWidget(accountBtn);
+        horizontalLayout_6->addWidget(notifi_btn);
 
 
         horizontalLayout_2->addWidget(widget_4, 0, Qt::AlignmentFlag::AlignRight);
@@ -655,27 +664,120 @@ public:
         verticalLayout_18->setObjectName("verticalLayout_18");
         filterGroup = new QGroupBox(scrollAreaWidgetContents);
         filterGroup->setObjectName("filterGroup");
+        filterGroup->setStyleSheet(QString::fromUtf8("QComboBox {\n"
+"    background-color: #ffffff;\n"
+"    border: 2px solid #e0e7ee;\n"
+"    border-radius: 8px;\n"
+"    padding: 8px 12px;\n"
+"    min-height: 32px;\n"
+"    font-size: 13px;\n"
+"    color: #2c3e50;\n"
+"}\n"
+"\n"
+"QComboBox:hover {\n"
+"    border-color: #2596be;\n"
+"}\n"
+"\n"
+"QComboBox:focus {\n"
+"    border-color: #2596be;\n"
+"    background-color: #f8fcfe;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    border: none;\n"
+"    width: 30px;\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow {\n"
+"    width: 16px;\n"
+"    height: 16px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    background-color: #ffffff;\n"
+"    border: 2px solid #2596be;\n"
+"    border-radius: 8px;\n"
+"    selection-background-color: #e3f2fd;\n"
+"    selection-color: #1976d2;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item {\n"
+"    padding: 8px 12px;\n"
+"    border-radius: 4px;\n"
+"    min-height: 30px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView::item:hover {\n"
+"    background-color: #f0f7fc;\n"
+"}\n"
+"\n"
+"\n"
+""
+                        "\n"
+"QDateEdit {\n"
+"    background-color: #ffffff;\n"
+"    border: 2px solid #e0e7ee;\n"
+"    border-radius: 8px;\n"
+"    padding: 8px 12px;\n"
+"    min-height: 32px;\n"
+"    font-size: 13px;\n"
+"    color: #2c3e50;\n"
+"}\n"
+"\n"
+"QDateEdit:hover {\n"
+"    border-color: #2596be;\n"
+"    box-shadow: 0 2px 8px rgba(37, 150, 190, 0.15);\n"
+"}\n"
+"\n"
+"QDateEdit:focus {\n"
+"    border-color: #2596be;\n"
+"    background-color: #f8fcfe;\n"
+"}\n"
+"\n"
+"QDateEdit::drop-down {\n"
+"    border: none;\n"
+"    width: 30px;\n"
+"}\n"
+"\n"
+"QDateEdit::down-arrow {\n"
+"    width: 16px;\n"
+"    height: 16px;\n"
+"}\n"
+"\n"
+"QDateEdit::up-button, QDateEdit::down-button {\n"
+"    background-color: transparent;\n"
+"    border: none;\n"
+"    width: 20px;\n"
+"}\n"
+"\n"
+"QDateEdit::up-button:hover, QDateEdit::down-button:hover {\n"
+"    background-color: #e3f2fd;\n"
+"    border-radius: 4px;\n"
+"}\n"
+""));
         horizontalLayout_18 = new QHBoxLayout(filterGroup);
         horizontalLayout_18->setObjectName("horizontalLayout_18");
         comboFilterTime = new QComboBox(filterGroup);
         comboFilterTime->setObjectName("comboFilterTime");
+        comboFilterTime->setFocusPolicy(Qt::FocusPolicy::NoFocus);
+        comboFilterTime->setStyleSheet(QString::fromUtf8(""));
 
         horizontalLayout_18->addWidget(comboFilterTime);
 
         dateFrom = new QDateEdit(filterGroup);
         dateFrom->setObjectName("dateFrom");
+        dateFrom->setCalendarPopup(true);
+        dateFrom->setDate(QDate(2025, 1, 1));
 
         horizontalLayout_18->addWidget(dateFrom);
 
         dateTo = new QDateEdit(filterGroup);
         dateTo->setObjectName("dateTo");
+        dateTo->setCalendarPopup(true);
+        dateTo->setDate(QDate(2025, 1, 1));
 
         horizontalLayout_18->addWidget(dateTo);
-
-        btnApplyFilter = new QPushButton(filterGroup);
-        btnApplyFilter->setObjectName("btnApplyFilter");
-
-        horizontalLayout_18->addWidget(btnApplyFilter);
 
 
         verticalLayout_18->addWidget(filterGroup);
@@ -854,6 +956,13 @@ public:
         frame_7->setObjectName("frame_7");
         sizePolicy4.setHeightForWidth(frame_7->sizePolicy().hasHeightForWidth());
         frame_7->setSizePolicy(sizePolicy4);
+        frame_7->setStyleSheet(QString::fromUtf8("\n"
+"\n"
+"QPushButton#filterListPagebtn:hover {\n"
+"    background-color: #e3f2fd;\n"
+"    border-color: #2596be;\n"
+"}\n"
+""));
         frame_7->setFrameShape(QFrame::Shape::StyledPanel);
         frame_7->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout_10 = new QHBoxLayout(frame_7);
@@ -905,7 +1014,7 @@ public:
 
         filterListPagebtn = new QPushButton(frame_7);
         filterListPagebtn->setObjectName("filterListPagebtn");
-        QSizePolicy sizePolicy5(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
+        QSizePolicy sizePolicy5(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Minimum);
         sizePolicy5.setHorizontalStretch(0);
         sizePolicy5.setVerticalStretch(0);
         sizePolicy5.setHeightForWidth(filterListPagebtn->sizePolicy().hasHeightForWidth());
@@ -981,7 +1090,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "To Do List", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Task Manager", nullptr));
         taskList->setText(QCoreApplication::translate("MainWindow", "Task List", nullptr));
         addTaskButton->setText(QCoreApplication::translate("MainWindow", " Add Task", nullptr));
         calendarList->setText(QCoreApplication::translate("MainWindow", "Calendar", nullptr));
@@ -992,7 +1101,7 @@ public:
         appHeader->setText(QCoreApplication::translate("MainWindow", "Dashboard", nullptr));
         label_2->setText(QString());
         searchBar->setPlaceholderText(QCoreApplication::translate("MainWindow", "Search Something...", nullptr));
-        accountBtn->setText(QString());
+        notifi_btn->setText(QString());
         label_4->setText(QCoreApplication::translate("MainWindow", "\304\220\341\273\231 \306\260u ti\303\252n :", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "\360\237\237\242 Th\341\272\245p", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "\360\237\237\241 Trung b\303\254nh", nullptr));
@@ -1005,7 +1114,6 @@ public:
 #endif // QT_CONFIG(tooltip)
         addCategorybtn->setText(QCoreApplication::translate("MainWindow", "Th\303\252m Danh M\341\273\245c", nullptr));
         filterGroup->setTitle(QString());
-        btnApplyFilter->setText(QCoreApplication::translate("MainWindow", "\303\201p d\341\273\245ng", nullptr));
         label_10->setText(QCoreApplication::translate("MainWindow", "ALL TASKS", nullptr));
         numberAllTask->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "COMPLETED", nullptr));

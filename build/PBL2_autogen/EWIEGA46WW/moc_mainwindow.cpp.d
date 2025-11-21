@@ -257,6 +257,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QDateTimeEdit \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QDialog \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QDialogButtonBox \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QFrame \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QGraphicsView \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QGraphicsWidget \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QHBoxLayout \
@@ -265,6 +266,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QLineEdit \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QListWidget \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QMainWindow \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QMenu \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QPushButton \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QScrollArea \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QSpinBox \
@@ -272,6 +274,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QTreeWidget \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QVBoxLayout \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QWidget \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QWidgetAction \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qabstractbutton.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qabstractitemview.h \
@@ -299,6 +302,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qlistview.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qlistwidget.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qmainwindow.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qmenu.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qpushbutton.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qrubberband.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qscrollarea.h \
@@ -317,6 +321,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qtwidgetsexports.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qwidget.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qwidgetaction.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/array \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/atomic \
@@ -563,6 +568,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wctype.h \
   D:/PBL/PBL2/PBL2/AdvancedTaskDialog.h \
   D:/PBL/PBL2/PBL2/CategoryItemWidget.h \
+  D:/PBL/PBL2/PBL2/Notification.h \
   D:/PBL/PBL2/PBL2/Task.h \
   D:/PBL/PBL2/PBL2/TaskItemQwidget.h \
   D:/PBL/PBL2/PBL2/TaskListWidget.h \
