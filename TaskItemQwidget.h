@@ -33,6 +33,8 @@ private:
     QCheckBox* m_checkbox;
     QPushButton* edit_btn;
     QPushButton* delete_btn;
+    QLabel* recurrence_label;
+    QLabel* recurrence_text_label;
     QLabel* m_titleLabel;
     QLabel* m_descriptionLabel;
     QLabel* m_priorityLabel;

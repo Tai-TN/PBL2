@@ -61,9 +61,20 @@ void TaskItemWidget::setupUI(){
     m_descriptionLabel->setStyleSheet("font-size: 12px; color: #777");
     m_descriptionLabel->setWordWrap(true); // xuong dong neu qua dai
     m_descriptionLabel->setAlignment(Qt::AlignTop);
+
+    recurrence_label = new QLabel(this);
+    recurrence_label->setFocusPolicy(Qt::NoFocus);
+    recurrence_label->setFixedSize(24, 24);
+    recurrence_label->setPixmap(QPixmap(":/blueIcons/resources/icons/refresh-cw.svg"));
+
+    recurrence_text_label = new QLabel(this);
+    recurrence_text_label->setFocusPolicy(Qt::NoFocus);
+
+
     edit_btn = new QPushButton(this);
     edit_btn->setFixedSize(30, 30);
     edit_btn->setFocusPolicy(Qt::NoFocus);
+
     delete_btn = new QPushButton(this);
     delete_btn->setFixedSize(30, 30);
     delete_btn->setFocusPolicy(Qt::NoFocus);
@@ -71,9 +82,19 @@ void TaskItemWidget::setupUI(){
     delete_btn->setIcon(QIcon(":blueIcons/resources/icons/bin.png"));
     edit_btn->setIconSize(QSize(18,18));
     delete_btn->setIconSize(QSize(18,18));
+    edit_btn->setStyleSheet(
+        "QPushButton { border: none; background: transparent; }"
+        "QPushButton:hover { background: #e3f2fd; border-radius: 8px; }"
+    );
+    delete_btn->setStyleSheet(
+        "QPushButton { border: none; background: transparent; }"
+        "QPushButton:hover { background: #ffebee; border-radius: 8px; }"
+    );
 
     bottomLayout->addWidget(m_descriptionLabel);
     bottomLayout->addStretch();
+    bottomLayout->addWidget(recurrence_label);
+    bottomLayout->addWidget(recurrence_text_label);
     bottomLayout->addWidget(edit_btn);
     bottomLayout->addWidget(delete_btn);
     
@@ -147,23 +168,15 @@ void TaskItemWidget::updateTaskData(){
         m_timeLabel->setText(QString::fromStdString("Hạn " + m_task->getDeadline()));
    }
 
+   recurrence_text_label->setText(QString::fromStdString(m_task->getRecurrence()));
     m_checkbox->setCheckState((m_task->isCompleted()) ? Qt::Checked : Qt::Unchecked);
 
    applyCompletedStyle(m_task->isCompleted());
-//------------------------------------------------------------------------------------------
-   QString category = QString::fromStdString(m_task->getCategory());
-    if (category.isEmpty()) category = "Không phân loại";
-
-    // Lấy màu từ MainWindow
-    MainWindow* mainWin = qobject_cast<MainWindow*>(parent());
-    QObject* current = parent();
-    while (current && !mainWin) {
-    mainWin = qobject_cast<MainWindow*>(current);
-    current = current->parent();
-}
-
 
 }
+
+
+
 //----------------------------------------------------------------------
 void TaskItemWidget::applyCompletedStyle(bool completed)
 {
@@ -196,26 +209,3 @@ void TaskItemWidget::onDeleteClicked(){
     emit deleteTaskRequest(m_task);
 }
 
-// void MainWindow::editTask()
-// {
-//     QTreeWidgetItem* currentItem = ui->taskTree->currentItem();
-//     if (!currentItem) {
-//         QMessageBox::warning(this, "No selection", "Vui lòng chọn task để sửa!");
-//         return;
-//     }
-    
-//     size_t taskID = currentItem->data(0, Qt::UserRole).toULongLong();
-//     Task* task = manager.getTaskByID(taskID);
-//     if (!task) {
-//         QMessageBox::warning(this, "Lỗi", "Không tìm thấy task!");
-//         return;
-//     }
-    
-//     AdvancedTaskDialog dialog(task, manager, this);
-//     if (dialog.exec() == QDialog::Accepted) {
-//         SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
-//         updateTaskList();
-//         //m_taskListWidget->updateTask(task);
-//         buildTrie(); 
-//     }
-// }

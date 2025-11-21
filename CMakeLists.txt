@@ -33,6 +33,8 @@ qt_add_executable(PBL2
     TaskListWidget.cpp
     CategoryItemWidget.h
     CategoryItemWidget.cpp
+    Notification.h
+    Notification.cpp
     ${APP_RESOURCES}  
 )
 target_link_libraries(PBL2

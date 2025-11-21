@@ -27,7 +27,10 @@
 #include <QtCharts/QDateTimeAxis>
 #include "CategoryItemWidget.h"
 #include <QDir>
-#include <QTextCharFormat>
+#include <QTextCharFormat>  
+#include "Notification.h"
+#include <QMenu>
+#include <QWidgetAction>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -56,6 +59,9 @@ private slots:
     void onTimeFilterChanged(int index);
 
     void onFilterListPageClicked();
+    //chuc nang thong bao
+    void showNotificationMenu();
+    void updateCountLabel();
 private:
 
     void LoadFile(const std::string&, HeapManager&);
@@ -74,6 +80,10 @@ private:
     void onTaskDeleteClicked(Task* task);
     void updateCalendarDots();
 
+    //chuc nang thong bao
+    NotificationWidget* m_notificationWidget;
+    QMenu* m_notificationMenu;
+    QLabel* m_countNotificationLabel;
 
 private:
     Ui::MainWindow *ui;

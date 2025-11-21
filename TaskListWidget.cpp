@@ -42,8 +42,6 @@ void TaskListWidget::addTask(Task* task){
     connect(item, &TaskItemWidget::taskStatusChanged, this, &TaskListWidget::onTaskItemStatusChanged);
     connect(item, &TaskItemWidget::editTaskRequest, this, &TaskListWidget::onTaskEditClicked);
     connect(item, &TaskItemWidget::deleteTaskRequest, this, &TaskListWidget::onTaskDeleteClicked);
-    // connect(item, &TaskItemWidget::taskClicked,
-    //         this, &TaskListWidget::onTaskItemClicked);
 
 
 }
@@ -89,13 +87,4 @@ void TaskListWidget::onTaskEditClicked(Task* task){
 void TaskListWidget::onTaskDeleteClicked(Task* task){
     emit deleteTaskRequest(task);
 }
-// void TaskListWidget::onTaskItemClicked(Task* task){
-//     emit taskClicked(task);
-// }
 
-
-//TaskItemWidget (user tương tác)
-//      ↓ emits taskStatusChanged
-// TaskListWidget (nhận & chuyển tiếp)  
-//      ↓ emits taskStatusChanged
-// MainWindow (xử lý business logic)

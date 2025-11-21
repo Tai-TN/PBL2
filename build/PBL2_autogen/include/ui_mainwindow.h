@@ -978,6 +978,7 @@ public:
         horizontalLayout_11->setObjectName("horizontalLayout_11");
         allTask = new QPushButton(frame_10);
         allTask->setObjectName("allTask");
+        allTask->setFocusPolicy(Qt::FocusPolicy::NoFocus);
         QIcon icon10;
         icon10.addFile(QString::fromUtf8(":/blueIcons/resources/icons/clipboard.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         allTask->setIcon(icon10);
@@ -1020,6 +1021,7 @@ public:
         sizePolicy5.setHeightForWidth(filterListPagebtn->sizePolicy().hasHeightForWidth());
         filterListPagebtn->setSizePolicy(sizePolicy5);
         filterListPagebtn->setMinimumSize(QSize(24, 24));
+        filterListPagebtn->setFocusPolicy(Qt::FocusPolicy::NoFocus);
         QIcon icon12;
         icon12.addFile(QString::fromUtf8(":/blueIcons/resources/icons/filter.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         filterListPagebtn->setIcon(icon12);

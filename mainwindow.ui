@@ -89,6 +89,9 @@ color: #8E44AD; font-size: 24px; font-weight: 800;}*/
     background-color: #F0F0F0;
 }
 
+
+
+
 </string>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
@@ -194,7 +197,7 @@ color: #8E44AD; font-size: 24px; font-weight: 800;}*/
                 </font>
                </property>
                <property name="text">
-                <string>To Do List</string>
+                <string>Task Manager</string>
                </property>
               </widget>
              </item>
@@ -474,6 +477,12 @@ color: #8E44AD; font-size: 24px; font-weight: 800;}*/
           </property>
           <item alignment="Qt::AlignmentFlag::AlignLeft">
            <widget class="QWidget" name="widget" native="true">
+            <property name="styleSheet">
+             <string notr="true">#menuBtn:hover {
+    background-color: #f5f9fc;
+    border-color: #2596be;
+}</string>
+            </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
               <widget class="QPushButton" name="menuBtn">
@@ -628,9 +637,14 @@ color: #8E44AD; font-size: 24px; font-weight: 800;}*/
               <number>0</number>
              </property>
              <item>
-              <widget class="QPushButton" name="accountBtn">
+              <widget class="QPushButton" name="notifi_btn">
                <property name="focusPolicy">
                 <enum>Qt::FocusPolicy::NoFocus</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton { border: none; background: transparent; }
+QPushButton:hover { background: #ffebee; border-radius: 8px; }
+ </string>
                </property>
                <property name="text">
                 <string/>
@@ -907,23 +921,141 @@ color: #8E44AD; font-size: 24px; font-weight: 800;}*/
               <layout class="QVBoxLayout" name="verticalLayout_18">
                <item>
                 <widget class="QGroupBox" name="filterGroup">
+                 <property name="styleSheet">
+                  <string notr="true">QComboBox {
+    background-color: #ffffff;
+    border: 2px solid #e0e7ee;
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-height: 32px;
+    font-size: 13px;
+    color: #2c3e50;
+}
+
+QComboBox:hover {
+    border-color: #2596be;
+}
+
+QComboBox:focus {
+    border-color: #2596be;
+    background-color: #f8fcfe;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 30px;
+}
+
+QComboBox::down-arrow {
+    width: 16px;
+    height: 16px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #ffffff;
+    border: 2px solid #2596be;
+    border-radius: 8px;
+    selection-background-color: #e3f2fd;
+    selection-color: #1976d2;
+    padding: 4px;
+}
+
+QComboBox QAbstractItemView::item {
+    padding: 8px 12px;
+    border-radius: 4px;
+    min-height: 30px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    background-color: #f0f7fc;
+}
+
+
+
+QDateEdit {
+    background-color: #ffffff;
+    border: 2px solid #e0e7ee;
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-height: 32px;
+    font-size: 13px;
+    color: #2c3e50;
+}
+
+QDateEdit:hover {
+    border-color: #2596be;
+    box-shadow: 0 2px 8px rgba(37, 150, 190, 0.15);
+}
+
+QDateEdit:focus {
+    border-color: #2596be;
+    background-color: #f8fcfe;
+}
+
+QDateEdit::drop-down {
+    border: none;
+    width: 30px;
+}
+
+QDateEdit::down-arrow {
+    width: 16px;
+    height: 16px;
+}
+
+QDateEdit::up-button, QDateEdit::down-button {
+    background-color: transparent;
+    border: none;
+    width: 20px;
+}
+
+QDateEdit::up-button:hover, QDateEdit::down-button:hover {
+    background-color: #e3f2fd;
+    border-radius: 4px;
+}
+</string>
+                 </property>
                  <property name="title">
                   <string/>
                  </property>
                  <layout class="QHBoxLayout" name="horizontalLayout_18">
                   <item>
-                   <widget class="QComboBox" name="comboFilterTime"/>
+                   <widget class="QComboBox" name="comboFilterTime">
+                    <property name="focusPolicy">
+                     <enum>Qt::FocusPolicy::NoFocus</enum>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">
+
+
+</string>
+                    </property>
+                   </widget>
                   </item>
                   <item>
-                   <widget class="QDateEdit" name="dateFrom"/>
+                   <widget class="QDateEdit" name="dateFrom">
+                    <property name="calendarPopup">
+                     <bool>true</bool>
+                    </property>
+                    <property name="date">
+                     <date>
+                      <year>2025</year>
+                      <month>1</month>
+                      <day>1</day>
+                     </date>
+                    </property>
+                   </widget>
                   </item>
                   <item>
-                   <widget class="QDateEdit" name="dateTo"/>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btnApplyFilter">
-                    <property name="text">
-                     <string>Áp dụng</string>
+                   <widget class="QDateEdit" name="dateTo">
+                    <property name="calendarPopup">
+                     <bool>true</bool>
+                    </property>
+                    <property name="date">
+                     <date>
+                      <year>2025</year>
+                      <month>1</month>
+                      <day>1</day>
+                     </date>
                     </property>
                    </widget>
                   </item>
@@ -1196,6 +1328,15 @@ color: #8E44AD; font-size: 24px; font-weight: 800;}*/
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="styleSheet">
+              <string notr="true">
+
+QPushButton#filterListPagebtn:hover {
+    background-color: #e3f2fd;
+    border-color: #2596be;
+}
+</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::Shape::StyledPanel</enum>
              </property>
@@ -1232,6 +1373,9 @@ color: #8E44AD; font-size: 24px; font-weight: 800;}*/
                  </property>
                  <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
                   <widget class="QPushButton" name="allTask">
+                   <property name="focusPolicy">
+                    <enum>Qt::FocusPolicy::NoFocus</enum>
+                   </property>
                    <property name="text">
                     <string>All Task</string>
                    </property>
@@ -1301,7 +1445,7 @@ color: #8E44AD; font-size: 24px; font-weight: 800;}*/
               <item>
                <widget class="QPushButton" name="filterListPagebtn">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -1311,6 +1455,9 @@ color: #8E44AD; font-size: 24px; font-weight: 800;}*/
                   <width>24</width>
                   <height>24</height>
                  </size>
+                </property>
+                <property name="focusPolicy">
+                 <enum>Qt::FocusPolicy::NoFocus</enum>
                 </property>
                 <property name="text">
                  <string/>

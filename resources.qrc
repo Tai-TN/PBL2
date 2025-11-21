@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="blueIcons">
+    <file>resources/icons/filter.png</file>
+    <file>resources/icons/refresh-cw.svg</file>
     <file>resources/icons/unfilter.jpg</file>
     <file>resources/icons/plus.svg</file>
     <file>resources/icons/bin.png</file>
@@ -38,6 +40,5 @@
     <file>resources/icons/search.svg</file>
     <file>resources/icons/align-justify2.svg</file>
     <file>resources/icons/align-justify1.svg</file>
-    <file>resources/icons/align-justify.svg</file>
   </qresource>
 </RCC>

@@ -86,7 +86,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->comboFilterTime, &QComboBox::currentIndexChanged, this, &MainWindow::onTimeFilterChanged);
     ui->comboFilterTime->setCurrentIndex(1);
-    connect(ui->btnApplyFilter, &QPushButton::clicked, this, &MainWindow::updateStatistics);
     connect(ui->dateFrom, &QDateEdit::dateChanged, this, &MainWindow::updateStatistics);
     connect(ui->dateTo, &QDateEdit::dateChanged, this, &MainWindow::updateStatistics);
 
@@ -103,6 +102,19 @@ MainWindow::MainWindow(QWidget *parent)
     updateStatistics();
 
 
+    // chuc nang thong bao
+    m_notificationWidget = new NotificationWidget(this);
+    m_notificationMenu = new QMenu(this);
+    QWidgetAction* widgetAction = new QWidgetAction(this);
+    widgetAction->setDefaultWidget(m_notificationWidget);
+    m_notificationMenu->addAction(widgetAction);
+
+    m_countNotificationLabel = new QLabel(ui->notifi_btn);
+    m_countNotificationLabel->setStyleSheet("background : red; color : white; border-radius : 5px;");
+    m_countNotificationLabel->setGeometry(25, 5, 20, 20);
+    m_countNotificationLabel->setVisible(false);
+
+    connect(ui->notifi_btn, &QPushButton::clicked, this, &MainWindow::showNotificationMenu);
 }
 
 
@@ -990,7 +1002,7 @@ void MainWindow::onFilterListPageClicked(){
                 m_taskListWidget->addTask(t);
             }
     }
-    ui->filterListPagebtn->setIcon(QIcon(":/blueIcons/resources/icons/unfilter.jpg"));
+    ui->filterListPagebtn->setIcon(QIcon(":/blueIcons/resources/icons/filter.png"));
     ui->filterListPagebtn->setIconSize(QSize(24,24));
     }
     else{
@@ -1023,4 +1035,27 @@ void MainWindow::updateCalendarDots(){
 
 
 
+}
+
+
+void MainWindow::showNotificationMenu(){
+    m_notificationWidget->updateNotifications(manager.ShowTaskByPriority());
+
+    QPoint globalPos = ui->notifi_btn->mapToGlobal( QPoint(0 , ui->notifi_btn->height())); // Chuyển tọa độ góc dưới của nút thông báo thành tọa độ để hiển thị QMENU
+
+    m_notificationMenu->popup(globalPos);
+    updateCountLabel();
+
+}
+
+void MainWindow::updateCountLabel(){
+    int count = m_notificationWidget->countNotifications();
+
+    if (count > 0){
+        m_countNotificationLabel->setText(QString::number(count));
+        m_countNotificationLabel->setVisible(true);
+    }
+    else{
+        m_countNotificationLabel->setVisible(false);
+    }
 }
