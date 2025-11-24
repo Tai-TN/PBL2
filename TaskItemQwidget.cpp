@@ -120,10 +120,20 @@ void TaskItemWidget::setupUI(){
         "image: url(:blueIcons/resources/icons/check-circle.svg);" 
     "}"
 
-);
+);  
+    this->setStyleSheet(
+        "#QWidget {"
+        "background-color : white;"
+        "border-radius : 10px;"
+        "border: 1px solid  #8dc5e0ff;"
+
+        "}"
+    );
     connect(m_checkbox, &QCheckBox::stateChanged, this, &TaskItemWidget::onCheckboxStateChanged);
     connect(edit_btn, &QPushButton::clicked, this, &TaskItemWidget::onEditClicked);
     connect(delete_btn,&QPushButton::clicked, this, &TaskItemWidget::onDeleteClicked);
+
+
 }
 
 

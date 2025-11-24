@@ -573,4 +573,5 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   D:/PBL/PBL2/PBL2/TaskItemQwidget.h \
   D:/PBL/PBL2/PBL2/TaskListWidget.h \
   D:/PBL/PBL2/PBL2/Trie.h \
+  D:/PBL/PBL2/PBL2/Vector.h \
   D:/PBL/PBL2/PBL2/heap_manager.h

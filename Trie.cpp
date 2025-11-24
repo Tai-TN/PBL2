@@ -26,7 +26,8 @@ void Trie::Clear() {
     // Giải phóng bộ nhớ (đệ quy)
     if (!root) return;
     
-    std::vector<TrieNode*> stack = {root};
+    Vector<TrieNode*> stack;
+    stack.push_back(root);
     while (!stack.empty()) {
         TrieNode* node = stack.back();
         stack.pop_back();
@@ -101,15 +102,15 @@ bool Trie::Find(const QString& word) {
     return node->isEnd;
 }
 
-void Trie::DFS(TrieNode* node, std::vector<QString>& list) {
+void Trie::DFS(TrieNode* node, Vector<QString>& list) {
     if (!node) return;
     if (node->isEnd) list.push_back(node->word);
     for (int i = 0; i < TrieNode::CHAR_SET_SIZE; i++)
         if (node->child[i]) DFS(node->child[i], list);
 }
 
-std::vector<QString> Trie::Suggest(const QString& prefix) {
-    std::vector<QString> list;
+Vector<QString> Trie::Suggest(const QString& prefix) {
+    Vector<QString> list;
     if (!root) return list;
 
     TrieNode* node = root;
@@ -183,7 +184,7 @@ Trie& Trie::operator=(const Trie& other){
     }
 
     root = new TrieNode();
-     std::vector<std::pair<TrieNode*, TrieNode*>> stack;
+     Vector<std::pair<TrieNode*, TrieNode*>> stack;
     stack.push_back({root, other.root});
     
     while (!stack.empty()) {

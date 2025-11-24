@@ -4,7 +4,6 @@
 #include <QScrollArea>
 #include "TaskItemQwidget.h"
 #include "Task.h"
-#include <vector>
 #include <QMap>
 #include <QList>
 class TaskListWidget : public QWidget{

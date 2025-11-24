@@ -679,104 +679,204 @@ QPushButton:hover { background: #ffebee; border-radius: 8px; }
           <number>5</number>
          </property>
          <widget class="QWidget" name="calendarPage">
-          <widget class="QCalendarWidget" name="calendarWidget">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>10</y>
-             <width>256</width>
-             <height>190</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QListWidget" name="calendarTaskList">
-           <property name="geometry">
-            <rect>
-             <x>270</x>
-             <y>10</y>
-             <width>661</width>
-             <height>541</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QFrame" name="frame_5">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>200</y>
-             <width>264</width>
-             <height>36</height>
-            </rect>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::Shape::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Shadow::Raised</enum>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_8">
-            <item>
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>Độ ưu tiên :</string>
+          <property name="styleSheet">
+           <string notr="true">QCalendarWidget {
+    background-color: #ffffff;
+    border: 2px solid #e0e7ee;
+    border-radius: 12px;
+}
+
+QCalendarWidget QToolButton {
+    background-color: #2596be;
+    color: white;
+    border-radius: 6px;
+    padding: 5px;
+    font-weight: bold;
+}
+
+QCalendarWidget QToolButton:hover {
+    background-color: #1a7a99;
+}
+
+QCalendarWidget QMenu {
+    background-color: white;
+    border: 2px solid #e0e7ee;
+}
+
+QCalendarWidget QSpinBox {
+    background-color: white;
+    border: 1px solid #e0e7ee;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+QCalendarWidget QAbstractItemView:enabled {
+    font-size: 13px;
+    background-color: white;
+    selection-background-color: #2596be;
+    selection-color: white;
+}
+
+QCalendarWidget QAbstractItemView:disabled {
+    color: #bdc3c7;
+}
+</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item>
+            <widget class="QWidget" name="widget_10" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_21">
+              <property name="spacing">
+               <number>0</number>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>🟢 Thấp</string>
+              <property name="leftMargin">
+               <number>0</number>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_5">
-              <property name="text">
-               <string>🟡 Trung bình</string>
+              <property name="topMargin">
+               <number>0</number>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_6">
-              <property name="text">
-               <string>🔴 Cao</string>
+              <property name="rightMargin">
+               <number>0</number>
               </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QFrame" name="frame_6">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>240</y>
-             <width>228</width>
-             <height>36</height>
-            </rect>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::Shape::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Shadow::Raised</enum>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_9">
-            <item>
-             <widget class="QLabel" name="label_7">
-              <property name="text">
-               <string>⏳: Chưa hoàn thành</string>
+              <property name="bottomMargin">
+               <number>0</number>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_8">
-              <property name="text">
-               <string>✅ : Hoàn thành</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
+              <item>
+               <widget class="QWidget" name="widget_11" native="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_19">
+                 <item>
+                  <widget class="QCalendarWidget" name="calendarWidget">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="widget_12" native="true">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <fontweight>ExtraLight</fontweight>
+                    </font>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_10">
+                    <item alignment="Qt::AlignmentFlag::AlignTop">
+                     <widget class="QFrame" name="frame_5">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::Shape::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Shadow::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_9">
+                       <property name="spacing">
+                        <number>9</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>9</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>9</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>9</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>9</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="label_4">
+                         <property name="text">
+                          <string>Độ ưu tiên :</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_3">
+                         <property name="text">
+                          <string>🟢 Thấp</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_5">
+                         <property name="text">
+                          <string>🟡 Trung bình</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_6">
+                         <property name="text">
+                          <string>🔴 Cao</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item alignment="Qt::AlignmentFlag::AlignTop">
+                     <widget class="QFrame" name="frame_6">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::Shape::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Shadow::Raised</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_21">
+                       <property name="spacing">
+                        <number>9</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="label_7">
+                         <property name="text">
+                          <string>⏳: Chưa hoàn thành</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_8">
+                         <property name="text">
+                          <string>✅ : Hoàn thành</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QListWidget" name="calendarTaskList"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="categoryListPage">
           <property name="sizePolicy">
@@ -1024,10 +1124,7 @@ QDateEdit::up-button:hover, QDateEdit::down-button:hover {
                      <enum>Qt::FocusPolicy::NoFocus</enum>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">
-
-
-</string>
+                     <string notr="true"/>
                     </property>
                    </widget>
                   </item>
@@ -1414,32 +1511,19 @@ QPushButton#filterListPagebtn:hover {
                 </layout>
                </widget>
               </item>
-              <item>
-               <widget class="QDateEdit" name="dateFrom1">
-                <property name="calendarPopup">
-                 <bool>true</bool>
+              <item alignment="Qt::AlignmentFlag::AlignVCenter">
+               <widget class="QFrame" name="frame_9">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::StyledPanel</enum>
                 </property>
-                <property name="date">
-                 <date>
-                  <year>2025</year>
-                  <month>11</month>
-                  <day>1</day>
-                 </date>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
                 </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDateEdit" name="dateTo1">
-                <property name="calendarPopup">
-                 <bool>true</bool>
-                </property>
-                <property name="date">
-                 <date>
-                  <year>2025</year>
-                  <month>11</month>
-                  <day>1</day>
-                 </date>
-                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <item alignment="Qt::AlignmentFlag::AlignTop">
+                  <widget class="QComboBox" name="comboBox"/>
+                 </item>
+                </layout>
                </widget>
               </item>
               <item>
@@ -1475,18 +1559,31 @@ QPushButton#filterListPagebtn:hover {
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_9">
-                <property name="frameShape">
-                 <enum>QFrame::Shape::StyledPanel</enum>
+               <widget class="QDateEdit" name="dateFrom1">
+                <property name="calendarPopup">
+                 <bool>true</bool>
                 </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Shadow::Raised</enum>
+                <property name="date">
+                 <date>
+                  <year>2025</year>
+                  <month>11</month>
+                  <day>1</day>
+                 </date>
                 </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_13">
-                 <item alignment="Qt::AlignmentFlag::AlignTop">
-                  <widget class="QComboBox" name="comboBox"/>
-                 </item>
-                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDateEdit" name="dateTo1">
+                <property name="calendarPopup">
+                 <bool>true</bool>
+                </property>
+                <property name="date">
+                 <date>
+                  <year>2025</year>
+                  <month>11</month>
+                  <day>1</day>
+                 </date>
+                </property>
                </widget>
               </item>
              </layout>
@@ -1494,6 +1591,9 @@ QPushButton#filterListPagebtn:hover {
            </item>
            <item>
             <widget class="QFrame" name="frame_8">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="frameShape">
               <enum>QFrame::Shape::StyledPanel</enum>
              </property>

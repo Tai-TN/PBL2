@@ -22,6 +22,7 @@ TaskListWidget::TaskListWidget(QWidget* parent) : QWidget(parent){
     
         scrollArea->setWidget(m_listContainer);
         mainLayout->addWidget(scrollArea);
+        scrollArea->setStyleSheet("background-color :   #fefeff");
     }
 
 

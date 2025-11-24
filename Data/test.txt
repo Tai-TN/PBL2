@@ -1,13 +1,14 @@
-1|Làm bài tập Toán|Chương 4: Đạo hàm và tích phân|2|2025-10-17 17:00|1|2025-11-21 10:36|2025-11-21 10:36|Học Tập|3|0|none
-2|Dọn dẹp phòng ở|Dọn tủ quần áo, vệ sinh bàn học vaf may tinh|2|2025-11-12 14:00|1|2025-11-21 10:36|2025-11-21 10:36|Không phân loại|2|0|monthly
-5|Mua sách giáo trình|Mua sách C++ và Toán cao cấp|2|2025-10-17 15:00|0|2025-11-21 10:36|2025-11-21 10:36|Cá Nhân|1|0|none
-3|Chuẩn bị presentation|Slide cho môn Chính trị|2|2025-10-19 09:00|0|2025-11-21 10:36|2025-11-21 10:36|Học Tập|4|0|none
-6|Khám bệnh định kỳ|Khám răng và mắt|2|2025-10-15 08:00|1|2025-11-21 10:36|2025-11-21 10:36|Sức Khỏe|2|0|monthly
-7|Đăng ký môn học|Đăng ký học kỳ mới|2|2025-10-15 17:00|0|2025-11-21 10:36|2025-11-21 10:36|Học Tập|1|0|none
-8|Gửi email cho GV|Hỏi về deadline bài tập|1|2025-11-06 10:00|0|2025-11-21 10:36|2025-11-21 10:36|Học Tập|0|0|none
-10|Dã ngoại cuối tuần|Đi chơi với gia đình|1|2025-10-26 08:00|0|2025-11-21 10:36|2025-11-21 10:36|Giải Trí|4|0|none
-11|Học tiếng Anh|Luyện nghe 30 phút|1|2025-11-11 19:00|0|2025-11-21 10:36|2025-11-21 10:36|Học Tập|1|0|daily
-13|Đi siêu thị|Mua thực phẩm tuần|1|2026-10-16 18:00|0|2025-11-21 10:36|2025-11-21 10:36|Học Tập|1|0|weekly
-14|Viết báo cáo|Báo cáo thí nghiệm Vật lý|1|2025-10-17 16:00|1|2025-11-21 10:36|2025-11-21 10:36|Học Tập|2|0|none
-9|Xem phim với bạn bè|Xem phim cuối tuần|1|2025-11-08 20:00|0|2025-11-21 10:36|2025-11-21 10:36|Giải Trí|2|0|none
-12|Mua đồ dùng học tập|Bút, vở, máy tính|1|2025-10-12 14:00|0|2025-11-21 10:36|2025-11-21 10:36|Cá Nhân|1|0|none
+1|Làm bài tập Toán|Chương 4: Đạo hàm và tích phân|2|2025-10-17 17:00|1|2025-11-24 14:30|2025-11-24 14:30|Học Tập|daily
+2|Dọn dẹp phòng ở|Dọn tủ quần áo, vệ sinh bàn học vaf may tinh|2|2025-11-12 14:00|1|2025-11-24 14:30|2025-11-24 14:30|Không phân loại|monthly
+4|Mua sách giáo trình|Mua sách C++ và Toán cao cấp|2|2025-10-17 15:00|1|2025-11-24 14:30|2025-11-24 14:30|Cá Nhân|none
+5|Chuẩn bị presentation|Slide cho môn Chính trị|2|2025-10-19 09:00|1|2025-11-24 14:30|2025-11-24 14:30|Học Tập|daily
+3|Khám bệnh định kỳ|Khám răng và mắt|2|2025-10-15 08:00|1|2025-11-24 14:30|2025-11-24 14:30|Sức Khỏe|monthly
+6|Đăng ký môn học|Đăng ký học kỳ mới|2|2025-10-15 17:00|0|2025-11-24 14:30|2025-11-24 14:30|Học Tập|none
+9|Đi siêu thị|Mua thực phẩm tuần|1|2026-10-16 18:00|0|2025-11-24 14:30|2025-11-24 14:30|Học Tập|none
+8|Gửi email cho GV|Hỏi về deadline bài tập|1|2025-11-06 10:00|0|2025-11-24 14:30|2025-11-24 14:30|Học Tập|none
+7|Dã ngoại cuối tuần|Đi chơi với gia đình|1|2025-10-26 08:00|0|2025-11-24 14:30|2025-11-24 14:30|Không phân loại|none
+11|Viết báo cáo|Báo cáo thí nghiệm Vật lý|1|2025-10-17 16:00|1|2025-11-24 14:30|2025-11-24 14:30|Học Tập|none
+13|Xem phim với bạn bè|Xem phim cuối tuần|1|2025-11-08 20:00|0|2025-11-24 14:30|2025-11-24 14:30|Không phân loại|none
+14|Giặt đồ|Giặt đồ|1|2025-11-26 12:46|1|2025-11-24 14:30|2025-11-24 14:30|Công việc|daily
+10|Mua đồ dùng học tập|Bút, vở, máy tính|1|2025-10-12 14:00|0|2025-11-24 14:30|2025-11-24 14:30|Cá Nhân|none
+12|Học tiếng Anh|Luyện nghe 30 phút|1|2025-11-11 19:00|0|2025-11-24 14:30|2025-11-24 14:30|Học Tập|none

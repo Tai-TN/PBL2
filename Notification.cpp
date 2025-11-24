@@ -180,7 +180,7 @@ void NotificationWidget::clearAllNotifications() {
 
 
 
-void NotificationWidget::updateNotifications(std::vector<Task*> tasks) {
+void NotificationWidget::updateNotifications(Vector<Task*> tasks) {
     clearAllNotifications();
     
     if (m_clearAll == false){

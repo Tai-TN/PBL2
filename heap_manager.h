@@ -1,12 +1,12 @@
 #pragma once
 #include "Task.h"
-#include <vector>
+#include "Vector.h"
 
 
 class HeapManager{
 private:
-    std::vector<Task*> maxHeap; // Sắp xếp theo priority
-    std::vector<Task*> minHeap; // Sắp xếp theo deadline
+    Vector<Task*> maxHeap; // Sắp xếp theo priority
+    Vector<Task*> minHeap; // Sắp xếp theo deadline
     void HeapifyUpMax(size_t index);
     void HeapifyDownMax(size_t index);
     void HeapifyUpMin(size_t index);
@@ -20,9 +20,9 @@ public:
     Task* getEarliestDeadline();
     void removeTask(size_t id);
     bool isEmpty();
-    std::vector<Task*> ShowTaskByPriority();
-    std::vector<Task*> ShowTaskByDeadline();
-    void HeapifyTempDownMax(std::vector<Task*>&, size_t index);
-    void HeapifyTempDownMin(std::vector<Task*>&, size_t index);
+    Vector<Task*> ShowTaskByPriority();
+    Vector<Task*> ShowTaskByDeadline();
+    void HeapifyTempDownMax(Vector<Task*>&, size_t index);
+    void HeapifyTempDownMin(Vector<Task*>&, size_t index);
     Task* getTaskByID(size_t id);
 };  

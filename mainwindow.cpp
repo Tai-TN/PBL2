@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QString iconPath = QDir(QCoreApplication::applicationDirPath()).filePath("../resources/icons/iconWindow.png");
+    QString iconPath = "../resources/icons/iconWindow.png";
     QIcon windowIcon(iconPath);
     this->setWindowIcon(windowIcon);
     this->setWindowTitle("To Do List");
@@ -156,7 +156,7 @@ void MainWindow::LoadFile(const std::string& filename, HeapManager& manager){
     std::string line;
     while(getline(f,line)){
         std::stringstream ss(line);
-        std::vector<std::string> fields;
+        Vector<std::string> fields;
         std::string field;
 
         while(getline(ss, field, '|')){
@@ -165,7 +165,7 @@ void MainWindow::LoadFile(const std::string& filename, HeapManager& manager){
 
         
         
-        if (fields.size() >= 12){
+        if (fields.size() >= 10){
             size_t id = std::stoul(fields[0]);
             std::string title = fields[1];
             std::string description = fields[2];
@@ -175,10 +175,8 @@ void MainWindow::LoadFile(const std::string& filename, HeapManager& manager){
             std::string createdAt = fields[6];
             std::string updatedAt = fields[7];
             std::string category = fields[8];
-            int estimatedHours = std::stoi(fields[9]);
-            int actualHours = std::stoi(fields[10]);
-            std::string recurrence = fields[11];
-            Task* t = new Task(title,description, priority, deadline, {}, category, estimatedHours, recurrence, completed);
+            std::string recurrence = fields[9];
+            Task* t = new Task(title,description, priority, deadline, category,/* estimatedHours,*/ recurrence, completed);
             manager.addTask(t);
 
         }
@@ -197,7 +195,7 @@ void MainWindow::SaveToFile(const std::string& pos){
         QMessageBox::critical(this, "Error", "Cannot open file for saving : " + QString::fromStdString(pos));
         return;
     }
-    std::vector<Task*> tasks = manager.ShowTaskByPriority();
+    Vector<Task*> tasks = manager.ShowTaskByPriority();
 
     for (Task* t : tasks){
         f << t->getID() << "|" 
@@ -209,21 +207,8 @@ void MainWindow::SaveToFile(const std::string& pos){
           << t->getCreatedAt() << "|"
           << t->getUpdatedAt() << "|"
           << t->getCategory() << "|"
-          << t->getEstimatedHours() << "|"
-          << t->getActualHours() << "|"
           << t->getRecurrence();
         
-        // Lưu tags nếu có
-        std::vector<std::string> tags = t->getTags();
-        if (!tags.empty()) {
-            f << "|";
-            for (size_t i = 0; i < tags.size(); ++i) {
-                f << tags[i];
-                if (i < tags.size() - 1) {
-                    f << ","; // Phân cách tags bằng dấu phẩy
-                }
-            }
-        }
         
         f << "\n";
     }
@@ -239,7 +224,7 @@ void MainWindow::updateTaskList() {
     // Thiết lập giao diện
     
     QString prefix = ui->searchBar->text().trimmed().toLower();
-    std::vector<QString> matchedTitles;
+    Vector<QString> matchedTitles;
 
     if (!prefix.isEmpty()){
         matchedTitles = taskTrie.Suggest(prefix);
@@ -256,7 +241,7 @@ void MainWindow::updateTaskList() {
 
 void MainWindow::loadTaskListWidget( const QString& prefix, const QString& sortMode, const QString& filterMode){
     m_taskListWidget->clearAllTasks();
-    std::vector<Task*> tasks;
+    Vector<Task*> tasks;
 
     if (sortMode == "Ưu tiên"){
         tasks = manager.ShowTaskByPriority();
@@ -265,7 +250,7 @@ void MainWindow::loadTaskListWidget( const QString& prefix, const QString& sortM
         tasks = manager.ShowTaskByDeadline();
     }
 
-    std::vector<QString> matchedTitles;
+    Vector<QString> matchedTitles;
     if (!prefix.isEmpty()){
         matchedTitles = taskTrie.Suggest(prefix);
     }
@@ -288,15 +273,7 @@ void MainWindow::loadTaskListWidget( const QString& prefix, const QString& sortM
         }
 
         if (showTask){
-        //     TaskItemWidget *item = new TaskItemWidget(task, m_taskListWidget);
-
-        // QString category = QString::fromStdString(task->getCategory());
-        // if (m_categoryColors.contains(category)) {
-        //     item->setCategoryColor(m_categoryColors[category]);
-        // } else {
-        //     // Thiết lập màu mặc định nếu không tìm thấy
-        //     item->setCategoryColor(QColor("#AAAAAA")); 
-        // }
+    
             m_taskListWidget->addTask(task);
             
         }
@@ -321,7 +298,6 @@ void MainWindow::loadTodayTaskListWidget(){
         }
     }
     if (taskCount == 0){
-        //noTaskLabel->setText("Không có task cho ngày hôm nay!");
         ui->noTaskLabel->setText("📅 Không có task cho ngày hôm nay!");
         ui->stackedWidget_2->setCurrentWidget(ui->noLabelPage);
     }
@@ -355,7 +331,7 @@ void MainWindow::onAllTaskClicked(){
 
 void MainWindow::buildTrie(){
     taskTrie.Clear();
-    std::vector<Task*> tasks = manager.ShowTaskByPriority();
+    Vector<Task*> tasks = manager.ShowTaskByPriority();
     for (Task* t : tasks){
         QString title = QString::fromStdString(t->getTitle());
         taskTrie.Insert(title);
@@ -372,7 +348,7 @@ void MainWindow::onCalendarDateClicked(const QDate& date){
 
     ui->calendarTaskList->clear();
 
-    std::vector<Task*> tasks = manager.ShowTaskByDeadline();
+    Vector<Task*> tasks = manager.ShowTaskByDeadline();
     int taskCount = 0;
 
     for (Task* task : tasks){
@@ -500,7 +476,7 @@ void MainWindow::updateCategoryView() {
     ui->categoryListWidget->clear();
     m_categoryWidgets.clear();
     loadCategoryListWidget(m_currentCategory);
-    std::map<std::string, std::vector<Task*>> categoryMap;
+    std::map<std::string, Vector<Task*>> categoryMap;
     for (Task* t : manager.ShowTaskByPriority()) {
         std::string cat = t->getCategory();
         if (cat.empty()) cat = "Không phân loại";
@@ -528,9 +504,6 @@ void MainWindow::updateCategoryView() {
     addWidget->setObjectName("addCategoryWidget");
     QHBoxLayout* addLayout = new QHBoxLayout(addWidget);
     addLayout->setContentsMargins(12, 16, 12, 16);
-    // QLabel* plus = new QLabel("+ Thêm danh mục mới");
-    // plus->setStyleSheet("color: #3498db; font-weight: bold; font-size: 14px;");
-    // addLayout->addWidget(plus);
     QListWidgetItem* addItem = new QListWidgetItem();
     addItem->setSizeHint(QSize(0, 50));
     ui->categoryListWidget->addItem(addItem);
@@ -625,8 +598,8 @@ void MainWindow::setupStatistics(){
 
 
 void MainWindow::updateStatistics(){
-    std::vector<Task*> allTasks = manager.ShowTaskByPriority();
-    std::vector<Task*> filteredTasks;
+    Vector<Task*> allTasks = manager.ShowTaskByPriority();
+    Vector<Task*> filteredTasks;
 
     QDate start = getFilterStartDate();
     QDate end = getFilterEndDate();
@@ -891,7 +864,7 @@ void MainWindow::deleteCategory(const QString& name) {
 void MainWindow::loadCategoryListWidget(const QString& category){
     m_categoryListWidget->clearAllTasks();
     m_currentCategory = category;
-    std::vector<Task*> tasks = manager.ShowTaskByPriority();
+    Vector<Task*> tasks = manager.ShowTaskByPriority();
     for (Task* task : tasks){
         if (QString::fromStdString(task->getCategory()) == category) m_categoryListWidget->addTask(task);
     }
@@ -993,7 +966,7 @@ void MainWindow::onFilterListPageClicked(){
     if (isFilterTaskPage){
         QDate start = ui->dateFrom1->date();
         QDate end = ui->dateTo1->date();
-        std::vector<Task*> allTasks = manager.ShowTaskByPriority();
+        Vector<Task*> allTasks = manager.ShowTaskByPriority();
         m_taskListWidget->clearAllTasks();       
         for (Task* t : allTasks){
             QDate taskDate = QDateTime::fromString(QString::fromStdString(t->getDeadline()), "yyyy-MM-dd HH:mm").date();
@@ -1017,7 +990,7 @@ void MainWindow::updateCalendarDots(){
     //QDate() se ap dung cho tat ca cac ngay
     ui->calendarWidget->setDateTextFormat(QDate(), defaultFormat); //reset lai format thanh mac dinh
 
-    std::vector<Task*> tasks = manager.ShowTaskByDeadline();
+    Vector<Task*> tasks = manager.ShowTaskByDeadline();
 
     QTextCharFormat taskFormat;
     taskFormat.setFontWeight(QFont::Bold);

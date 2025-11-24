@@ -35,6 +35,7 @@ qt_add_executable(PBL2
     CategoryItemWidget.cpp
     Notification.h
     Notification.cpp
+    Vector.h
     ${APP_RESOURCES}  
 )
 target_link_libraries(PBL2

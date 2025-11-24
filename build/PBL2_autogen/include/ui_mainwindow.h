@@ -75,18 +75,25 @@ public:
     QPushButton *notifi_btn;
     QStackedWidget *stackedWidget;
     QWidget *calendarPage;
-    QCalendarWidget *calendarWidget;
-    QListWidget *calendarTaskList;
-    QFrame *frame_5;
     QHBoxLayout *horizontalLayout_8;
+    QWidget *widget_10;
+    QVBoxLayout *verticalLayout_21;
+    QWidget *widget_11;
+    QHBoxLayout *horizontalLayout_19;
+    QCalendarWidget *calendarWidget;
+    QWidget *widget_12;
+    QVBoxLayout *verticalLayout_10;
+    QFrame *frame_5;
+    QHBoxLayout *horizontalLayout_9;
     QLabel *label_4;
     QLabel *label_3;
     QLabel *label_5;
     QLabel *label_6;
     QFrame *frame_6;
-    QHBoxLayout *horizontalLayout_9;
+    QHBoxLayout *horizontalLayout_21;
     QLabel *label_7;
     QLabel *label_8;
+    QListWidget *calendarTaskList;
     QWidget *categoryListPage;
     QVBoxLayout *verticalLayout_14;
     QVBoxLayout *verticalLayout_13;
@@ -152,12 +159,12 @@ public:
     QHBoxLayout *horizontalLayout_11;
     QPushButton *allTask;
     QPushButton *taskCompleted;
-    QDateEdit *dateFrom1;
-    QDateEdit *dateTo1;
-    QPushButton *filterListPagebtn;
     QFrame *frame_9;
     QHBoxLayout *horizontalLayout_13;
     QComboBox *comboBox;
+    QPushButton *filterListPagebtn;
+    QDateEdit *dateFrom1;
+    QDateEdit *dateTo1;
     QFrame *frame_8;
     QHBoxLayout *horizontalLayout_12;
     QWidget *taskListcontainer;
@@ -516,64 +523,158 @@ public:
         stackedWidget->setSizePolicy(sizePolicy1);
         calendarPage = new QWidget();
         calendarPage->setObjectName("calendarPage");
-        calendarWidget = new QCalendarWidget(calendarPage);
+        calendarPage->setStyleSheet(QString::fromUtf8("QCalendarWidget {\n"
+"    background-color: #ffffff;\n"
+"    border: 2px solid #e0e7ee;\n"
+"    border-radius: 12px;\n"
+"}\n"
+"\n"
+"QCalendarWidget QToolButton {\n"
+"    background-color: #2596be;\n"
+"    color: white;\n"
+"    border-radius: 6px;\n"
+"    padding: 5px;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QCalendarWidget QToolButton:hover {\n"
+"    background-color: #1a7a99;\n"
+"}\n"
+"\n"
+"QCalendarWidget QMenu {\n"
+"    background-color: white;\n"
+"    border: 2px solid #e0e7ee;\n"
+"}\n"
+"\n"
+"QCalendarWidget QSpinBox {\n"
+"    background-color: white;\n"
+"    border: 1px solid #e0e7ee;\n"
+"    border-radius: 4px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+"QCalendarWidget QAbstractItemView:enabled {\n"
+"    font-size: 13px;\n"
+"    background-color: white;\n"
+"    selection-background-color: #2596be;\n"
+"    selection-color: white;\n"
+"}\n"
+"\n"
+"QCalendarWidget QAbstractItemView:disabled {\n"
+"    color: #bdc3c7;\n"
+"}\n"
+""));
+        horizontalLayout_8 = new QHBoxLayout(calendarPage);
+        horizontalLayout_8->setObjectName("horizontalLayout_8");
+        widget_10 = new QWidget(calendarPage);
+        widget_10->setObjectName("widget_10");
+        verticalLayout_21 = new QVBoxLayout(widget_10);
+        verticalLayout_21->setSpacing(0);
+        verticalLayout_21->setObjectName("verticalLayout_21");
+        verticalLayout_21->setContentsMargins(0, 0, 0, 0);
+        widget_11 = new QWidget(widget_10);
+        widget_11->setObjectName("widget_11");
+        horizontalLayout_19 = new QHBoxLayout(widget_11);
+        horizontalLayout_19->setObjectName("horizontalLayout_19");
+        calendarWidget = new QCalendarWidget(widget_11);
         calendarWidget->setObjectName("calendarWidget");
-        calendarWidget->setGeometry(QRect(0, 10, 256, 190));
-        calendarTaskList = new QListWidget(calendarPage);
-        calendarTaskList->setObjectName("calendarTaskList");
-        calendarTaskList->setGeometry(QRect(270, 10, 661, 541));
-        frame_5 = new QFrame(calendarPage);
+        QSizePolicy sizePolicy2(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(calendarWidget->sizePolicy().hasHeightForWidth());
+        calendarWidget->setSizePolicy(sizePolicy2);
+
+        horizontalLayout_19->addWidget(calendarWidget);
+
+        widget_12 = new QWidget(widget_11);
+        widget_12->setObjectName("widget_12");
+        sizePolicy1.setHeightForWidth(widget_12->sizePolicy().hasHeightForWidth());
+        widget_12->setSizePolicy(sizePolicy1);
+        QFont font4;
+        font4.setWeight(QFont::ExtraLight);
+        widget_12->setFont(font4);
+        verticalLayout_10 = new QVBoxLayout(widget_12);
+        verticalLayout_10->setObjectName("verticalLayout_10");
+        frame_5 = new QFrame(widget_12);
         frame_5->setObjectName("frame_5");
-        frame_5->setGeometry(QRect(0, 200, 264, 36));
+        QSizePolicy sizePolicy3(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Preferred);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(frame_5->sizePolicy().hasHeightForWidth());
+        frame_5->setSizePolicy(sizePolicy3);
         frame_5->setFrameShape(QFrame::Shape::StyledPanel);
         frame_5->setFrameShadow(QFrame::Shadow::Raised);
-        horizontalLayout_8 = new QHBoxLayout(frame_5);
-        horizontalLayout_8->setObjectName("horizontalLayout_8");
+        horizontalLayout_9 = new QHBoxLayout(frame_5);
+        horizontalLayout_9->setSpacing(9);
+        horizontalLayout_9->setObjectName("horizontalLayout_9");
+        horizontalLayout_9->setContentsMargins(9, 9, 9, 9);
         label_4 = new QLabel(frame_5);
         label_4->setObjectName("label_4");
 
-        horizontalLayout_8->addWidget(label_4);
+        horizontalLayout_9->addWidget(label_4);
 
         label_3 = new QLabel(frame_5);
         label_3->setObjectName("label_3");
 
-        horizontalLayout_8->addWidget(label_3);
+        horizontalLayout_9->addWidget(label_3);
 
         label_5 = new QLabel(frame_5);
         label_5->setObjectName("label_5");
 
-        horizontalLayout_8->addWidget(label_5);
+        horizontalLayout_9->addWidget(label_5);
 
         label_6 = new QLabel(frame_5);
         label_6->setObjectName("label_6");
 
-        horizontalLayout_8->addWidget(label_6);
+        horizontalLayout_9->addWidget(label_6);
 
-        frame_6 = new QFrame(calendarPage);
+
+        verticalLayout_10->addWidget(frame_5, 0, Qt::AlignmentFlag::AlignTop);
+
+        frame_6 = new QFrame(widget_12);
         frame_6->setObjectName("frame_6");
-        frame_6->setGeometry(QRect(0, 240, 228, 36));
+        sizePolicy3.setHeightForWidth(frame_6->sizePolicy().hasHeightForWidth());
+        frame_6->setSizePolicy(sizePolicy3);
         frame_6->setFrameShape(QFrame::Shape::StyledPanel);
         frame_6->setFrameShadow(QFrame::Shadow::Raised);
-        horizontalLayout_9 = new QHBoxLayout(frame_6);
-        horizontalLayout_9->setObjectName("horizontalLayout_9");
+        horizontalLayout_21 = new QHBoxLayout(frame_6);
+        horizontalLayout_21->setSpacing(9);
+        horizontalLayout_21->setObjectName("horizontalLayout_21");
         label_7 = new QLabel(frame_6);
         label_7->setObjectName("label_7");
 
-        horizontalLayout_9->addWidget(label_7);
+        horizontalLayout_21->addWidget(label_7);
 
         label_8 = new QLabel(frame_6);
         label_8->setObjectName("label_8");
 
-        horizontalLayout_9->addWidget(label_8);
+        horizontalLayout_21->addWidget(label_8);
+
+
+        verticalLayout_10->addWidget(frame_6, 0, Qt::AlignmentFlag::AlignTop);
+
+
+        horizontalLayout_19->addWidget(widget_12);
+
+
+        verticalLayout_21->addWidget(widget_11);
+
+        calendarTaskList = new QListWidget(widget_10);
+        calendarTaskList->setObjectName("calendarTaskList");
+
+        verticalLayout_21->addWidget(calendarTaskList);
+
+
+        horizontalLayout_8->addWidget(widget_10);
 
         stackedWidget->addWidget(calendarPage);
         categoryListPage = new QWidget();
         categoryListPage->setObjectName("categoryListPage");
-        QSizePolicy sizePolicy2(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(categoryListPage->sizePolicy().hasHeightForWidth());
-        categoryListPage->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy4(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(categoryListPage->sizePolicy().hasHeightForWidth());
+        categoryListPage->setSizePolicy(sizePolicy4);
         verticalLayout_14 = new QVBoxLayout(categoryListPage);
         verticalLayout_14->setSpacing(0);
         verticalLayout_14->setObjectName("verticalLayout_14");
@@ -600,19 +701,16 @@ public:
         stackedWidget->addWidget(categoryListPage);
         categoryPage = new QWidget();
         categoryPage->setObjectName("categoryPage");
-        QSizePolicy sizePolicy3(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(categoryPage->sizePolicy().hasHeightForWidth());
-        categoryPage->setSizePolicy(sizePolicy3);
+        sizePolicy2.setHeightForWidth(categoryPage->sizePolicy().hasHeightForWidth());
+        categoryPage->setSizePolicy(sizePolicy2);
         verticalLayout_12 = new QVBoxLayout(categoryPage);
         verticalLayout_12->setObjectName("verticalLayout_12");
         verticalLayout_11 = new QVBoxLayout();
         verticalLayout_11->setObjectName("verticalLayout_11");
         headerCategory = new QFrame(categoryPage);
         headerCategory->setObjectName("headerCategory");
-        sizePolicy2.setHeightForWidth(headerCategory->sizePolicy().hasHeightForWidth());
-        headerCategory->setSizePolicy(sizePolicy2);
+        sizePolicy4.setHeightForWidth(headerCategory->sizePolicy().hasHeightForWidth());
+        headerCategory->setSizePolicy(sizePolicy4);
         headerCategory->setFrameShape(QFrame::Shape::StyledPanel);
         headerCategory->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout_17 = new QHBoxLayout(headerCategory);
@@ -784,18 +882,18 @@ public:
 
         widget_5 = new QWidget(scrollAreaWidgetContents);
         widget_5->setObjectName("widget_5");
-        QSizePolicy sizePolicy4(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(widget_5->sizePolicy().hasHeightForWidth());
-        widget_5->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy5(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(widget_5->sizePolicy().hasHeightForWidth());
+        widget_5->setSizePolicy(sizePolicy5);
         horizontalLayout_15 = new QHBoxLayout(widget_5);
         horizontalLayout_15->setObjectName("horizontalLayout_15");
         horizontalLayout_15->setContentsMargins(0, 0, 0, 0);
         widget_6 = new QWidget(widget_5);
         widget_6->setObjectName("widget_6");
-        sizePolicy4.setHeightForWidth(widget_6->sizePolicy().hasHeightForWidth());
-        widget_6->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(widget_6->sizePolicy().hasHeightForWidth());
+        widget_6->setSizePolicy(sizePolicy5);
         verticalLayout_8 = new QVBoxLayout(widget_6);
         verticalLayout_8->setObjectName("verticalLayout_8");
         label_10 = new QLabel(widget_6);
@@ -814,8 +912,8 @@ public:
 
         widget_7 = new QWidget(widget_5);
         widget_7->setObjectName("widget_7");
-        sizePolicy4.setHeightForWidth(widget_7->sizePolicy().hasHeightForWidth());
-        widget_7->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(widget_7->sizePolicy().hasHeightForWidth());
+        widget_7->setSizePolicy(sizePolicy5);
         verticalLayout_9 = new QVBoxLayout(widget_7);
         verticalLayout_9->setObjectName("verticalLayout_9");
         label_12 = new QLabel(widget_7);
@@ -834,8 +932,8 @@ public:
 
         widget_8 = new QWidget(widget_5);
         widget_8->setObjectName("widget_8");
-        sizePolicy4.setHeightForWidth(widget_8->sizePolicy().hasHeightForWidth());
-        widget_8->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(widget_8->sizePolicy().hasHeightForWidth());
+        widget_8->setSizePolicy(sizePolicy5);
         verticalLayout_16 = new QVBoxLayout(widget_8);
         verticalLayout_16->setObjectName("verticalLayout_16");
         label_14 = new QLabel(widget_8);
@@ -854,8 +952,8 @@ public:
 
         widget_9 = new QWidget(widget_5);
         widget_9->setObjectName("widget_9");
-        sizePolicy4.setHeightForWidth(widget_9->sizePolicy().hasHeightForWidth());
-        widget_9->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(widget_9->sizePolicy().hasHeightForWidth());
+        widget_9->setSizePolicy(sizePolicy5);
         verticalLayout_17 = new QVBoxLayout(widget_9);
         verticalLayout_17->setObjectName("verticalLayout_17");
         label_16 = new QLabel(widget_9);
@@ -890,8 +988,8 @@ public:
 
         statisticsLayout_2 = new QWidget(widget_2);
         statisticsLayout_2->setObjectName("statisticsLayout_2");
-        sizePolicy2.setHeightForWidth(statisticsLayout_2->sizePolicy().hasHeightForWidth());
-        statisticsLayout_2->setSizePolicy(sizePolicy2);
+        sizePolicy4.setHeightForWidth(statisticsLayout_2->sizePolicy().hasHeightForWidth());
+        statisticsLayout_2->setSizePolicy(sizePolicy4);
         horizontalLayout_20 = new QHBoxLayout(statisticsLayout_2);
         horizontalLayout_20->setObjectName("horizontalLayout_20");
 
@@ -920,9 +1018,9 @@ public:
         horizontalLayout_16->setObjectName("horizontalLayout_16");
         todayListcontainer = new QWidget(todayPage);
         todayListcontainer->setObjectName("todayListcontainer");
-        QFont font4;
-        font4.setBold(true);
-        todayListcontainer->setFont(font4);
+        QFont font5;
+        font5.setBold(true);
+        todayListcontainer->setFont(font5);
         todayListcontainer->setStyleSheet(QString::fromUtf8("backgroud-color : #2596be;"));
         verticalLayout_15 = new QVBoxLayout(todayListcontainer);
         verticalLayout_15->setObjectName("verticalLayout_15");
@@ -954,8 +1052,8 @@ public:
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
         frame_7 = new QFrame(listPage);
         frame_7->setObjectName("frame_7");
-        sizePolicy4.setHeightForWidth(frame_7->sizePolicy().hasHeightForWidth());
-        frame_7->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(frame_7->sizePolicy().hasHeightForWidth());
+        frame_7->setSizePolicy(sizePolicy5);
         frame_7->setStyleSheet(QString::fromUtf8("\n"
 "\n"
 "QPushButton#filterListPagebtn:hover {\n"
@@ -999,6 +1097,36 @@ public:
 
         horizontalLayout_10->addWidget(frame_10, 0, Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop);
 
+        frame_9 = new QFrame(frame_7);
+        frame_9->setObjectName("frame_9");
+        frame_9->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_9->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout_13 = new QHBoxLayout(frame_9);
+        horizontalLayout_13->setObjectName("horizontalLayout_13");
+        comboBox = new QComboBox(frame_9);
+        comboBox->setObjectName("comboBox");
+
+        horizontalLayout_13->addWidget(comboBox, 0, Qt::AlignmentFlag::AlignTop);
+
+
+        horizontalLayout_10->addWidget(frame_9, 0, Qt::AlignmentFlag::AlignVCenter);
+
+        filterListPagebtn = new QPushButton(frame_7);
+        filterListPagebtn->setObjectName("filterListPagebtn");
+        QSizePolicy sizePolicy6(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Minimum);
+        sizePolicy6.setHorizontalStretch(0);
+        sizePolicy6.setVerticalStretch(0);
+        sizePolicy6.setHeightForWidth(filterListPagebtn->sizePolicy().hasHeightForWidth());
+        filterListPagebtn->setSizePolicy(sizePolicy6);
+        filterListPagebtn->setMinimumSize(QSize(24, 24));
+        filterListPagebtn->setFocusPolicy(Qt::FocusPolicy::NoFocus);
+        QIcon icon12;
+        icon12.addFile(QString::fromUtf8(":/blueIcons/resources/icons/filter.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        filterListPagebtn->setIcon(icon12);
+        filterListPagebtn->setIconSize(QSize(24, 24));
+
+        horizontalLayout_10->addWidget(filterListPagebtn);
+
         dateFrom1 = new QDateEdit(frame_7);
         dateFrom1->setObjectName("dateFrom1");
         dateFrom1->setCalendarPopup(true);
@@ -1013,41 +1141,12 @@ public:
 
         horizontalLayout_10->addWidget(dateTo1);
 
-        filterListPagebtn = new QPushButton(frame_7);
-        filterListPagebtn->setObjectName("filterListPagebtn");
-        QSizePolicy sizePolicy5(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Minimum);
-        sizePolicy5.setHorizontalStretch(0);
-        sizePolicy5.setVerticalStretch(0);
-        sizePolicy5.setHeightForWidth(filterListPagebtn->sizePolicy().hasHeightForWidth());
-        filterListPagebtn->setSizePolicy(sizePolicy5);
-        filterListPagebtn->setMinimumSize(QSize(24, 24));
-        filterListPagebtn->setFocusPolicy(Qt::FocusPolicy::NoFocus);
-        QIcon icon12;
-        icon12.addFile(QString::fromUtf8(":/blueIcons/resources/icons/filter.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        filterListPagebtn->setIcon(icon12);
-        filterListPagebtn->setIconSize(QSize(24, 24));
-
-        horizontalLayout_10->addWidget(filterListPagebtn);
-
-        frame_9 = new QFrame(frame_7);
-        frame_9->setObjectName("frame_9");
-        frame_9->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_9->setFrameShadow(QFrame::Shadow::Raised);
-        horizontalLayout_13 = new QHBoxLayout(frame_9);
-        horizontalLayout_13->setObjectName("horizontalLayout_13");
-        comboBox = new QComboBox(frame_9);
-        comboBox->setObjectName("comboBox");
-
-        horizontalLayout_13->addWidget(comboBox, 0, Qt::AlignmentFlag::AlignTop);
-
-
-        horizontalLayout_10->addWidget(frame_9);
-
 
         verticalLayout_5->addWidget(frame_7);
 
         frame_8 = new QFrame(listPage);
         frame_8->setObjectName("frame_8");
+        frame_8->setStyleSheet(QString::fromUtf8(""));
         frame_8->setFrameShape(QFrame::Shape::StyledPanel);
         frame_8->setFrameShadow(QFrame::Shadow::Raised);
         horizontalLayout_12 = new QHBoxLayout(frame_8);

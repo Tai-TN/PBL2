@@ -63,22 +63,22 @@ void AdvancedTaskDialog::setupUI()
     formLayout->addRow("📁 Danh mục:", categoryCombo);
     
     // Tags
-    tagsEdit = new QLineEdit(this);
-    tagsEdit->setPlaceholderText("tag1, tag2, tag3...");
-    formLayout->addRow("🏷️ Tags:", tagsEdit);
+    // tagsEdit = new QLineEdit(this);
+    // tagsEdit->setPlaceholderText("tag1, tag2, tag3...");
+    // formLayout->addRow("🏷️ Tags:", tagsEdit);
     
     // Time tracking
-    estimatedHoursSpin = new QSpinBox(this);
-    estimatedHoursSpin->setRange(0, 100);
-    estimatedHoursSpin->setSuffix(" giờ");
-    estimatedHoursSpin->setSpecialValueText("Không ước tính");
-    formLayout->addRow("⏱️ Thời gian ước tính:", estimatedHoursSpin);
+    // estimatedHoursSpin = new QSpinBox(this);
+    // estimatedHoursSpin->setRange(0, 100);
+    // estimatedHoursSpin->setSuffix(" giờ");
+    // estimatedHoursSpin->setSpecialValueText("Không ước tính");
+    // formLayout->addRow("⏱️ Thời gian ước tính:", estimatedHoursSpin);
     
-    actualHoursSpin = new QSpinBox(this);
-    actualHoursSpin->setRange(0, 100);
-    actualHoursSpin->setSuffix(" giờ");
-    actualHoursSpin->setSpecialValueText("Chưa thực hiện");
-    formLayout->addRow("⏱️ Thời gian thực tế:", actualHoursSpin);
+    // actualHoursSpin = new QSpinBox(this);
+    // actualHoursSpin->setRange(0, 100);
+    // actualHoursSpin->setSuffix(" giờ");
+    // actualHoursSpin->setSpecialValueText("Chưa thực hiện");
+    // formLayout->addRow("⏱️ Thời gian thực tế:", actualHoursSpin);
     
     //Lặp lại
     recurrenceCombo = new QComboBox(this);
@@ -165,17 +165,11 @@ void AdvancedTaskDialog::loadTaskData()
         categoryCombo->setCurrentIndex(categoryIndex);
     }
     
-    // Tags
-    auto tags = existingTask->getTags();
-    QStringList tagList;
-    for (const auto& tag : tags) {
-        tagList << QString::fromStdString(tag);
-    }
-    tagsEdit->setText(tagList.join(", "));
+   
     
     // Time tracking
-    estimatedHoursSpin->setValue(existingTask->getEstimatedHours());
-    actualHoursSpin->setValue(existingTask->getActualHours());
+    // estimatedHoursSpin->setValue(existingTask->getEstimatedHours());
+    // actualHoursSpin->setValue(existingTask->getActualHours());
     
     // Recurrence
     QString recurrence = QString::fromStdString(existingTask->getRecurrence());
@@ -239,16 +233,7 @@ void AdvancedTaskDialog::onSaveClicked()
     int priority = prioritySpin->value();
     std::string deadline = deadlineEdit->dateTime().toString("yyyy-MM-dd HH:mm").toStdString();
     std::string category = categoryCombo->currentText().toStdString();
-    
-    // Parse tags
-    std::vector<std::string> tags;
-    QStringList tagList = tagsEdit->text().split(',', Qt::SkipEmptyParts);
-    for (const QString& tag : tagList) {
-        tags.push_back(tag.trimmed().toStdString());
-    }
-    
-    int estimatedHours = estimatedHoursSpin->value();
-    int actualHours = actualHoursSpin->value();
+
     std::string recurrence = recurrenceCombo->currentData().toString().toStdString();
     bool completed = isEditMode ? completedCheckbox->isChecked() : false;
     
@@ -260,19 +245,14 @@ void AdvancedTaskDialog::onSaveClicked()
         existingTask->setPriority(priority);
         existingTask->setDeadline(deadline);
         existingTask->setCategory(category);
-        existingTask->setEstimatedHours(estimatedHours);
-        existingTask->setActualHours(actualHours);
+        // existingTask->setEstimatedHours(estimatedHours);
+        // existingTask->setActualHours(actualHours);
         existingTask->setRecurrence(recurrence);
         existingTask->setCompleted(completed);
-        
-        // Update tags
-        existingTask->getTags().clear();
-        for (const auto& tag : tags) {
-            existingTask->addTag(tag);
-        }
+                
     } else {
         // Create new task
-        createdTask = new Task(title, description, priority, deadline, tags, category, estimatedHours, recurrence, completed);
+        createdTask = new Task(title, description, priority, deadline, category,  recurrence, completed);
     }
     
     accept();

@@ -1,5 +1,5 @@
 #include <QWidget>
-#include <vector>
+#include "Vector.h"
 #include <QVBoxLayout>
 #include <QScrollArea>
 #include "Task.h"
@@ -12,7 +12,7 @@ class NotificationWidget : public QWidget{
     Q_OBJECT
 public:
     NotificationWidget(QWidget* parent = nullptr);
-    void updateNotifications(std::vector<Task*> tasks);
+    void updateNotifications(Vector<Task*> tasks);
     int countNotifications();
 
 private:

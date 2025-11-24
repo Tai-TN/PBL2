@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <ctime>
-#include <vector>
 #include <QDateTime>
 
 class Task{
@@ -15,18 +14,14 @@ private:
     std::string createdAt;
     std::string updatedAt;
     bool completed;
-    std::vector<std::string> tags;
-
     std::string category;
-    int estimatedHours;
-    int actualHours;
     std::string recurrence;// lặp lại ngày, tuần , tháng ...vv
 
 public:
     Task();
     Task(std::string t, int p,std::string d, bool completed = false);
-    Task(std::string t, std::string description, int p, std::string d, std::vector<std::string> tags = {}, std::string cate = "",
-    int estHours = 0, std::string recur = "none", bool completed = false);
+    Task(std::string t, std::string description, int p, std::string d, std::string cate = "",
+    /*nt estHours = 0,*/ std::string recur = "none", bool completed = false);
 
     virtual ~Task(){}
 
@@ -34,11 +29,9 @@ public:
 
     // new
     void setDescription(const std::string& desc);
-    void addTag(const std::string& tag);
-    void removeTag(const std::string& tag);
     void setCategory(const std::string& category);
-    void setEstimatedHours(int hours);
-    void setActualHours(int hours);
+    // void setEstimatedHours(int hours);
+    // void setActualHours(int hours);
     void setRecurrence(const std::string& recur);
     void updateTimestamp();
 
@@ -46,16 +39,14 @@ public:
     bool isValidDeadline() const; // kiểm tra deadline hợp lệ chưa
     bool isOverdue() const; // kiểm tra quá hạn hay chưa
     int daysUntilDeadline() const; // kiểm tra số ngày còn lại hay số ngày quá hạn
-    double completionPercentage() const; // Phần trăm hoàn thành
 
     //getter
     std::string getDescription() const { return description; }
     std::string getCreatedAt() const { return createdAt; }
     std::string getUpdatedAt() const { return updatedAt; }
-    std::vector<std::string> getTags() const { return tags; }
     std::string getCategory() const { return category; }
-    int getEstimatedHours() const { return estimatedHours; }
-    int getActualHours() const { return actualHours; }
+    //int getEstimatedHours() const { return estimatedHours; }
+    //int getActualHours() const { return actualHours; }
     std::string getRecurrence() const { return recurrence; }
     
 

@@ -44,8 +44,8 @@ private:
     QDateTimeEdit* deadlineEdit;
     QComboBox* categoryCombo;
     QLineEdit* tagsEdit;
-    QSpinBox* estimatedHoursSpin;
-    QSpinBox* actualHoursSpin;
+    // QSpinBox* estimatedHoursSpin;
+    // QSpinBox* actualHoursSpin;
     QComboBox* recurrenceCombo;
     QCheckBox* completedCheckbox;
 

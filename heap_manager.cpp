@@ -132,7 +132,7 @@ void HeapManager::removeTask(size_t id){
 }
 
 
-void HeapManager::HeapifyTempDownMax(std::vector<Task*> &temp, size_t index){
+void HeapManager::HeapifyTempDownMax(Vector<Task*> &temp, size_t index){
     size_t size = temp.size();
     while(true){
         size_t left = 2*index + 1; // Heap bắt đầu bằng chỉ số 0
@@ -155,7 +155,7 @@ void HeapManager::HeapifyTempDownMax(std::vector<Task*> &temp, size_t index){
 }
 
 
-void HeapManager::HeapifyTempDownMin(std::vector<Task*> &temp, size_t index){
+void HeapManager::HeapifyTempDownMin(Vector<Task*> &temp, size_t index){
     size_t size = temp.size();
     while(true){
         size_t left = 2*index + 1; // Heap bắt đầu bằng chỉ số 0
@@ -176,9 +176,9 @@ void HeapManager::HeapifyTempDownMin(std::vector<Task*> &temp, size_t index){
         else break;
     }
 }
-std::vector<Task*> HeapManager::ShowTaskByPriority(){
-    std::vector<Task*> temp = maxHeap;
-    std::vector<Task*> result;
+Vector<Task*> HeapManager::ShowTaskByPriority(){
+    Vector<Task*> temp = maxHeap;
+    Vector<Task*> result;
     while(!temp.empty()){
         Task* top = temp.front();
         result.push_back(top);
@@ -190,9 +190,9 @@ std::vector<Task*> HeapManager::ShowTaskByPriority(){
 }
 
 
-std::vector<Task*> HeapManager::ShowTaskByDeadline(){
-    std::vector<Task*> temp = minHeap;
-    std::vector<Task*> result;
+Vector<Task*> HeapManager::ShowTaskByDeadline(){
+    Vector<Task*> temp = minHeap;
+    Vector<Task*> result;
     while(!temp.empty()){
         Task* top = temp.front();
         result.push_back(top);
