@@ -15,6 +15,7 @@ class Vector {
         Vector();// tạo vector không có tham số
         Vector(int capacity);// tạo vector có sức chứa ban dầu
         Vector(const Vector& other);// hàm tạo với vector có sẵn
+        
         ~Vector();// hàm hủy
         T* begin();
         T* end();
@@ -30,7 +31,7 @@ class Vector {
 
         T& operator[](int index);// nạp chồng toán tử lấy vị trí
         Vector& operator=(const Vector& other);//nạp chông toán tử gán
-
+        Vector(int , int);
 };
 
 /*for (Task* t : T) sẽ dịch thành T.begin(),*/
@@ -52,6 +53,8 @@ Vector<T>::Vector(const Vector<T>& other) : m_size(other.m_size), capacity(other
     arr = new T[capacity];
     for (int i = 0; i < m_size; i++) arr[i] = other.arr[i];
 }
+
+
 
 template <typename T>
 Vector<T>:: ~Vector(){// hàm hủy
@@ -160,3 +163,12 @@ const T* Vector<T>::end() const{
     return arr + m_size;
 }
 
+template <typename T>
+Vector<T>::Vector(int size, int value)
+    : capacity(100), m_size(size)
+    {   
+        arr = new T[capacity];
+        for (int i = 0; i< size; i++){
+            arr[i] = value;
+        }
+    }

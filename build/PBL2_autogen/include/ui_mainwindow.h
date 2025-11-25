@@ -17,6 +17,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -24,8 +25,10 @@
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
@@ -78,21 +81,26 @@ public:
     QHBoxLayout *horizontalLayout_8;
     QWidget *widget_10;
     QVBoxLayout *verticalLayout_21;
-    QWidget *widget_11;
+    QWidget *statsContainer;
     QHBoxLayout *horizontalLayout_19;
     QCalendarWidget *calendarWidget;
     QWidget *widget_12;
-    QVBoxLayout *verticalLayout_10;
-    QFrame *frame_5;
+    QHBoxLayout *horizontalLayout_21;
     QHBoxLayout *horizontalLayout_9;
-    QLabel *label_4;
-    QLabel *label_3;
+    QVBoxLayout *verticalLayout_10;
+    QLabel *progressTitle;
+    QLabel *m_percentLabel;
+    QProgressBar *m_progressBar;
+    QSpacerItem *verticalSpacer;
+    QGridLayout *gridLayout_2;
+    QLabel *m_completedLabel;
     QLabel *label_5;
     QLabel *label_6;
-    QFrame *frame_6;
-    QHBoxLayout *horizontalLayout_21;
+    QLabel *m_totalLabel;
+    QLabel *label_4;
+    QLabel *m_highPriorityLabel;
     QLabel *label_7;
-    QLabel *label_8;
+    QLabel *m_remainLabel;
     QListWidget *calendarTaskList;
     QWidget *categoryListPage;
     QVBoxLayout *verticalLayout_14;
@@ -112,6 +120,9 @@ public:
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QVBoxLayout *verticalLayout_18;
+    QWidget *statisticsLayout_3;
+    QHBoxLayout *horizontalLayout_22;
+    QHBoxLayout *statisticsLayout3;
     QGroupBox *filterGroup;
     QHBoxLayout *horizontalLayout_18;
     QComboBox *comboFilterTime;
@@ -139,10 +150,12 @@ public:
     QVBoxLayout *verticalLayout_20;
     QWidget *statisticsLayout_1;
     QVBoxLayout *verticalLayout_19;
-    QWidget *statisticsLayout_2;
+    QWidget *m_categoryDonutContainer;
     QHBoxLayout *horizontalLayout_20;
-    QWidget *statisticsLayout_3;
-    QHBoxLayout *horizontalLayout_22;
+    QScrollArea *m_categoryScrollArea;
+    QWidget *m_categoryDonutWidget;
+    QHBoxLayout *horizontalLayout_23;
+    QGridLayout *m_categoryDonutLayout;
     QWidget *todayPage;
     QHBoxLayout *horizontalLayout_16;
     QWidget *todayListcontainer;
@@ -572,11 +585,16 @@ public:
         verticalLayout_21->setSpacing(0);
         verticalLayout_21->setObjectName("verticalLayout_21");
         verticalLayout_21->setContentsMargins(0, 0, 0, 0);
-        widget_11 = new QWidget(widget_10);
-        widget_11->setObjectName("widget_11");
-        horizontalLayout_19 = new QHBoxLayout(widget_11);
+        statsContainer = new QWidget(widget_10);
+        statsContainer->setObjectName("statsContainer");
+        statsContainer->setStyleSheet(QString::fromUtf8("#statsContainer {\n"
+"         background-color: white;\n"
+"         border-radius: 16px;   i\n"
+"         border: 1px solid #e0e0e0;\n"
+"        }"));
+        horizontalLayout_19 = new QHBoxLayout(statsContainer);
         horizontalLayout_19->setObjectName("horizontalLayout_19");
-        calendarWidget = new QCalendarWidget(widget_11);
+        calendarWidget = new QCalendarWidget(statsContainer);
         calendarWidget->setObjectName("calendarWidget");
         QSizePolicy sizePolicy2(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
@@ -586,78 +604,169 @@ public:
 
         horizontalLayout_19->addWidget(calendarWidget);
 
-        widget_12 = new QWidget(widget_11);
+        widget_12 = new QWidget(statsContainer);
         widget_12->setObjectName("widget_12");
         sizePolicy1.setHeightForWidth(widget_12->sizePolicy().hasHeightForWidth());
         widget_12->setSizePolicy(sizePolicy1);
         QFont font4;
         font4.setWeight(QFont::ExtraLight);
         widget_12->setFont(font4);
-        verticalLayout_10 = new QVBoxLayout(widget_12);
+        widget_12->setStyleSheet(QString::fromUtf8("QProgressBar {\n"
+"        background-color: #f0f2f5;\n"
+"          border-radius: 6px;\n"
+"         border: none;\n"
+"        }\n"
+"  QProgressBar::chunk {\n"
+"        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #3498db, stop:1 #5dade2);\n"
+"        border-radius: 6px;\n"
+"        }\n"
+"\n"
+"#progressTitle {\n"
+"           font-size: 16px;\n"
+"         font-weight: bold;\n"
+"          color: #2c3e50;\n"
+"        }\n"
+"#m_percentLabel {\n"
+"        font-size: 42px;\n"
+"         font-weight: bold;\n"
+"         color: #3498db; \n"
+"          margin-bottom: 10px;\n"
+"        }\n"
+"\n"
+"\n"
+"#label_4, #label_5, #label_6, #label_7 {\n"
+"          color: #95a5a6;\n"
+"           font-size: 13px;\n"
+"           font-weight: 500;\n"
+"        }\n"
+"#m_highPriorityLabel,#m_remainLabel ,#m_completedLabel, #m_totalLabel{\n"
+"	  font-size: 24px;\n"
+"         font-weight: bold;\n"
+"        margin-bottom: 10px;\n"
+"}"));
+        horizontalLayout_21 = new QHBoxLayout(widget_12);
+        horizontalLayout_21->setObjectName("horizontalLayout_21");
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setObjectName("horizontalLayout_9");
+        verticalLayout_10 = new QVBoxLayout();
         verticalLayout_10->setObjectName("verticalLayout_10");
-        frame_5 = new QFrame(widget_12);
-        frame_5->setObjectName("frame_5");
-        QSizePolicy sizePolicy3(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Preferred);
+        verticalLayout_10->setContentsMargins(9, 9, 9, 9);
+        progressTitle = new QLabel(widget_12);
+        progressTitle->setObjectName("progressTitle");
+        sizePolicy2.setHeightForWidth(progressTitle->sizePolicy().hasHeightForWidth());
+        progressTitle->setSizePolicy(sizePolicy2);
+        QFont font5;
+        font5.setBold(true);
+        progressTitle->setFont(font5);
+        progressTitle->setStyleSheet(QString::fromUtf8("color : #2c3e50;"));
+
+        verticalLayout_10->addWidget(progressTitle);
+
+        m_percentLabel = new QLabel(widget_12);
+        m_percentLabel->setObjectName("m_percentLabel");
+        sizePolicy2.setHeightForWidth(m_percentLabel->sizePolicy().hasHeightForWidth());
+        m_percentLabel->setSizePolicy(sizePolicy2);
+        m_percentLabel->setFont(font5);
+        m_percentLabel->setStyleSheet(QString::fromUtf8("color: #3498db;"));
+
+        verticalLayout_10->addWidget(m_percentLabel);
+
+        m_progressBar = new QProgressBar(widget_12);
+        m_progressBar->setObjectName("m_progressBar");
+        m_progressBar->setEnabled(true);
+        QSizePolicy sizePolicy3(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
         sizePolicy3.setHorizontalStretch(0);
         sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(frame_5->sizePolicy().hasHeightForWidth());
-        frame_5->setSizePolicy(sizePolicy3);
-        frame_5->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_5->setFrameShadow(QFrame::Shadow::Raised);
-        horizontalLayout_9 = new QHBoxLayout(frame_5);
-        horizontalLayout_9->setSpacing(9);
-        horizontalLayout_9->setObjectName("horizontalLayout_9");
-        horizontalLayout_9->setContentsMargins(9, 9, 9, 9);
-        label_4 = new QLabel(frame_5);
-        label_4->setObjectName("label_4");
+        sizePolicy3.setHeightForWidth(m_progressBar->sizePolicy().hasHeightForWidth());
+        m_progressBar->setSizePolicy(sizePolicy3);
+        m_progressBar->setMinimumSize(QSize(50, 24));
+        m_progressBar->setMaximumSize(QSize(150, 16777215));
+        m_progressBar->setValue(24);
+        m_progressBar->setTextVisible(false);
 
-        horizontalLayout_9->addWidget(label_4);
+        verticalLayout_10->addWidget(m_progressBar);
 
-        label_3 = new QLabel(frame_5);
-        label_3->setObjectName("label_3");
+        verticalSpacer = new QSpacerItem(15, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
-        horizontalLayout_9->addWidget(label_3);
+        verticalLayout_10->addItem(verticalSpacer);
 
-        label_5 = new QLabel(frame_5);
+
+        horizontalLayout_9->addLayout(verticalLayout_10);
+
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setObjectName("gridLayout_2");
+        gridLayout_2->setHorizontalSpacing(20);
+        gridLayout_2->setVerticalSpacing(15);
+        m_completedLabel = new QLabel(widget_12);
+        m_completedLabel->setObjectName("m_completedLabel");
+        sizePolicy2.setHeightForWidth(m_completedLabel->sizePolicy().hasHeightForWidth());
+        m_completedLabel->setSizePolicy(sizePolicy2);
+        m_completedLabel->setStyleSheet(QString::fromUtf8("color : #27ae60;"));
+
+        gridLayout_2->addWidget(m_completedLabel, 2, 2, 1, 2, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter);
+
+        label_5 = new QLabel(widget_12);
         label_5->setObjectName("label_5");
 
-        horizontalLayout_9->addWidget(label_5);
+        gridLayout_2->addWidget(label_5, 1, 2, 1, 2);
 
-        label_6 = new QLabel(frame_5);
+        label_6 = new QLabel(widget_12);
         label_6->setObjectName("label_6");
 
-        horizontalLayout_9->addWidget(label_6);
+        gridLayout_2->addWidget(label_6, 3, 0, 1, 2, Qt::AlignmentFlag::AlignVCenter);
 
+        m_totalLabel = new QLabel(widget_12);
+        m_totalLabel->setObjectName("m_totalLabel");
+        m_totalLabel->setStyleSheet(QString::fromUtf8("color : #2c3e50;\n"
+""));
 
-        verticalLayout_10->addWidget(frame_5, 0, Qt::AlignmentFlag::AlignTop);
+        gridLayout_2->addWidget(m_totalLabel, 2, 0, 1, 2, Qt::AlignmentFlag::AlignHCenter);
 
-        frame_6 = new QFrame(widget_12);
-        frame_6->setObjectName("frame_6");
-        sizePolicy3.setHeightForWidth(frame_6->sizePolicy().hasHeightForWidth());
-        frame_6->setSizePolicy(sizePolicy3);
-        frame_6->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_6->setFrameShadow(QFrame::Shadow::Raised);
-        horizontalLayout_21 = new QHBoxLayout(frame_6);
-        horizontalLayout_21->setSpacing(9);
-        horizontalLayout_21->setObjectName("horizontalLayout_21");
-        label_7 = new QLabel(frame_6);
+        label_4 = new QLabel(widget_12);
+        label_4->setObjectName("label_4");
+        QFont font6;
+        font6.setWeight(QFont::Medium);
+        label_4->setFont(font6);
+        label_4->setStyleSheet(QString::fromUtf8("color: #7f8c8d;\n"
+"font-size: 13px;"));
+
+        gridLayout_2->addWidget(label_4, 1, 0, 1, 2);
+
+        m_highPriorityLabel = new QLabel(widget_12);
+        m_highPriorityLabel->setObjectName("m_highPriorityLabel");
+        m_highPriorityLabel->setFont(font5);
+        m_highPriorityLabel->setStyleSheet(QString::fromUtf8("color : #e67e22;"));
+
+        gridLayout_2->addWidget(m_highPriorityLabel, 4, 2, 1, 2, Qt::AlignmentFlag::AlignHCenter);
+
+        label_7 = new QLabel(widget_12);
         label_7->setObjectName("label_7");
 
-        horizontalLayout_21->addWidget(label_7);
+        gridLayout_2->addWidget(label_7, 3, 2, 1, 2);
 
-        label_8 = new QLabel(frame_6);
-        label_8->setObjectName("label_8");
+        m_remainLabel = new QLabel(widget_12);
+        m_remainLabel->setObjectName("m_remainLabel");
+        sizePolicy2.setHeightForWidth(m_remainLabel->sizePolicy().hasHeightForWidth());
+        m_remainLabel->setSizePolicy(sizePolicy2);
+        m_remainLabel->setFont(font5);
+        m_remainLabel->setStyleSheet(QString::fromUtf8("color : #c0392b;\n"
+""));
 
-        horizontalLayout_21->addWidget(label_8);
+        gridLayout_2->addWidget(m_remainLabel, 4, 0, 1, 2, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter);
 
 
-        verticalLayout_10->addWidget(frame_6, 0, Qt::AlignmentFlag::AlignTop);
+        horizontalLayout_9->addLayout(gridLayout_2);
+
+        horizontalLayout_9->setStretch(0, 1);
+        horizontalLayout_9->setStretch(1, 2);
+
+        horizontalLayout_21->addLayout(horizontalLayout_9);
 
 
         horizontalLayout_19->addWidget(widget_12);
 
 
-        verticalLayout_21->addWidget(widget_11);
+        verticalLayout_21->addWidget(statsContainer);
 
         calendarTaskList = new QListWidget(widget_10);
         calendarTaskList->setObjectName("calendarTaskList");
@@ -757,9 +866,28 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 835, 524));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 823, 615));
+        scrollAreaWidgetContents->setStyleSheet(QString::fromUtf8("background-color : #fefeff;\n"
+"\n"
+""));
         verticalLayout_18 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_18->setObjectName("verticalLayout_18");
+        statisticsLayout_3 = new QWidget(scrollAreaWidgetContents);
+        statisticsLayout_3->setObjectName("statisticsLayout_3");
+        sizePolicy1.setHeightForWidth(statisticsLayout_3->sizePolicy().hasHeightForWidth());
+        statisticsLayout_3->setSizePolicy(sizePolicy1);
+        statisticsLayout_3->setStyleSheet(QString::fromUtf8(""));
+        horizontalLayout_22 = new QHBoxLayout(statisticsLayout_3);
+        horizontalLayout_22->setSpacing(20);
+        horizontalLayout_22->setObjectName("horizontalLayout_22");
+        statisticsLayout3 = new QHBoxLayout();
+        statisticsLayout3->setObjectName("statisticsLayout3");
+
+        horizontalLayout_22->addLayout(statisticsLayout3);
+
+
+        verticalLayout_18->addWidget(statisticsLayout_3);
+
         filterGroup = new QGroupBox(scrollAreaWidgetContents);
         filterGroup->setObjectName("filterGroup");
         filterGroup->setStyleSheet(QString::fromUtf8("QComboBox {\n"
@@ -887,6 +1015,9 @@ public:
         sizePolicy5.setVerticalStretch(0);
         sizePolicy5.setHeightForWidth(widget_5->sizePolicy().hasHeightForWidth());
         widget_5->setSizePolicy(sizePolicy5);
+        widget_5->setStyleSheet(QString::fromUtf8("#widget_6, #widget_7, #widget_8, #widget_9{\n"
+"border-radius : 10px;\n"
+"border: 1px solid  #76b9dbff;}"));
         horizontalLayout_15 = new QHBoxLayout(widget_5);
         horizontalLayout_15->setObjectName("horizontalLayout_15");
         horizontalLayout_15->setContentsMargins(0, 0, 0, 0);
@@ -975,34 +1106,53 @@ public:
 
         widget_2 = new QWidget(scrollAreaWidgetContents);
         widget_2->setObjectName("widget_2");
+        widget_2->setStyleSheet(QString::fromUtf8("#statisticsLayout_1, #statisticsLayout_2 {\n"
+"border-radius : 10px;\n"
+"border: 1px solid  #76b9dbff;}"));
         verticalLayout_20 = new QVBoxLayout(widget_2);
         verticalLayout_20->setObjectName("verticalLayout_20");
+        verticalLayout_20->setContentsMargins(0, 0, 0, 0);
         statisticsLayout_1 = new QWidget(widget_2);
         statisticsLayout_1->setObjectName("statisticsLayout_1");
         sizePolicy.setHeightForWidth(statisticsLayout_1->sizePolicy().hasHeightForWidth());
         statisticsLayout_1->setSizePolicy(sizePolicy);
         verticalLayout_19 = new QVBoxLayout(statisticsLayout_1);
+        verticalLayout_19->setSpacing(0);
         verticalLayout_19->setObjectName("verticalLayout_19");
+        verticalLayout_19->setContentsMargins(0, 0, 0, 0);
 
         verticalLayout_20->addWidget(statisticsLayout_1);
 
-        statisticsLayout_2 = new QWidget(widget_2);
-        statisticsLayout_2->setObjectName("statisticsLayout_2");
-        sizePolicy4.setHeightForWidth(statisticsLayout_2->sizePolicy().hasHeightForWidth());
-        statisticsLayout_2->setSizePolicy(sizePolicy4);
-        horizontalLayout_20 = new QHBoxLayout(statisticsLayout_2);
+        m_categoryDonutContainer = new QWidget(widget_2);
+        m_categoryDonutContainer->setObjectName("m_categoryDonutContainer");
+        sizePolicy4.setHeightForWidth(m_categoryDonutContainer->sizePolicy().hasHeightForWidth());
+        m_categoryDonutContainer->setSizePolicy(sizePolicy4);
+        m_categoryDonutContainer->setMinimumSize(QSize(0, 400));
+        horizontalLayout_20 = new QHBoxLayout(m_categoryDonutContainer);
+        horizontalLayout_20->setSpacing(0);
         horizontalLayout_20->setObjectName("horizontalLayout_20");
+        horizontalLayout_20->setContentsMargins(0, 0, 0, 0);
+        m_categoryScrollArea = new QScrollArea(m_categoryDonutContainer);
+        m_categoryScrollArea->setObjectName("m_categoryScrollArea");
+        m_categoryScrollArea->setWidgetResizable(true);
+        m_categoryDonutWidget = new QWidget();
+        m_categoryDonutWidget->setObjectName("m_categoryDonutWidget");
+        m_categoryDonutWidget->setGeometry(QRect(0, 0, 805, 400));
+        horizontalLayout_23 = new QHBoxLayout(m_categoryDonutWidget);
+        horizontalLayout_23->setObjectName("horizontalLayout_23");
+        m_categoryDonutLayout = new QGridLayout();
+        m_categoryDonutLayout->setSpacing(20);
+        m_categoryDonutLayout->setObjectName("m_categoryDonutLayout");
+        m_categoryDonutLayout->setContentsMargins(15, 15, 15, 15);
 
-        verticalLayout_20->addWidget(statisticsLayout_2);
+        horizontalLayout_23->addLayout(m_categoryDonutLayout);
 
-        statisticsLayout_3 = new QWidget(widget_2);
-        statisticsLayout_3->setObjectName("statisticsLayout_3");
-        sizePolicy1.setHeightForWidth(statisticsLayout_3->sizePolicy().hasHeightForWidth());
-        statisticsLayout_3->setSizePolicy(sizePolicy1);
-        horizontalLayout_22 = new QHBoxLayout(statisticsLayout_3);
-        horizontalLayout_22->setObjectName("horizontalLayout_22");
+        m_categoryScrollArea->setWidget(m_categoryDonutWidget);
 
-        verticalLayout_20->addWidget(statisticsLayout_3);
+        horizontalLayout_20->addWidget(m_categoryScrollArea);
+
+
+        verticalLayout_20->addWidget(m_categoryDonutContainer);
 
 
         verticalLayout_18->addWidget(widget_2);
@@ -1018,8 +1168,6 @@ public:
         horizontalLayout_16->setObjectName("horizontalLayout_16");
         todayListcontainer = new QWidget(todayPage);
         todayListcontainer->setObjectName("todayListcontainer");
-        QFont font5;
-        font5.setBold(true);
         todayListcontainer->setFont(font5);
         todayListcontainer->setStyleSheet(QString::fromUtf8("backgroud-color : #2596be;"));
         verticalLayout_15 = new QVBoxLayout(todayListcontainer);
@@ -1182,7 +1330,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(5);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1203,12 +1351,16 @@ public:
         label_2->setText(QString());
         searchBar->setPlaceholderText(QCoreApplication::translate("MainWindow", "Search Something...", nullptr));
         notifi_btn->setText(QString());
-        label_4->setText(QCoreApplication::translate("MainWindow", "\304\220\341\273\231 \306\260u ti\303\252n :", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "\360\237\237\242 Th\341\272\245p", nullptr));
-        label_5->setText(QCoreApplication::translate("MainWindow", "\360\237\237\241 Trung b\303\254nh", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "\360\237\224\264 Cao", nullptr));
-        label_7->setText(QCoreApplication::translate("MainWindow", "\342\217\263: Ch\306\260a ho\303\240n th\303\240nh", nullptr));
-        label_8->setText(QCoreApplication::translate("MainWindow", "\342\234\205 : Ho\303\240n th\303\240nh", nullptr));
+        progressTitle->setText(QCoreApplication::translate("MainWindow", "Ti\341\272\277n \304\221\341\273\231 h\303\264m nay", nullptr));
+        m_percentLabel->setText(QCoreApplication::translate("MainWindow", "0%", nullptr));
+        m_completedLabel->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "Ho\303\240n th\303\240nh", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "Ch\341\273\235 x\341\273\255 l\303\275", nullptr));
+        m_totalLabel->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "T\341\273\225ng Task", nullptr));
+        m_highPriorityLabel->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "\306\257u ti\303\252n cao", nullptr));
+        m_remainLabel->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         backCatetorybtn->setText(QString());
 #if QT_CONFIG(tooltip)
         categoryPage->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><br/></p></body></html>", nullptr));

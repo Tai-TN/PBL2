@@ -95,6 +95,7 @@
         "qpieseries": "cpp",
         "qhorizontalbarseries": "cpp",
         "qbarcategoryaxis": "cpp",
-        "qlistwidgetitem": "cpp"
+        "qlistwidgetitem": "cpp",
+        "qbarset": "cpp"
     }
 }

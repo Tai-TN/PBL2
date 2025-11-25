@@ -18,20 +18,24 @@
 #include <QtCharts/QChartView>
 #include <QtCharts/QPieSeries>
 #include <QtCharts/QBarSeries>
-#include <QtCharts/QBarSet>
 #include <QtCharts/QChart>
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QHorizontalBarSeries>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QDateTimeAxis>
+#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QHorizontalStackedBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QStackedBarSeries>
+#include <QtCharts/QBarCategoryAxis>
 #include "CategoryItemWidget.h"
 #include <QDir>
 #include <QTextCharFormat>  
 #include "Notification.h"
 #include <QMenu>
 #include <QWidgetAction>
-
+#include <QStackedLayout>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -103,21 +107,30 @@ private:
     
     std::set<std::string> m_categories;
     const QString CATEGORY_FILE_PATH = "D:\\PBL\\PBL2\\PBL2\\Data\\category.txt";
+    //Bieu do tron
+    // QChart *m_pieChart;
+    // QPieSeries* m_pieSeries;
+    // QChartView* m_pieView;
 
-    QChart *m_pieChart;
-    QPieSeries* m_pieSeries;
-    QChartView* m_pieView;
-
+    //buieu do cot 
     QChart* m_barChart;
     QHorizontalBarSeries* m_barSeries;
     QChartView *m_barView;
 
-    QChart* m_lineChart;
-    QLineSeries* m_lineSeries;
-    QChartView *m_lineChartView;
 
-    QDateTimeAxis *axisXLine;
-    QValueAxis *axisYLine;
+
+    //staacked bar chart
+    QChartView* m_stackedView;
+    QChart* m_stackedChart;
+    QStackedBarSeries* m_stackedSeries;
+    QBarCategoryAxis *axisXStacked;
+    QValueAxis *axisYStacked;
+    QBarSet* m_setCompleted;
+    QBarSet* m_setIncompleted;
+    
+    //donut
+    QPieSeries* m_donutSeries;
+    QLabel* m_percentLabel;
 
 
     QMap<QString, QListWidgetItem*> m_categoryWidgets;
@@ -128,7 +141,24 @@ private:
 
     QDate getFilterStartDate() const;
     QDate getFilterEndDate() const;
-protected:
+
+    void updateStats(int total, int completed, int highPriority, int remaining);
+    void refreshDashboardStats(QDate date);
+    Vector<Task*> getTaskbyDate(QDate date);
     bool eventFilter(QObject* obj, QEvent* event) override;
+    void updateWeeklyStats();
+    QLabel* summaryLabel;
+
+struct CategoryDonut {
+        QChart* chart;
+        QChartView* chartView;
+        QPieSeries* series;
+        QLabel* categoryLabel;
+        QLabel* percentLabel;
+    };
+    QMap<QString, CategoryDonut> m_categoryDonuts;
+    
+    void updateCategoryDonuts();
+
 };
 #endif // MAINWINDOW_H

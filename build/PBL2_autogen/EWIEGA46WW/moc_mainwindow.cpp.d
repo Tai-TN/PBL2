@@ -11,10 +11,12 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QChartView \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QDateTimeAxis \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QHorizontalBarSeries \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QHorizontalStackedBarSeries \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QLegend \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QLineSeries \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QPieSeries \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QPieSlice \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/QStackedBarSeries \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QValueAxis \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/QXYSeries \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qabstractaxis.h \
@@ -28,10 +30,12 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qchartview.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qdatetimeaxis.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qhorizontalbarseries.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qhorizontalstackedbarseries.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qlegend.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qlineseries.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qpieseries.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qpieslice.h \
+  C:/Qt/6.9.2/mingw_64/include/QtCharts/qstackedbarseries.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qtcharts-config.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qtchartsexports.h \
   C:/Qt/6.9.2/mingw_64/include/QtCharts/qvalueaxis.h \
@@ -270,6 +274,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QPushButton \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QScrollArea \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QSpinBox \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/QStackedLayout \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QTextEdit \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QTreeWidget \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/QVBoxLayout \
@@ -309,6 +314,7 @@ D:/PBL/PBL2/PBL2/build/PBL2_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/PBL/PBL2/P
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qslider.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qspinbox.h \
+  C:/Qt/6.9.2/mingw_64/include/QtWidgets/qstackedlayout.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qstyle.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qstyleoption.h \
   C:/Qt/6.9.2/mingw_64/include/QtWidgets/qtabbar.h \

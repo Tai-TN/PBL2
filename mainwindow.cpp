@@ -10,12 +10,13 @@
 #include <QMessageBox>
 #include <string>
 #include <algorithm>
+#include <map>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QString iconPath = "../resources/icons/iconWindow.png";
+    QString iconPath = "../blueIcons/resources/icons/iconWindow.png";
     QIcon windowIcon(iconPath);
     this->setWindowIcon(windowIcon);
     this->setWindowTitle("To Do List");
@@ -398,6 +399,7 @@ void MainWindow::onCalendarDateClicked(const QDate& date){
         item->setSizeHint(QSize(0, 60));
     }
 
+    refreshDashboardStats(date);
 
 }
 
@@ -527,7 +529,7 @@ void MainWindow::setupStatistics(){
     m_barChart->addSeries(m_barSeries);
     m_barChart->setTitle("THỐNG KÊ ĐỘ ƯU TIÊN");
     m_barChart->legend()->setVisible(false); // truc y co nhan roi nen khong can mo ta
-
+    m_barChart->setAnimationOptions(QChart::SeriesAnimations);
 
     QValueAxis* axisX = new QValueAxis();
     axisX->setRange(0, 35);
@@ -551,48 +553,104 @@ void MainWindow::setupStatistics(){
 
 
 
-    // Pie Chart
-    m_pieChart = new QChart();
-    m_pieSeries = new QPieSeries();
-    m_pieSeries->append("Hoàn thành", 0);
-    m_pieSeries->append("Quá hạn", 0);
-    m_pieSeries->append("Chưa hoàn thành", 0);
+    // // Pie Chart
+    // m_pieChart = new QChart();
+    // m_pieSeries = new QPieSeries();
+    // m_pieSeries->append("Hoàn thành", 0);
+    // m_pieSeries->append("Quá hạn", 0);
+    // m_pieSeries->append("Chưa hoàn thành", 0);
 
-    m_pieChart->addSeries(m_pieSeries);
-    m_pieChart->setTitle("Tỷ lệ (%)");
+    // m_pieChart->addSeries(m_pieSeries);
+    // m_pieChart->setTitle("Tỷ lệ (%)");
 
-    m_pieView = new QChartView(m_pieChart);
-    m_pieView->setRenderHint(QPainter::Antialiasing);
-    m_pieView->setVisible(true);
-    m_pieChart->legend()->setVisible(false);
-    m_pieView->setMinimumHeight(300);
-    ui->statisticsLayout_2->layout()->addWidget(m_pieView);
+    // m_pieView = new QChartView(m_pieChart);
+    // m_pieView->setRenderHint(QPainter::Antialiasing);
+    // m_pieView->setVisible(true);
+    // m_pieChart->legend()->setVisible(false);
+    // m_pieView->setMinimumHeight(300);
+    // ui->statisticsLayout_2->layout()->addWidget(m_pieView);
 
-    //line chart
-    m_lineSeries = new QLineSeries();
-    m_lineChart = new QChart();
-    m_lineChart->addSeries(m_lineSeries);
-    m_lineChart->setTitle("NĂNG SUẤT TRONG TUẦN");
-    m_lineChart->legend()->hide();
+    //stacked Chart;
+    
+    m_stackedSeries = new QStackedBarSeries();
+    m_stackedChart = new QChart();
+    m_stackedView = new QChartView(m_stackedChart);
+    m_stackedView->setMinimumHeight(300);
+    m_stackedChart->setTitle("TIẾN ĐỘ TRONG TUẦN");
+    m_stackedChart->legend()->setVisible(true);
+    m_stackedChart->legend()->setAlignment(Qt::AlignTop);
+    m_stackedChart->legend()->setMarkerShape(QLegend::MarkerShapeRectangle);
+    m_stackedChart->setTitleBrush(QBrush(Qt::green)); // Mau chu tieu de
+    m_stackedChart->setAnimationOptions(QChart::SeriesAnimations);
+    m_stackedView->setRenderHint(QPainter::Antialiasing); // Khử răng cưa
 
-    axisXLine = new QDateTimeAxis();
-    axisXLine->setFormat("dd/MM");
-    axisXLine->setTitleText("Ngày");
-    m_lineChart->addAxis(axisXLine, Qt::AlignBottom);
-    m_lineSeries->attachAxis(axisXLine);
+    ui->statisticsLayout3->addWidget(m_stackedView, 2);
+    m_setCompleted = new QBarSet("Hoàn thành");
+    m_setIncompleted = new QBarSet("Chưa hoàn thành");
+    m_setCompleted->setColor(QColor("#27ae60"));
+    m_setIncompleted->setColor(QColor("#d5f5e3"));
 
-    axisYLine = new QValueAxis();
-    axisYLine->setTitleText("Số task");
-    axisYLine->setLabelFormat("%i");// số nguyên 
-    m_lineChart->addAxis(axisYLine, Qt::AlignLeft);
-    m_lineSeries->attachAxis(axisYLine);
+    QStackedBarSeries* series = new QStackedBarSeries();
+    series->setBarWidth(0.8);
+    series->append(m_setCompleted); // chua hoan thanh nam tren, hoan thanh nam duoi
+    series->append(m_setIncompleted);
+    m_stackedChart->addSeries(series);
 
-    m_lineChartView = new QChartView(m_lineChart, this);
-    m_lineChartView->setRenderHint(QPainter::Antialiasing);
-    m_lineChartView->setMinimumHeight(200);
+    QStringList categories;
+    categories << "Th 2" << "Th 3" << "Th 4" << "Th 5" << "Th6" << "Th7" << "CN";
+    axisXStacked = new QBarCategoryAxis();
+    axisXStacked->append(categories);
+    axisXStacked->setGridLineVisible(false);    
+    m_stackedChart->addAxis(axisXStacked, Qt::AlignBottom);
+    series->attachAxis(axisXStacked); // Gắn trục X này với series, nếu ko có sẽ không thể hiển thị đúng
+    
+    axisYStacked = new QValueAxis();
+    axisYStacked->setRange(0, 5);
+    axisYStacked->setLabelFormat("%d");// chi hien so nguyen
+    m_stackedChart->addAxis(axisYStacked, Qt::AlignLeft);
+    series->attachAxis(axisYStacked);
 
-    ui->statisticsLayout_3->layout()->addWidget(m_lineChartView);
 
+    //donut Chart
+    QWidget* donutContainer = new QWidget();
+    donutContainer->setMinimumSize(200, 200);
+    QStackedLayout* stackLayout = new QStackedLayout(donutContainer);
+
+
+    m_percentLabel = new QLabel("0%");
+    m_percentLabel->setAlignment(Qt::AlignCenter);
+    m_percentLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+    m_percentLabel->setStyleSheet("font-size: 32px; font-weight: bold; color: #27ae60; background: transparent;");
+
+    stackLayout->setStackingMode(QStackedLayout::StackAll);// hien de len nhau
+    QVBoxLayout *rightLayout = new QVBoxLayout();
+    rightLayout->addWidget(donutContainer);
+    
+    summaryLabel = new QLabel("0/0 Việc đã hoàn thành");
+    summaryLabel->setAlignment(Qt::AlignCenter);
+    summaryLabel->setStyleSheet("color: #27ae60;border:none; font-weight: bold; font-size: 32px;");
+    rightLayout->addWidget(summaryLabel);
+    ui->statisticsLayout3->addLayout(rightLayout, 1);
+
+    //ui->statisticsLayout_3->setStyleSheet("background-color: white, border-radius: 10px;");
+    m_donutSeries = new QPieSeries();
+    m_donutSeries->setHoleSize(0.5); // lo rong o giua
+
+    QChart* m_donutChart = new QChart();
+    m_donutChart->addSeries(m_donutSeries);
+    m_donutChart->legend()->hide();
+    m_donutChart->setAnimationOptions(QChart::AllAnimations);
+    m_donutChart->setBackgroundRoundness(0);
+    m_donutChart->setMargins(QMargins(0, 0, 0, 0));  // bo le thua
+    m_donutChart->setBackgroundBrush(QBrush(Qt::transparent));
+
+    QChartView* donutChartView = new QChartView(m_donutChart);
+    donutChartView->setStyleSheet("background:transparent;");
+    donutChartView->setRenderHint(QPainter::Antialiasing);
+    stackLayout->addWidget(donutChartView);
+    stackLayout->addWidget(m_percentLabel);
+    stackLayout->setCurrentIndex(1);
+   
 
 }
 
@@ -600,7 +658,7 @@ void MainWindow::setupStatistics(){
 void MainWindow::updateStatistics(){
     Vector<Task*> allTasks = manager.ShowTaskByPriority();
     Vector<Task*> filteredTasks;
-
+    map<std::string,std::pair<int, int>> categoryStats; // ten category, hoan thanh , khong hoan thanh
     QDate start = getFilterStartDate();
     QDate end = getFilterEndDate();
 
@@ -609,29 +667,168 @@ void MainWindow::updateStatistics(){
     
         if (taskDate >= start && taskDate <= end){
             filteredTasks.push_back(t);
+        
         }
 }
 
-    int total = filteredTasks.size();
-    if (total == 0) {
-        ui->numberAllTask->setText("0");
-        ui->numberCompletedTask->setText("0");
-        ui->numberPendingTask->setText("0");
-        ui->numberProgress->setText("0%");
-
-        m_barSeries->barSets().at(0)->replace(0, 0);
-        m_barSeries->barSets().at(0)->replace(1, 0);
-        m_barSeries->barSets().at(0)->replace(2, 0);
-        
-        m_pieSeries->clear();
-        m_pieSeries->append("Không có dữ liệu", 1); 
-        
-        m_barChart->update();
-        m_barView->repaint();
-        m_pieChart->update();
-        m_pieView->repaint();
-        return; 
+    //donut chart category
+    for (Task* task : filteredTasks){
+        std::string category = task->getCategory();
+        if (task->isCompleted()){
+            categoryStats[category].first++;
+        }
+        else{
+            categoryStats[category].second++;
+        }
     }
+    // xoa donut cu
+    QLayoutItem *item;
+    while((item = ui->m_categoryDonutLayout->takeAt(0)) != nullptr){
+        if (item->widget()){
+            item->widget()->deleteLater();
+        }
+        delete item;
+    }
+    m_categoryDonuts.clear();
+    // Không có dữ liệu
+    if (categoryStats.empty()){
+        QLabel* noDataLabel = new QLabel("Không có dữ liệu");
+        noDataLabel->setAlignment(Qt::AlignCenter);
+        noDataLabel->setStyleSheet("font-size: 16px; color: gray;");
+        ui->m_categoryDonutLayout->addWidget(noDataLabel, 0, 0);
+        return;
+    }
+    int row = 0;
+    int col = 0;
+    const int COLUMNS = 3;
+
+    for (auto& [categoryStr, stats] : categoryStats){
+        QString category = QString::fromStdString(categoryStr);
+        int completed = stats.first;
+        int incomplete = stats.second;
+        int total = completed + incomplete;
+
+        QWidget* categoryWidget = new QWidget();
+                categoryWidget->setMinimumWidth(280);
+        categoryWidget->setMaximumWidth(350);
+        categoryWidget->setMinimumHeight(320);
+        categoryWidget->setMaximumHeight(380);
+        categoryWidget->setStyleSheet(
+            "QWidget {"
+            "    background-color: white;"
+            "    border: 1px solid #ecf0f1;"
+            "    border-radius: 10px;"
+            "    padding: 10px;"
+            "}"
+        );
+
+
+
+        QVBoxLayout* categoryLayout = new QVBoxLayout(categoryWidget);
+        categoryLayout->setSpacing(10);
+        categoryLayout->setContentsMargins(10, 10, 10, 10);
+
+
+        // Label tên category
+        QLabel* categoryLabel = new QLabel(category);
+        categoryLabel->setAlignment(Qt::AlignCenter);
+        categoryLabel->setStyleSheet(
+            "font-size: 14px; "
+            "font-weight: bold; "
+            "color: #2c3e50; "
+            "padding: 5px;"
+        );
+        categoryLayout->addWidget(categoryLabel);
+
+        //Donut chart
+        QWidget* donutContainer = new QWidget();
+        QStackedLayout* stackedLayout = new QStackedLayout(donutContainer);
+
+        QLabel* percentLabel = new QLabel("0%");
+        percentLabel->setAlignment(Qt::AlignCenter);
+        percentLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+        percentLabel->setStyleSheet("font-size: 36px; font-weight: bold; color: #27ae60; background: transparent;");
+
+        stackedLayout->setStackingMode(QStackedLayout::StackAll);
+        stackedLayout->setAlignment(Qt::AlignCenter);
+
+
+        QChart* donutChart = new QChart();
+        QPieSeries* pieSeries = new QPieSeries();
+
+
+
+        double completedPercent = 0;
+        double incompletePercent = 0;
+        int percent_category = 0;
+        if (total > 0){
+            completedPercent = 100.0*completed / total;
+            incompletePercent = 100.0*incomplete / total;
+            percent_category = completed / total;
+        }
+
+        percentLabel->setText(QString::number(percent_category) + "%");
+        QPieSlice* completedSlice = pieSeries->append("Hoàn thành", completedPercent);
+        completedSlice->setColor(QColor("#27ae60"));
+        
+        // Slice chưa hoàn thành
+        QPieSlice* incompleteSlice = pieSeries->append("Chưa hoàn thành", incompletePercent);
+        incompleteSlice->setColor(QColor("#d5f5e3"));
+
+        pieSeries->setHoleSize(0.5); //Lo rong donut
+        
+        donutChart->addSeries(pieSeries);
+        donutChart->legend()->setVisible(false);
+        donutChart->setAnimationOptions(QChart::SeriesAnimations);
+        donutChart->setBackgroundBrush(QBrush(Qt::transparent));
+        donutChart->setMargins(QMargins(0, 0, 0, 0));
+        donutChart->setTitleBrush(QBrush(Qt::green));
+        
+        // Chart View
+        QChartView* chartView = new QChartView(donutChart);
+        chartView->setRenderHint(QPainter::Antialiasing);
+        chartView->setStyleSheet("background: transparent; border: none;");
+        chartView->setMinimumHeight(200);
+        stackedLayout->addWidget(chartView);
+        stackedLayout->addWidget(percentLabel);
+        stackedLayout->setCurrentIndex(1);
+        categoryLayout->addWidget(donutContainer, 1);
+
+        
+        // Label hiển thị số lượng
+        QString summaryText = QString("%1/%2 hoàn thành").arg(completed).arg(total);
+        QLabel* summaryLabel = new QLabel(summaryText);
+        summaryLabel->setAlignment(Qt::AlignCenter);
+        summaryLabel->setStyleSheet(
+            "font-size: 12px; "
+            "color: #27ae60; "
+            "font-weight: bold; "
+            "padding: 5px;"
+        );
+        categoryLayout->addWidget(summaryLabel);
+        
+        // Thêm vào grid layout
+        ui->m_categoryDonutLayout->addWidget(categoryWidget, row, col);
+         // Cập nhật vị trí
+        col++;
+        if (col >= COLUMNS) {
+            col = 0;
+            row++;
+        }
+        
+        // Lưu reference
+        CategoryDonut donutData;
+        donutData.chart = donutChart;
+        donutData.chartView = chartView;
+        donutData.series = pieSeries;
+        donutData.categoryLabel = categoryLabel;
+        m_categoryDonuts[category] = donutData;
+    }
+
+
+
+
+    int total = filteredTasks.size();
     ui->numberAllTask->setText(QString::number(total));
     int p_low = 0, p_medium = 0, p_high = 0;
     int completed = 0, overdue = 0, incomplete = 0;
@@ -665,94 +862,70 @@ void MainWindow::updateStatistics(){
     m_barView->repaint();
 
 
-    double completedRate = (double)completed / total * 100;
-    double overRate = (double)overdue / total * 100;
-    double incompleteRate = (double)incomplete / total * 100;
 
-    m_pieSeries->clear();
-
-    QPieSlice *completedSlice = m_pieSeries->append("Hoàn thành", completedRate);
-    completedSlice->setBrush(Qt::green);
-    completedSlice->setLabelVisible(true);
-    completedSlice->setLabel(QString("Hoàn thành:%1%").arg(completedRate, 0 , 'f', 1));
-
-    QPieSlice *overdueSlice = m_pieSeries->append("Quá hạn", overRate);
-    overdueSlice->setBrush(Qt::red);
-    overdueSlice->setLabelVisible(true);
-    overdueSlice->setLabel(QString("Quá hạn:%1%").arg(overRate, 0 , 'f', 1));
+//Stacked Chart , 7 ngay trong tuan
+    updateWeeklyStats();
 
 
-    QPieSlice *incompleteSlice = m_pieSeries->append("Chưa hoàn thành", incompleteRate);
-    incompleteSlice->setBrush(Qt::blue);
-    incompleteSlice->setLabelVisible(true);
-    incompleteSlice->setLabel(QString("Chưa hoàn thành:%1%").arg(incompleteRate, 0, 'f', 1));
+}
+void MainWindow::updateWeeklyStats(){
+    int currentday = QDate::currentDate().dayOfWeek(); // tra ve 1 (thu 2)... 7(chu nhat)
+    QDate currentDay = QDate::currentDate();
 
+    QDate monday = currentDay.addDays(-(currentday - 1));
+    QDate sunday = monday.addDays(6);
 
-    m_pieChart->update();
-    m_pieView->repaint();
+    std::vector<int> dataCompleted(7, 0);
+    std::vector<int> dataIncompleted(7, 0);
+    double totalCompleted = 0;
+    double totalTask = 0;
+    Vector<Task*> tasks = manager.ShowTaskByDeadline();
+
+    for (Task* t : tasks){
+        QString dateStr = QString::fromStdString(t->getDeadline());
+        QDateTime tDateTime = QDateTime::fromString(dateStr, "yyyy-MM-dd HH:mm");
+        QDate tDate = tDateTime.date();
+        
+        if (tDate.isValid() && tDate >= monday && tDate <= sunday){
+            int index = tDate.dayOfWeek() - 1;
+            totalTask++;
+            if (index >= 0 && index <= 6){
+                if (t->isCompleted()){
+                    dataCompleted[index]++;
+                    totalCompleted++;
+                }
+                else{
+                    dataIncompleted[index]++;
+                }
+            }
+        }
+    }
+    int max = 0;
+    for (int i=0;i<7;i++){
+        if ((dataCompleted[i] + dataIncompleted[i]) > max){
+            max = (dataCompleted[i] + dataIncompleted[i]);
+        } 
+    }
+    axisYStacked->setRange(0, max+2);
+    m_setCompleted->remove(0, m_setCompleted->count());
+    m_setIncompleted->remove(0, m_setIncompleted->count());
     
-
-
-// Line chart , 7 ngày gần nhất
-QMap<QDate, int> dailyCompleted;
-QDate today = QDate::currentDate();
-QDate start7 = today.addDays(-6);
-
-// Khởi tạo giá trị mặc định là 0 cho 7 ngày
-for (QDate d = start7; d <= today; d = d.addDays(1)) {
-    dailyCompleted[d] = 0;
-}
-
-for (Task* t : allTasks) {
-    if (!t->isCompleted()) continue;
-
-    QString deadlineStr = QString::fromStdString(t->getDeadline());
-    if (deadlineStr.isEmpty()) continue;
-
-    QDateTime dt = QDateTime::fromString(deadlineStr, "yyyy-MM-dd HH:mm");
-    if (!dt.isValid()) continue;
-
-    QDate completedDate = dt.date();
-    if (completedDate >= start7 && completedDate <= today) {
-        dailyCompleted[completedDate]++;
-    }
-}
-
-    // xóa series cũ
-    if (m_lineSeries) {
-        m_lineChart->removeSeries(m_lineSeries);
-        delete m_lineSeries;  
-        m_lineSeries = nullptr;
+    for (int i=0;i<7;i++){
+        *m_setCompleted << dataCompleted[i];
+        *m_setIncompleted << dataIncompleted[i];
     }
 
-    // Tạo series mới
-    m_lineSeries = new QLineSeries();
-    m_lineChart->addSeries(m_lineSeries);
+    m_donutSeries->clear();
+    double percent = 0;
+    if (totalTask > 0) percent = (totalCompleted / totalTask);
+    QPieSlice* sliceDone= m_donutSeries->append("Done", totalCompleted);
+    QPieSlice* sliceLeft = m_donutSeries->append("Left", totalTask - totalCompleted);
 
-    m_lineSeries->attachAxis(axisXLine);
-    m_lineSeries->attachAxis(axisYLine);
+    sliceDone->setColor(QColor("#27ae60"));
+    sliceLeft->setColor(QColor("#d5f5e3"));
 
-    // Thêm data points
-    for (auto it = dailyCompleted.constBegin(); it != dailyCompleted.constEnd(); ++it) {
-        QDate date = it.key();
-        QDateTime dt(date, QTime(0, 0));  
-        m_lineSeries->append(dt.toMSecsSinceEpoch(), it.value());
-    }
-
-    // Cập nhật range
-    QDateTime startDt(start7, QTime(0, 0));
-    QDateTime endDt(today.addDays(1), QTime(0, 0));
-    axisXLine->setRange(startDt, endDt);
-
-    int maxY = 0;
-    for (int val : dailyCompleted.values()) {
-        if (val > maxY) maxY = val;
-    }
-    axisYLine->setRange(0, qMax(5, maxY + 1));
-
-    m_lineChart->update();
-    m_lineChartView->repaint();
-
+    m_percentLabel->setText(QString::number(int(percent*100)) + "%");
+    summaryLabel->setText(QString("%1/%2 Việc đã hoàn thành").arg(totalCompleted).arg(totalTask));
 
 }
 
@@ -1032,3 +1205,55 @@ void MainWindow::updateCountLabel(){
         m_countNotificationLabel->setVisible(false);
     }
 }
+
+void MainWindow::updateStats(int total, int completed, int highPriority, int remaining){
+    ui->m_totalLabel->setNum(total);
+    ui->m_completedLabel->setNum(completed);
+    ui->m_highPriorityLabel->setNum(highPriority);
+    ui->m_remainLabel->setNum(remaining);
+
+    int percent = 0;
+    if (total > 0){
+        percent = completed*100 / total;
+
+    }
+    ui->m_percentLabel->setText(QString::number(percent) + "%");
+    ui->m_progressBar->setValue(percent);
+}
+
+void MainWindow::refreshDashboardStats(QDate date) {
+    Vector<Task*> tasks = getTaskbyDate(date);
+    int total = tasks.size();
+    int completed = 0;
+    int remaining = 0;
+    int high = 0;
+    for(Task* t : tasks){
+        if (t->getPriority() == 3) high++;
+
+        if (t->isCompleted()){
+            completed++;
+        }
+        else{
+            remaining++;
+        }
+    }
+    updateStats(total, completed, high, remaining);
+}   
+
+
+Vector<Task*> MainWindow::getTaskbyDate(QDate date){
+    Vector<Task*> allTasks = manager.ShowTaskByPriority();
+    Vector<Task*> filteredTasks;
+
+
+    for (Task* t : allTasks){
+        QDate taskDate = QDateTime::fromString(QString::fromStdString(t->getDeadline()), "yyyy-MM-dd HH:mm").date();
+    
+        if (date == taskDate){
+            filteredTasks.push_back(t);
+        }
+}
+    return filteredTasks;
+}
+
+

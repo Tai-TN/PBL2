@@ -121,11 +121,13 @@ void TaskItemWidget::setupUI(){
     "}"
 
 );  
+    this->setObjectName("TaskItemWidget");
+    this->setAttribute(Qt::WA_StyledBackground);// widget tu tao co the ve background
     this->setStyleSheet(
-        "#QWidget {"
+        "#TaskItemWidget {"
         "background-color : white;"
         "border-radius : 10px;"
-        "border: 1px solid  #8dc5e0ff;"
+        "border: 1px solid  #76b9dbff;"
 
         "}"
     );
@@ -191,12 +193,10 @@ void TaskItemWidget::updateTaskData(){
 void TaskItemWidget::applyCompletedStyle(bool completed)
 {
      if (completed) {
-    //    this->setStyleSheet("background-color: white; border-left: 4px solid #27ae60;");
         m_titleLabel->setStyleSheet("text-decoration: line-through; color: #95a5a6;");
     } else {
-    //     //this->setStyleSheet("background-color: white; border-left: 4px solid transparent;");
          m_titleLabel->setStyleSheet("font-weight: bold; font-size: 14px;");
-    // }
+
 }
 }
 void TaskItemWidget::onCheckboxStateChanged(int state)
