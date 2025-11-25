@@ -700,7 +700,7 @@ void MainWindow::updateStatistics(){
     }
     int row = 0;
     int col = 0;
-    const int COLUMNS = 3;
+    const int COLUMNS = 2;
 
     for (auto& [categoryStr, stats] : categoryStats){
         QString category = QString::fromStdString(categoryStr);
@@ -764,7 +764,7 @@ void MainWindow::updateStatistics(){
         if (total > 0){
             completedPercent = 100.0*completed / total;
             incompletePercent = 100.0*incomplete / total;
-            percent_category = completed / total;
+            percent_category = 100.0*completed / total;
         }
 
         percentLabel->setText(QString::number(percent_category) + "%");
@@ -917,14 +917,14 @@ void MainWindow::updateWeeklyStats(){
 
     m_donutSeries->clear();
     double percent = 0;
-    if (totalTask > 0) percent = (totalCompleted / totalTask);
+    if (totalTask > 0) percent = (100*totalCompleted / totalTask);
     QPieSlice* sliceDone= m_donutSeries->append("Done", totalCompleted);
     QPieSlice* sliceLeft = m_donutSeries->append("Left", totalTask - totalCompleted);
 
     sliceDone->setColor(QColor("#27ae60"));
     sliceLeft->setColor(QColor("#d5f5e3"));
 
-    m_percentLabel->setText(QString::number(int(percent*100)) + "%");
+    m_percentLabel->setText(QString::number(int(percent)) + "%");
     summaryLabel->setText(QString("%1/%2 Việc đã hoàn thành").arg(totalCompleted).arg(totalTask));
 
 }
