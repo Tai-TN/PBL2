@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="blueIcons">
+    <file>resources/icons/iconWindow.png</file>
     <file>resources/icons/filter.png</file>
     <file>resources/icons/refresh-cw.svg</file>
     <file>resources/icons/unfilter.jpg</file>

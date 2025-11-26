@@ -34,7 +34,7 @@ class Vector {
         Vector(int , int);
 };
 
-/*for (Task* t : T) sẽ dịch thành T.begin(),*/
+/*for (Task* t : T) sẽ dịch thành T.begin(),  T.end(), it++ => nên cần có hàm trả về begin và end*/
 
 
 

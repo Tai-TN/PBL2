@@ -1343,7 +1343,7 @@ QDateEdit::up-button:hover, QDateEdit::down-button:hover {
                     </property>
                     <property name="date">
                      <date>
-                      <year>2025</year>
+                      <year>2026</year>
                       <month>1</month>
                       <day>1</day>
                      </date>

@@ -107,10 +107,7 @@ private:
     
     std::set<std::string> m_categories;
     const QString CATEGORY_FILE_PATH = "D:\\PBL\\PBL2\\PBL2\\Data\\category.txt";
-    //Bieu do tron
-    // QChart *m_pieChart;
-    // QPieSeries* m_pieSeries;
-    // QChartView* m_pieView;
+
 
     //buieu do cot 
     QChart* m_barChart;

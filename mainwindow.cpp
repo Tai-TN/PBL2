@@ -20,8 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
     QIcon windowIcon(iconPath);
     this->setWindowIcon(windowIcon);
     this->setWindowTitle("To Do List");
-    LoadFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt", manager);
-    loadCategories("D:\\PBL\\PBL2\\PBL2\\Data\\testcategories.txt");
+    LoadFile("D:\\PBL\\PBL2\\PBL2\\Data\\tasks.txt", manager);
+    loadCategories("D:\\PBL\\PBL2\\PBL2\\Data\\categories.txt");
     ui->comboFilterTime->addItems({"Hôm nay", "Tuần này", "Tháng này", "Tùy chọn"});
     ui->dateFrom->setVisible(false);
     ui->dateTo->setVisible(false);
@@ -136,8 +136,8 @@ void MainWindow::addTask()
         Task* newTask = dialog.getCreatedTask();
         if (newTask) {
             manager.addTask(newTask);
-            SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
-            saveCategories("D:\\PBL\\PBL2\\PBL2\\Data\\testcategories.txt");
+            SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\tasks.txt");
+            saveCategories("D:\\PBL\\PBL2\\PBL2\\Data\\categories.txt");
             updateTaskList();
             updateCategoryView();
             updateStatistics();
@@ -177,7 +177,7 @@ void MainWindow::LoadFile(const std::string& filename, HeapManager& manager){
             std::string updatedAt = fields[7];
             std::string category = fields[8];
             std::string recurrence = fields[9];
-            Task* t = new Task(title,description, priority, deadline, category,/* estimatedHours,*/ recurrence, completed);
+            Task* t = new Task(title,description, priority, deadline, category,recurrence, completed);
             manager.addTask(t);
 
         }
@@ -552,24 +552,6 @@ void MainWindow::setupStatistics(){
     ui->statisticsLayout_1->layout()->addWidget(m_barView);
 
 
-
-    // // Pie Chart
-    // m_pieChart = new QChart();
-    // m_pieSeries = new QPieSeries();
-    // m_pieSeries->append("Hoàn thành", 0);
-    // m_pieSeries->append("Quá hạn", 0);
-    // m_pieSeries->append("Chưa hoàn thành", 0);
-
-    // m_pieChart->addSeries(m_pieSeries);
-    // m_pieChart->setTitle("Tỷ lệ (%)");
-
-    // m_pieView = new QChartView(m_pieChart);
-    // m_pieView->setRenderHint(QPainter::Antialiasing);
-    // m_pieView->setVisible(true);
-    // m_pieChart->legend()->setVisible(false);
-    // m_pieView->setMinimumHeight(300);
-    // ui->statisticsLayout_2->layout()->addWidget(m_pieView);
-
     //stacked Chart;
     
     m_stackedSeries = new QStackedBarSeries();
@@ -941,7 +923,7 @@ void MainWindow::onTaskStatusChanged(Task* task, bool completed)
     
     // Cập nhật task trong manager
     task->setCompleted(completed);
-    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
+    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\tasks.txt");
     m_taskListWidget->updateTask(task);
     m_todayListWidget->updateTask(task);
     m_categoryListWidget->updateTask(task);
@@ -959,8 +941,8 @@ void MainWindow::onTaskStatusChanged(Task* task, bool completed)
 void MainWindow::onTaskEditClicked(Task* task){
     AdvancedTaskDialog dialog(task, manager, m_categories,this);
     if (dialog.exec() == QDialog::Accepted) {
-        SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
-        saveCategories("D:\\PBL\\PBL2\\PBL2\\Data\\testcategories.txt");
+        SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\tasks.txt");
+        saveCategories("D:\\PBL\\PBL2\\PBL2\\Data\\categories.txt");
 
         updateTaskList();
         //m_taskListWidget->updateTask(task);
@@ -991,8 +973,8 @@ void MainWindow::addNewCategory() {
     
     m_categories.insert(name.toStdString());
 
-    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");  // Đồng bộ task
-    saveCategories("D:\\PBL\\PBL2\\PBL2\\Data\\testcategories.txt");
+    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\tasks.txt");  // Đồng bộ task
+    saveCategories("D:\\PBL\\PBL2\\PBL2\\Data\\categories.txt");
 
     updateCategoryView();
     updateTaskList(); 
@@ -1013,7 +995,7 @@ void MainWindow::editCategory(const QString& oldName) {
     }
 
 
-    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
+    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\tasks.txt");
     updateCategoryView();
     updateTaskList();
 }
@@ -1029,7 +1011,7 @@ void MainWindow::deleteCategory(const QString& name) {
         }
     }
 
-    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
+    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\tasks.txt");
     updateCategoryView();
     updateTaskList();
 }
@@ -1048,7 +1030,7 @@ void MainWindow::onTaskDeleteClicked(Task* task){
 
     if (QMessageBox::question(this,"Xác nhận", QString("Xóa task")) != QMessageBox::Yes) return;
     manager.removeTask(task->getID());
-    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\test.txt");
+    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\tasks.txt");
     updateTaskList();
     updateCategoryView();
     updateStatistics();
@@ -1185,7 +1167,7 @@ void MainWindow::updateCalendarDots(){
 
 
 void MainWindow::showNotificationMenu(){
-    m_notificationWidget->updateNotifications(manager.ShowTaskByPriority());
+    m_notificationWidget->updateNotifications(manager);
 
     QPoint globalPos = ui->notifi_btn->mapToGlobal( QPoint(0 , ui->notifi_btn->height())); // Chuyển tọa độ góc dưới của nút thông báo thành tọa độ để hiển thị QMENU
 

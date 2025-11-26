@@ -1001,7 +1001,7 @@ public:
         dateTo = new QDateEdit(filterGroup);
         dateTo->setObjectName("dateTo");
         dateTo->setCalendarPopup(true);
-        dateTo->setDate(QDate(2025, 1, 1));
+        dateTo->setDate(QDate(2026, 1, 1));
 
         horizontalLayout_18->addWidget(dateTo);
 

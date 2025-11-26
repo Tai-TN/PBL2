@@ -75,7 +75,7 @@ int NotificationWidget::countNotifications() {
 }
 
 
-QFrame* NotificationWidget::createNotificationCard(Task* task, const QString& type) {
+QFrame* NotificationWidget::createNotificationCard(Task* task, int type) {
     QFrame* card = new QFrame();
     card->setFrameShape(QFrame::Box);
     card->setLineWidth(1);
@@ -99,7 +99,7 @@ QFrame* NotificationWidget::createNotificationCard(Task* task, const QString& ty
     
     
     QLabel* typeLabel = new QLabel(
-        (type == "overdue") ? "QUÁ HẠN" : "SẮP ĐẾN HẠN"
+        (type == 0 ) ? "Ưu tiên cao" : "Hạn sớm nhất"
     );
     typeLabel->setStyleSheet(QString(
         "QLabel { "
@@ -155,7 +155,7 @@ QFrame* NotificationWidget::createNotificationCard(Task* task, const QString& ty
 }
 
 
-void NotificationWidget::addNotificationItem(Task* task, const QString& type) {
+void NotificationWidget::addNotificationItem(Task* task, int type) {
     QFrame* card = createNotificationCard(task, type);
     scrollLayout->insertWidget(1 + notificationCount, card);
     notificationCount++;
@@ -180,28 +180,16 @@ void NotificationWidget::clearAllNotifications() {
 
 
 
-void NotificationWidget::updateNotifications(Vector<Task*> tasks) {
+void NotificationWidget::updateNotifications(HeapManager& manager) {
     clearAllNotifications();
     
-    if (m_clearAll == false){
-    for (Task* task : tasks) {
-        if (task->isCompleted()) continue;
+     if (m_clearAll == false){
+   
+        addNotificationItem(manager.getHighestPriority(),0);
         
-        QDateTime deadline = QDateTime::fromString(
-            QString::fromStdString(task->getDeadline()), 
-            "yyyy-MM-dd HH:mm"
-        );
-        
-        QDateTime now = QDateTime::currentDateTime();
-        
-        if (deadline < now) {
-            addNotificationItem(task, "overdue");
-        }
-        else if (deadline <= now.addDays(1)) {
-            addNotificationItem(task, "upcoming");
-        }
-    }
-}
+        addNotificationItem(manager.getEarliestDeadline(), 1);
+     }
+
     if (notificationCount == 0) {
         emptyLabel->show();
         clearAllbtn->hide();
@@ -210,4 +198,6 @@ void NotificationWidget::updateNotifications(Vector<Task*> tasks) {
         emptyLabel->hide();
         clearAllbtn->show();
     }
+
 }
+
