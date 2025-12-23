@@ -676,7 +676,7 @@ QPushButton:hover { background: #ffebee; border-radius: 8px; }
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="calendarPage">
           <property name="styleSheet">
@@ -844,7 +844,7 @@ QCalendarWidget QAbstractItemView:disabled {
                            <string notr="true">color : #2c3e50;</string>
                           </property>
                           <property name="text">
-                           <string>Tiến độ hôm nay</string>
+                           <string>Tiến độ</string>
                           </property>
                          </widget>
                         </item>

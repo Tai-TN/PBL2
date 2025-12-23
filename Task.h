@@ -20,44 +20,26 @@ private:
 public:
     Task();
     Task(std::string t, int p,std::string d, bool completed = false);
-    Task(std::string t, std::string description, int p, std::string d, std::string cate = "",
-    /*nt estHours = 0,*/ std::string recur = "none", bool completed = false);
-
+    Task(std::string t, std::string description, int p, std::string d,
+std::string cate = "", std::string recur = "none", bool completed = false);
     virtual ~Task(){}
-
-    
-
-    // new
     void setDescription(const std::string& desc);
     void setCategory(const std::string& category);
-    // void setEstimatedHours(int hours);
-    // void setActualHours(int hours);
     void setRecurrence(const std::string& recur);
     void updateTimestamp();
-
-
     bool isValidDeadline() const; // kiểm tra deadline hợp lệ chưa
     bool isOverdue() const; // kiểm tra quá hạn hay chưa
     int daysUntilDeadline() const; // kiểm tra số ngày còn lại hay số ngày quá hạn
-
-    //getter
     std::string getDescription() const { return description; }
     std::string getCreatedAt() const { return createdAt; }
     std::string getUpdatedAt() const { return updatedAt; }
     std::string getCategory() const { return category; }
-    //int getEstimatedHours() const { return estimatedHours; }
-    //int getActualHours() const { return actualHours; }
     std::string getRecurrence() const { return recurrence; }
-    
-
-
     size_t getID(){return id;}
     std::string getTitle(){return title;}
     int getPriority(){return priority;}
     std::string getDeadline(){return deadline;}
     bool isCompleted(){return completed;}
-    
-    
     void setCompleted(bool c){
         completed = c;
         updateTimestamp();
@@ -76,9 +58,6 @@ public:
         TransformDeadline(deadline);
         updateTimestamp();
     }
-    
-
-    std::string toString() const; // chuyển định dạng để lưu vào file
-
-
+    // chuyển định dạng để lưu vào file
+    std::string toString() const; 
 };

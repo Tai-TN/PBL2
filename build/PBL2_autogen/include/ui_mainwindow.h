@@ -1330,7 +1330,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1351,7 +1351,7 @@ public:
         label_2->setText(QString());
         searchBar->setPlaceholderText(QCoreApplication::translate("MainWindow", "Search Something...", nullptr));
         notifi_btn->setText(QString());
-        progressTitle->setText(QCoreApplication::translate("MainWindow", "Ti\341\272\277n \304\221\341\273\231 h\303\264m nay", nullptr));
+        progressTitle->setText(QCoreApplication::translate("MainWindow", "Ti\341\272\277n \304\221\341\273\231", nullptr));
         m_percentLabel->setText(QCoreApplication::translate("MainWindow", "0%", nullptr));
         m_completedLabel->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "Ho\303\240n th\303\240nh", nullptr));

@@ -1,17 +1,47 @@
-1|Làm bài tập Toán|Chương 4: Đạo hàm và tích phân|2|2025-10-17 17:00|1|2025-11-25 21:33|2025-11-25 21:33|Học Tập|daily
-17|T|T|2|2025-11-26 21:33|1|2025-11-25 21:33|2025-11-25 21:34|Không phân loại|daily
-2|Dọn dẹp phòng ở|Dọn tủ quần áo, vệ sinh bàn học vaf may tinh|2|2025-11-12 14:00|1|2025-11-25 21:33|2025-11-25 21:33|Không phân loại|monthly
-4|T|T|2|2025-11-26 21:53|0|2025-11-25 21:33|2025-11-25 21:33|Không phân loại|none
-8|Đăng ký môn học|Đăng ký học kỳ mới|2|2025-10-15 17:00|1|2025-11-25 21:33|2025-11-25 21:33|Học Tập|none
-5|Chuẩn bị presentation|Slide cho môn Chính trị|2|2025-10-19 09:00|1|2025-11-25 21:33|2025-11-25 21:33|Học Tập|daily
-3|y|y|2|2025-11-25 14:56|1|2025-11-25 21:33|2025-11-25 21:33|Không phân loại|none
-6|Mua sách giáo trình|Mua sách C++ và Toán cao cấp|2|2025-10-17 15:00|1|2025-11-25 21:33|2025-11-25 21:33|Cá Nhân|none
-7|Khám bệnh định kỳ|Khám răng và mắt|2|2025-10-15 08:00|1|2025-11-25 21:33|2025-11-25 21:33|Sức Khỏe|monthly
-9|Gửi email cho GV|Hỏi về deadline bài tập|1|2025-11-06 10:00|0|2025-11-25 21:33|2025-11-25 21:33|Học Tập|none
-16|Xem phim với bạn bè|Xem phim cuối tuần|1|2025-11-08 20:00|0|2025-11-25 21:33|2025-11-25 21:33|Không phân loại|none
-11|Học tiếng Anh|Luyện nghe 30 phút|1|2025-11-11 19:00|0|2025-11-25 21:33|2025-11-25 21:33|Học Tập|none
-12|Giặt đồ|Giặt đồ|1|2025-11-26 12:46|1|2025-11-25 21:33|2025-11-25 21:33|Công việc|daily
-14|Mua đồ dùng học tập|Bút, vở, máy tính|1|2025-10-12 14:00|0|2025-11-25 21:33|2025-11-25 21:33|Cá Nhân|none
-15|Đi siêu thị|Mua thực phẩm tuần|1|2026-10-16 18:00|0|2025-11-25 21:33|2025-11-25 21:33|Học Tập|none
-10|Dã ngoại cuối tuần|Đi chơi với gia đình|1|2025-10-26 08:00|0|2025-11-25 21:33|2025-11-25 21:33|Không phân loại|none
-13|Viết báo cáo|Báo cáo thí nghiệm Vật lý|1|2025-10-17 16:00|1|2025-11-25 21:33|2025-11-25 21:33|Học Tập|none
+2|Làm bài tập Toán|Chương 4: Đạo hàm và tích phân|2|2025-11-04 17:00|1|2025-12-22 19:16|2025-12-22 19:16|Học Tập|daily
+48|Làm bài tập Toán|Chương 4: Đạo hàm và tích phân|2|2025-11-13 17:00|0|2025-12-22 19:18|2025-12-22 19:18|Không phân loại|weekly
+4|TA|TA|2|2025-11-26 21:33|1|2025-12-22 19:16|2025-12-22 19:16|Không phân loại|daily
+46|Làm bài tập Toán|Chương 4: Đạo hàm và tích phân|2|2025-11-05 17:00|1|2025-12-22 19:16|2025-12-22 19:16|Học Tập|daily
+8|Làm bài tập Toán|Chương 4: Đạo hàm và tích phân|2|2025-11-08 17:00|1|2025-12-22 19:16|2025-12-22 19:16|Không phân loại|none
+9|Khám bệnh định kỳ|Khám răng và mắt|2|2025-10-15 08:00|1|2025-12-22 19:16|2025-12-22 19:16|Sức Khỏe|monthly
+5|Đăng ký môn học|Đăng ký học kỳ mới|2|2025-10-15 17:00|1|2025-12-22 19:16|2025-12-22 19:16|Học Tập|none
+10|Mua sách giáo trình|Mua sách C++ và Toán cao cấp|2|2025-10-17 15:00|1|2025-12-22 19:16|2025-12-22 19:16|Cá Nhân|none
+11|y|y|2|2025-11-25 14:56|1|2025-12-22 19:16|2025-12-22 19:16|Không phân loại|none
+45|Làm bài tập Toán|Chương 4: Đạo hàm và tích phân|2|2025-11-04 17:00|1|2025-12-22 19:16|2025-12-22 19:16|Học Tập|daily
+47|Làm bài tập Toán|Chương 4: Đạo hàm và tích phân|2|2025-11-06 17:00|1|2025-12-22 19:16|2025-12-22 19:18|Không phân loại|weekly
+3|Làm bài tập Toán|Chương 4: Đạo hàm và tích phân|2|2025-11-06 17:00|1|2025-12-22 19:16|2025-12-22 19:16|Học Tập|daily
+6|Dọn dẹp phòng ở|Dọn tủ quần áo, vệ sinh bàn học vaf may tinh|2|2025-11-12 14:00|1|2025-12-22 19:16|2025-12-22 19:16|Không phân loại|monthly
+12|Làm bài tập Toán|Chương 4: Đạo hàm và tích phân|2|2025-11-05 17:00|1|2025-12-22 19:16|2025-12-22 19:16|Học Tập|daily
+13|Làm bài tập Toán|Chương 4: Đạo hàm và tích phân|2|2025-11-07 17:00|1|2025-12-22 19:16|2025-12-22 19:16|Học Tập|daily
+7|Chuẩn bị presentation|Slide cho môn Chính trị|2|2025-10-19 09:00|1|2025-12-22 19:16|2025-12-22 19:16|Học Tập|daily
+32|Lên kế hoạch tháng 12|Đặt mục tiêu mới|1|2025-11-30 20:00|0|2025-12-22 19:16|2025-12-22 19:16|Cá Nhân|none
+31|Đi siêu thị|Mua thực phẩm tuần|1|2026-10-16 18:00|0|2025-12-22 19:16|2025-12-22 19:16|Học Tập|none
+30|Nộp báo cáo tuần|Hoàn thành form đánh giá|1|2025-11-28 09:00|1|2025-12-22 19:16|2025-12-22 19:16|Công Việc|none
+29|Kiểm kê cuối tháng|Đếm tồn kho|1|2025-11-30 21:00|0|2025-12-22 19:16|2025-12-22 19:16|Công Việc|none
+28|Backup dữ liệu|Sao lưu ổ cứng ngoài|1|2025-11-28 23:59|0|2025-12-22 19:16|2025-12-22 19:16|Không phân loại|none
+27|Giặt đồ|Giặt đồ|1|2025-11-26 12:46|1|2025-12-22 19:16|2025-12-22 19:16|Công việc|daily
+26|Họp phòng ban|Phòng họp A|1|2025-11-29 14:00|0|2025-12-22 19:16|2025-12-22 19:16|Công Việc|none
+25|Đăng ký khóa học online|Hoàn tất thanh toán|1|2025-11-28 23:59|0|2025-12-22 19:16|2025-12-22 19:16|Học Tập|none
+24|Xem phim với bạn bè|Xem phim cuối tuần|1|2025-11-08 20:00|1|2025-12-22 19:16|2025-12-22 19:16|Không phân loại|daily
+41|Gọi video cho bố mẹ|Kể về công việc mới|1|2025-11-28 20:00|0|2025-12-22 19:16|2025-12-22 19:16|Gia Đình|none
+42|Học tiếng Anh|Luyện nghe 30 phút|1|2025-11-11 19:00|1|2025-12-22 19:16|2025-12-22 19:16|Học Tập|none
+21|Luyện nghe tiếng Anh|Nghe podcast 30 phút|1|2025-11-28 21:30|1|2025-12-22 19:16|2025-12-22 19:16|Không phân loại|none
+20|Dự tiệc cưới|Nhà hàng ABC|1|2025-11-30 11:30|1|2025-12-22 19:16|2025-12-22 19:16|Giải Trí|none
+19|Ôn tập từ vựng|Ôn 50 từ mới đã học|1|2025-11-26 22:00|0|2025-12-22 19:16|2025-12-22 19:16|Học Tập|none
+18|Viết báo cáo|Báo cáo thí nghiệm Vật lý|1|2025-10-17 16:00|1|2025-12-22 19:16|2025-12-22 19:16|Học Tập|none
+17|Viết nhật ký|Ghi lại chi tiêu trong ngày|1|2025-11-26 23:59|0|2025-12-22 19:16|2025-12-22 19:16|Cá Nhân|none
+16|Giải trí tiktok|Nghỉ ngơi 30phut|1|2025-11-28 21:58|0|2025-12-22 19:16|2025-12-22 19:16|Giải Trí|none
+15|Học English|Luyệt nói 30p|1|2025-11-28 21:58|1|2025-12-22 19:16|2025-12-22 19:16|Học tập|none
+14|Gửi email cho đối tác|Xác nhận lịch hẹn|1|2025-11-28 10:00|0|2025-12-22 19:16|2025-12-22 19:16|Không phân loại|none
+36|Mua đồ dùng học tập|Bút, vở, máy tính|1|2025-10-12 14:00|1|2025-12-22 19:16|2025-12-22 19:16|Cá Nhân|none
+37|Xem phim với bạn bè|Xem phim cuối tuần|1|2025-11-09 20:00|0|2025-12-22 19:16|2025-12-22 19:16|Không phân loại|daily
+40|Xem phim với bạn bè|Xem phim cuối tuần|1|2025-11-09 20:00|0|2025-12-22 19:16|2025-12-22 19:16|Không phân loại|daily
+43|Đi đón bạn ở sân bay|Chuyến bay 19:00|1|2025-11-28 18:30|0|2025-12-22 19:16|2025-12-22 19:16|Cá Nhân|none
+23|Vệ sinh máy tính|Quét virus và dọn rác|1|2025-11-28 22:00|1|2025-12-22 19:16|2025-12-22 19:16|Bảo Trì|none
+22|Làm bài tập lớn|Viết introduction và method|1|2025-11-29 23:59|1|2025-12-22 19:16|2025-12-22 19:16|Học Tập|none
+34|Đi nhà sách|Mua sách luyện thi|1|2025-11-30 10:00|0|2025-12-22 19:16|2025-12-22 19:16|Học Tập|none
+35|Gửi báo cáo tổng kết|Gửi cho giám đốc|1|2025-11-30 23:59|0|2025-12-22 19:16|2025-12-22 19:16|Công Việc|none
+39|Đi siêu thị nhỏ|Mua sữa và bánh mì|1|2025-11-28 18:00|1|2025-12-22 19:16|2025-12-22 19:16|Không phân loại|none
+44|Mua quà sinh nhật em trai|Tìm mua giày thể thao|1|2025-11-29 16:00|0|2025-12-22 19:16|2025-12-22 19:16|Mua Sắm|none
+33|Gửi email cho GV|Hỏi về deadline bài tập|1|2025-11-06 10:00|1|2025-12-22 19:16|2025-12-22 19:16|Học Tập|none
+38|Chuẩn bị tài liệu họp|In agenda và báo cáo|1|2025-11-28 08:30|1|2025-12-22 19:16|2025-12-22 19:16|Không phân loại|none

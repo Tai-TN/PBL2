@@ -9,26 +9,25 @@
 class TaskItemWidget : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit TaskItemWidget(Task* task, QWidget *parent = nullptr);
 
     void updateTaskData();
     Task* getTask() const {return m_task; }
-
 signals:  // gửi tín hiệu khi bấm
-    void taskStatusChanged(Task* task, bool completed); // tín hiệu khi thay đổi trạng thái 
-    //void taskClicked(Task* task); // tín hiệu khi bấm vào widget
+ // tín hiệu khi thay đổi trạng thái
+    void taskStatusChanged(Task* task, bool completed); 
     void editTaskRequest(Task* task);
     void deleteTaskRequest(Task* task);
-
 private slots:
-    void onCheckboxStateChanged(int state); // hàm gọi khi checkbox thay đổi trạng thái
+ // hàm gọi khi checkbox thay đổi trạng thái
+    void onCheckboxStateChanged(int state);
     void onEditClicked();
     void onDeleteClicked();
 private:
     void setupUI();
-    void applyCompletedStyle(bool completed); // đổi giao diện, đổi màu chữ :))
+     // đổi giao diện, đổi màu chữ :))
+    void applyCompletedStyle(bool completed);
     Task* m_task;
     QCheckBox* m_checkbox;
     QPushButton* edit_btn;

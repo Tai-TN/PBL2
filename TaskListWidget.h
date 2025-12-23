@@ -17,13 +17,13 @@ public:
     void updateTask(Task* task);
 
 signals:
-    void taskStatusChanged(Task* task, bool completed); // khi nhan checkbox
+// khi nhan checkbox
+    void taskStatusChanged(Task* task, bool completed); 
     void taskClicked(Task* task);
     void editTaskRequest(Task* task);
     void deleteTaskRequest(Task* task);
 private slots:
     void onTaskItemStatusChanged(Task* task, bool completed);
-    //void onTaskItemClicked(Task* task);
     void onTaskEditClicked (Task* task);
     void onTaskDeleteClicked(Task* task);
 
@@ -31,7 +31,8 @@ private:
     void setupUI();
     QVBoxLayout *m_mainLayout = nullptr;
     QWidget *m_listContainer = nullptr;
-    QMap<Task*, TaskItemWidget*> m_taskWidgets; // lưu key và giao diện là TaskListWidget
+     // lưu key và giao diện là TaskListWidget
+    QMap<Task*, TaskItemWidget*> m_taskWidgets;
 
     bool m_showCompleted = true;
 };

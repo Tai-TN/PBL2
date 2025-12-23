@@ -20,8 +20,6 @@ Task::Task(std::string t, int p,std::string d, bool completed ){
     this->updatedAt = getCurrentDateTime();
     this->completed = completed;
     this->category = "";
-    // this->estimatedHours = 0;
-    // this->actualHours = 0;
     this->recurrence = "none";
     TransformDeadline(this->deadline);
 }
@@ -63,15 +61,6 @@ void Task::setCategory(const std::string& category){
     updateTimestamp();
 }
 
-// void Task::setEstimatedHours(int hours){
-//     this->estimatedHours = hours;
-//     updateTimestamp();
-// }
-
-// void Task::setActualHours(int hours){
-//     this->actualHours = hours;
-//     updateTimestamp();
-// }
 
 void Task::setRecurrence(const std::string& recur){
     this->recurrence = recur;

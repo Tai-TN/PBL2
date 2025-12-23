@@ -41,7 +41,6 @@ namespace Ui {
 class MainWindow;
 }
 QT_END_NAMESPACE
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -67,28 +66,24 @@ private slots:
     void showNotificationMenu();
     void updateCountLabel();
 private:
-
     void LoadFile(const std::string&, HeapManager&);
     void SaveToFile(const std::string&);
+    bool isProcessingTaskStatus = false;
     bool leftMenuVisible;
     int originalMenuWidth;
     bool isFilterTaskPage = false;
     void setupStatistics();
     void updateStatistics();
-
     void loadCategories(const std::string&);
     void saveCategories(const std::string&);
-
     void onTaskStatusChanged(Task* task, bool completed);
     void onTaskEditClicked(Task* task);
     void onTaskDeleteClicked(Task* task);
     void updateCalendarDots();
-
     //chuc nang thong bao
     NotificationWidget* m_notificationWidget;
     QMenu* m_notificationMenu;
     QLabel* m_countNotificationLabel;
-
 private:
     Ui::MainWindow *ui;
     HeapManager manager;
@@ -108,8 +103,25 @@ private:
     std::set<std::string> m_categories;
     const QString CATEGORY_FILE_PATH = "D:\\PBL\\PBL2\\PBL2\\Data\\category.txt";
 
+    QMap<QString, QListWidgetItem*> m_categoryWidgets;
+    void updateCategoryView();
+    void addNewCategory();
+    void editCategory(const QString& oldName);
+    void deleteCategory(const QString& name);
+    void updateWeeklyStats();
+    QDate getFilterStartDate() const;
+    QDate getFilterEndDate() const;
 
-    //buieu do cot 
+    void updateStats(int total, int completed, int highPriority, int remaining);
+    void refreshDashboardStats(QDate date);
+    Vector<Task*> getTaskbyDate(QDate date);
+
+
+
+    bool eventFilter(QObject* obj, QEvent* event) override;
+
+    QLabel* summaryLabel;
+     //buieu do cot 
     QChart* m_barChart;
     QHorizontalBarSeries* m_barSeries;
     QChartView *m_barView;
@@ -128,24 +140,6 @@ private:
     //donut
     QPieSeries* m_donutSeries;
     QLabel* m_percentLabel;
-
-
-    QMap<QString, QListWidgetItem*> m_categoryWidgets;
-    void updateCategoryView();
-    void addNewCategory();
-    void editCategory(const QString& oldName);
-    void deleteCategory(const QString& name);
-
-    QDate getFilterStartDate() const;
-    QDate getFilterEndDate() const;
-
-    void updateStats(int total, int completed, int highPriority, int remaining);
-    void refreshDashboardStats(QDate date);
-    Vector<Task*> getTaskbyDate(QDate date);
-    bool eventFilter(QObject* obj, QEvent* event) override;
-    void updateWeeklyStats();
-    QLabel* summaryLabel;
-
 struct CategoryDonut {
         QChart* chart;
         QChartView* chartView;

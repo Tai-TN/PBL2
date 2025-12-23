@@ -29,6 +29,5 @@ private:
     void addNotificationItem(Task* task, int type);
     void setupUI();
     QFrame* createNotificationCard(Task* task, int type);
-
 };
 #endif

@@ -921,9 +921,32 @@ void MainWindow::onTaskStatusChanged(Task* task, bool completed)
         return;
     }
     
-    // Cập nhật task trong manager
+    if (isProcessingTaskStatus){
+        return;
+    }
+    isProcessingTaskStatus = true;
     task->setCompleted(completed);
-    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\tasks.txt");
+
+    if (task->isCompleted() == true && task->getRecurrence() != "none"){
+            std::string recurrence = task->getRecurrence();
+            QDateTime newDeadline;
+            QDateTime oldDeadline = QDateTime::fromString(QString::fromStdString(task->getDeadline()), "yyyy-MM-dd hh:mm");
+            if (recurrence == "daily"){
+                newDeadline = oldDeadline.addDays(1);
+            }
+            else if (recurrence == "monthly"){
+                newDeadline = oldDeadline.addMonths(1);
+            }
+            else{
+                newDeadline = oldDeadline.addDays(7);
+            }
+            Task* recurrenceTask = new Task(task->getTitle(), task->getDescription(), task->getPriority(),newDeadline.toString("yyyy-MM-dd hh:mm").toStdString() ,
+            task->getCategory(), task->getRecurrence(), false);
+            manager.addTask(recurrenceTask);
+
+        }
+
+
     m_taskListWidget->updateTask(task);
     m_todayListWidget->updateTask(task);
     m_categoryListWidget->updateTask(task);
@@ -934,8 +957,15 @@ void MainWindow::onTaskStatusChanged(Task* task, bool completed)
             m_categoryListWidget->removeTask(task);
             
         });
+    
+    
+
+    SaveToFile("D:\\PBL\\PBL2\\PBL2\\Data\\tasks.txt");
+     // Cập nhật task trong manager
+    
 }
     updateStatistics();
+    isProcessingTaskStatus = false;
 
 }
 void MainWindow::onTaskEditClicked(Task* task){
@@ -1211,7 +1241,6 @@ void MainWindow::refreshDashboardStats(QDate date) {
     int high = 0;
     for(Task* t : tasks){
         if (t->getPriority() == 3) high++;
-
         if (t->isCompleted()){
             completed++;
         }
